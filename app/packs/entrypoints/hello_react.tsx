@@ -10,6 +10,12 @@ import { COLORS } from '../javascript/constants';
 import { Title } from '../javascript/components/Title';
 import { Text } from '../javascript/components/Text';
 import { LoadingSpinner } from '../javascript/icons/LoadingSpinner';
+import { Button } from '../javascript/components/Button';
+import { PrimaryButton } from '../javascript/components/PrimaryButton';
+import { SecondaryButton } from '../javascript/components/SecondaryButton';
+import { PlusIcon } from '../javascript/icons/PlusIcon'
+import { DangerButton } from '../javascript/components/DangerButton';
+import { TertiaryButton } from '../javascript/components/TertiaryButton';
 
 const keys = Object.keys(COLORS);
 const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
@@ -30,6 +36,16 @@ const Hello = ({name}: HelloProps) => (
     <Title>Icons</Title>
     <LoadingSpinner color="#000" />
     <LoadingSpinner />
+
+    <Title>Buttons</Title>
+    <Button>Default button</Button>
+    <SecondaryButton>Edit</SecondaryButton>
+    <PrimaryButton>Mark as Paid</PrimaryButton>
+    <PrimaryButton icon={<PlusIcon />}>
+      Add invoice
+    </PrimaryButton>
+    <DangerButton>Delete</DangerButton>
+    <TertiaryButton>Save as draft</TertiaryButton>
   </>
 )
 
