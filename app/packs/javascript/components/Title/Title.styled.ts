@@ -32,5 +32,6 @@ const typeSpecifics = {
 export const Title = styled.h1<TitleProps>`
   font-family: ${SPARTAN};
   color: ${RICH_BLACK};
+  font-weight: 700;
   ${props => typeSpecifics[props.as] || typeSpecifics.h1 }
 `

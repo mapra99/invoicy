@@ -22,5 +22,6 @@ const typeSpecifics = {
 export const Text = styled.p<TextProps>`
   font-family: ${SPARTAN};
   color: ${RICH_BLACK};
+  font-weight: 500;
   ${props => typeSpecifics[props.type] || typeSpecifics.body1 }
 `
