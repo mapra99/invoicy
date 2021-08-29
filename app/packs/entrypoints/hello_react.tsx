@@ -18,6 +18,7 @@ import { DangerButton } from '../javascript/components/DangerButton';
 import { TertiaryButton } from '../javascript/components/TertiaryButton';
 import { InputField } from '../javascript/components/InputField';
 import { InputGroup } from '../javascript/components/InputGroup';
+import { SelectField } from '../javascript/components/SelectField';
 
 const keys = Object.keys(COLORS);
 const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
@@ -49,25 +50,35 @@ const Hello = ({name}: HelloProps) => (
     <DangerButton>Delete</DangerButton>
     <TertiaryButton>Save as draft</TertiaryButton>
 
-    <Title>Form components</Title>
-    <InputGroup label="Street Address" htmlFor="holi">
-      <InputField
-        id="holi"
-        type="text"
+    <div style={{maxWidth: "340px"}}>
+      <Title>Form components</Title>
+      <InputGroup label="Street Address" htmlFor="holi">
+        <InputField
+          id="holi"
+          type="text"
+        />
+      </InputGroup>
+      <InputGroup label="Street Address" htmlFor="holi">
+        <InputField
+          id="holi"
+          type="text"
+        />
+      </InputGroup>
+      <InputGroup label="Street Address" htmlFor="holi">
+        <InputField
+          id="holi"
+          type="text"
+        />
+      </InputGroup>
+
+      <SelectField
+        options={[
+          { value: 'chocolate', label: 'Chocolate' },
+          { value: 'strawberry', label: 'Strawberry' },
+          { value: 'vanilla', label: 'Vanilla' }
+        ]}
       />
-    </InputGroup>
-    <InputGroup label="Street Address" htmlFor="holi">
-      <InputField
-        id="holi"
-        type="text"
-      />
-    </InputGroup>
-    <InputGroup label="Street Address" htmlFor="holi">
-      <InputField
-        id="holi"
-        type="text"
-      />
-    </InputGroup>
+    </div>
   </>
 )
 
