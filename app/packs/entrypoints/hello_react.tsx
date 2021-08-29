@@ -9,6 +9,7 @@ import '../styles/global';
 import { COLORS } from '../javascript/constants';
 import { Title } from '../javascript/components/Title';
 import { Text } from '../javascript/components/Text';
+import { LoadingSpinner } from '../javascript/icons/LoadingSpinner';
 
 const keys = Object.keys(COLORS);
 const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
@@ -26,6 +27,9 @@ const Hello = ({name}: HelloProps) => (
     <Text type="body1">Aliqua et aliquip eiusmod quis qui cillum excepteur. Nostrud amet culpa ex exercitation excepteur Lorem sint commodo Lorem quis sunt enim. Ipsum Lorem cillum cillum anim amet aliquip laborum deserunt consectetur. Ea pariatur cupidatat exercitation excepteur laborum ex ut aute ipsum mollit magna voluptate nisi. Incididunt ea commodo enim cupidatat enim laboris.</Text>
     <Text type="body2">Aliqua et aliquip eiusmod quis qui cillum excepteur. Nostrud amet culpa ex exercitation excepteur Lorem sint commodo Lorem quis sunt enim. Ipsum Lorem cillum cillum anim amet aliquip laborum deserunt consectetur. Ea pariatur cupidatat exercitation excepteur laborum ex ut aute ipsum mollit magna voluptate nisi. Incididunt ea commodo enim cupidatat enim laboris.</Text>
 
+    <Title>Icons</Title>
+    <LoadingSpinner color="#000" />
+    <LoadingSpinner />
   </>
 )
 

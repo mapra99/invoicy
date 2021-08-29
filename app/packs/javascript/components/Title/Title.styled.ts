@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { TitleProps } from './types';
-import { FONTS } from '../../constants';
-import { COLORS } from '../../constants';
+import { COLORS, FONTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
 const { RICH_BLACK } = COLORS;
