@@ -6,6 +6,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import '../styles/hello.scss';
+import { COLORS } from '../javascript/constants';
+
+const keys = Object.keys(COLORS);
+const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
 
 interface HelloProps {
   name: string;
@@ -25,7 +29,7 @@ Hello.propTypes = {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <Hello name={randomColor} />,
     document.body.appendChild(document.createElement('div')),
   )
 })
