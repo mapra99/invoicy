@@ -16,6 +16,8 @@ import { SecondaryButton } from '../javascript/components/SecondaryButton';
 import { PlusIcon } from '../javascript/icons/PlusIcon'
 import { DangerButton } from '../javascript/components/DangerButton';
 import { TertiaryButton } from '../javascript/components/TertiaryButton';
+import { InputField } from '../javascript/components/InputField';
+import { InputGroup } from '../javascript/components/InputGroup';
 
 const keys = Object.keys(COLORS);
 const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
@@ -46,6 +48,26 @@ const Hello = ({name}: HelloProps) => (
     </PrimaryButton>
     <DangerButton>Delete</DangerButton>
     <TertiaryButton>Save as draft</TertiaryButton>
+
+    <Title>Form components</Title>
+    <InputGroup label="Street Address" htmlFor="holi">
+      <InputField
+        id="holi"
+        type="text"
+      />
+    </InputGroup>
+    <InputGroup label="Street Address" htmlFor="holi">
+      <InputField
+        id="holi"
+        type="text"
+      />
+    </InputGroup>
+    <InputGroup label="Street Address" htmlFor="holi">
+      <InputField
+        id="holi"
+        type="text"
+      />
+    </InputGroup>
   </>
 )
 
