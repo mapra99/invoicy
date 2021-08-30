@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { TextProps } from './types';
-import { COLORS, FONTS } from '../../constants';
+import { FONTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
-const { RICH_BLACK } = COLORS;
 
 const typeSpecifics = {
   body1: `
@@ -20,7 +19,7 @@ const typeSpecifics = {
 
 export const Text = styled.p<TextProps>`
   font-family: ${SPARTAN};
-  color: ${RICH_BLACK};
+  color: ${props => props.theme.text.primary};
   font-weight: 500;
   ${props => typeSpecifics[props.type] || typeSpecifics.body1 }
 `

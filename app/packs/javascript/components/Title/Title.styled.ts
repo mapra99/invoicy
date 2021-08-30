@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { TitleProps } from './types';
-import { COLORS, FONTS } from '../../constants';
+import { FONTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
-const { RICH_BLACK } = COLORS;
 
 const typeSpecifics = {
   h1: `
@@ -30,7 +29,7 @@ const typeSpecifics = {
 
 export const Title = styled.h1<TitleProps>`
   font-family: ${SPARTAN};
-  color: ${RICH_BLACK};
+  color: ${props => props.theme.text.primary};
   font-weight: 700;
   ${props => typeSpecifics[props.as] || typeSpecifics.h1 }
 `

@@ -103,7 +103,7 @@ Hello.propTypes = {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <ThemeProvider theme={themes[0]}>
+    <ThemeProvider theme={themes.light}>
       <Hello name={randomColor} />
     </ThemeProvider>,
     document.body.appendChild(document.createElement('div')),
