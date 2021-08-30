@@ -5,6 +5,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
+import { ThemeProvider } from 'styled-components'
 import '../styles/global';
 import { COLORS } from '../javascript/constants';
 import { Title } from '../javascript/components/Title';
@@ -21,6 +22,7 @@ import { InputField } from '../javascript/components/InputField';
 import { InputGroup } from '../javascript/components/InputGroup';
 import { SelectField } from '../javascript/components/SelectField';
 import { DatePickerField } from '../javascript/components/DatePickerField';
+import themes from '../javascript/themes';
 
 const keys = Object.keys(COLORS);
 const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
@@ -101,7 +103,9 @@ Hello.propTypes = {
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name={randomColor} />,
+    <ThemeProvider theme={themes[0]}>
+      <Hello name={randomColor} />
+    </ThemeProvider>,
     document.body.appendChild(document.createElement('div')),
   )
 })
