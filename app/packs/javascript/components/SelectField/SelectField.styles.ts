@@ -61,7 +61,8 @@ export const selectStyles = {
     svg: {
       width: "16px",
       fill: MEDIUM_SLATE_BLUE
-    }
+    },
+    padding: "0 8px"
   }),
   menu: (provided, _state) => ({
     ...provided,
