@@ -6,7 +6,9 @@ const {
   LAVENDER_WEB,
   SPACE_CADET_GREY,
   SPACE_CADET,
-  MEDIUM_SLATE_BLUE
+  MEDIUM_SLATE_BLUE,
+  MEDIUM_PURPLE,
+  GLAUCOUS
 } = COLORS
 
 export default {
@@ -30,6 +32,15 @@ export default {
     }
   },
   forms: {
-    labels: LAVENDER_WEB
+    label: LAVENDER_WEB,
+    input: {
+      bg: SPACE_CADET,
+      border: SPACE_CADET_BLUE,
+      borderFocus: SPACE_CADET_BLUE,
+      text: WHITE,
+      textSecondary: MEDIUM_PURPLE,
+      placeholder: GLAUCOUS,
+      icons: GLAUCOUS
+    }
   }
 }

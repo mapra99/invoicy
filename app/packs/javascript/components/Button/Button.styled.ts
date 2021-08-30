@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FONTS, COLORS } from '../../constants';
+import { FONTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
 

@@ -7,7 +7,9 @@ const {
   SPACE_CADET_GREY,
   RICH_BLACK,
   COOL_GREY,
-  MEDIUM_SLATE_BLUE
+  MEDIUM_SLATE_BLUE,
+  MEDIUM_PURPLE,
+  WHITE
 } = COLORS
 
 export default {
@@ -31,6 +33,15 @@ export default {
     }
   },
   forms: {
-    labels: GLAUCOUS
+    label: GLAUCOUS,
+    input: {
+      bg: WHITE,
+      border: LAVENDER_WEB,
+      borderFocus: MEDIUM_PURPLE,
+      text: RICH_BLACK,
+      textSecondary: MEDIUM_SLATE_BLUE,
+      placeholder: GLAUCOUS,
+      icons: GLAUCOUS
+    }
   }
 }

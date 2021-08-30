@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-import { COLORS, FONTS } from '../../constants'
+import { FONTS } from '../../constants'
 
-const { LAVENDER_WEB, RICH_BLACK, GLAUCOUS, MEDIUM_SLATE_BLUE } = COLORS;
 const { SPARTAN } = FONTS;
 
-const datePickerStyles = `
+const datePickerStyles = theme => `
   .react-date-picker {
     display: inline-flex;
     position: relative;
@@ -26,7 +25,7 @@ const datePickerStyles = `
     display: flex;
     flex-grow: 1;
     flex-shrink: 0;
-    border: 1px solid ${LAVENDER_WEB};
+    border: 1px solid ${theme.forms.input.border};
     border-radius: 4px;
     width: 100%;
     height: 48px;
@@ -36,7 +35,8 @@ const datePickerStyles = `
     font-size: 12px;
     letter-spacing: -0.25px;
     font-weight: 700;
-    color: ${RICH_BLACK};
+    color: ${theme.forms.input.text};
+    background-color: ${theme.forms.input.bg};
   }
   .react-date-picker__inputGroup {
     min-width: calc((4px * 3) +  0.54em * 8  +  0.217em * 2);
@@ -49,6 +49,7 @@ const datePickerStyles = `
     white-space: pre;
   }
   .react-date-picker__inputGroup__input {
+    color: ${theme.forms.input.text};
     min-width: 0.54em;
     height: 100%;
     position: relative;
@@ -61,7 +62,6 @@ const datePickerStyles = `
     
     &:focus {
       outline: none;
-      background: ${LAVENDER_WEB};
     }
   }
   .react-date-picker__inputGroup__input::-webkit-outer-spin-button,
@@ -86,7 +86,7 @@ const datePickerStyles = `
   }
   .react-date-picker__button svg {
     width: 16px;
-    fill: ${GLAUCOUS};
+    fill: ${theme.forms.input.icons};
   }
   .react-date-picker__button:enabled {
     cursor: pointer;
@@ -117,17 +117,17 @@ const datePickerStyles = `
   }
 `
 
-const calendarStyles = `
+const calendarStyles = theme => `
   .react-calendar {
     width: 240px;
     max-width: 100%;
-    background: white;
+    background: ${theme.forms.input.bg};
     font-family: ${SPARTAN};
     line-height: 1.25;
     font-size: 12px;
     letter-spacing: -0.25px;
     font-weight: 700;
-    color: ${RICH_BLACK};
+    color: ${theme.forms.input.text};
     box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
     border-radius: 8px;
     padding: 20px 13px 13px;
@@ -138,7 +138,7 @@ const calendarStyles = `
     font-size: 12px;
     letter-spacing: -0.25px;
     font-weight: 700;
-    color: ${RICH_BLACK};
+    color: ${theme.forms.input.text};
   }
   .react-calendar--doubleView {
     width: 700px;
@@ -180,7 +180,7 @@ const calendarStyles = `
   }
   .react-calendar__navigation__arrow {
     font-size: 20px !important;
-    color: ${MEDIUM_SLATE_BLUE} !important;
+    color: ${theme.forms.input.textSecondary} !important;
   }
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
@@ -227,16 +227,16 @@ const calendarStyles = `
     background-color: #e6e6e6;
   }
   .react-calendar__tile--now {
-    background: ${LAVENDER_WEB};
+    background: ${theme.forms.input.bg};
   }
   .react-calendar__tile--active {
     abbr {
-      color: ${MEDIUM_SLATE_BLUE};
+      color: ${theme.forms.input.textSecondary};
     }
   }
 `
 
 export const DatePickerWrapper = styled.div `
-  ${datePickerStyles}
-  ${calendarStyles}
+  ${props => datePickerStyles(props.theme)}
+  ${props => calendarStyles(props.theme)}
 `

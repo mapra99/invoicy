@@ -1,15 +1,15 @@
 import styled from 'styled-components'
-import { COLORS, FONTS } from '../../constants'
+import { FONTS } from '../../constants'
 
-const { LAVENDER_WEB, MEDIUM_PURPLE, RICH_BLACK } = COLORS;
 const { SPARTAN } = FONTS;
 
 export const InputField = styled.input`
   display: block;
   height: 48px;
-  border: 1px solid ${LAVENDER_WEB};
+  background-color: ${props => props.theme.forms.input.bg};
+  border: 1px solid ${props => props.theme.forms.input.border};
   border-radius: 4px;
-  color: ${RICH_BLACK};
+  color: ${props => props.theme.forms.input.text};
   font-size: 12px;
   font-family: ${SPARTAN};
   font-weight: 700;
@@ -20,7 +20,7 @@ export const InputField = styled.input`
   padding: 0 20px;
 
   &:focus {
-    border-color: ${MEDIUM_PURPLE};
+    border-color: ${props => props.theme.forms.input.borderFocus};
     outline: none;
   }
 `
