@@ -8,11 +8,11 @@ const {
   SPACE_CADET,
   MEDIUM_SLATE_BLUE,
   MEDIUM_PURPLE,
-  GLAUCOUS
+  GLAUCOUS,
+  XIKETIC
 } = COLORS
 
 export default {
-  id: "dark-v0.0.1", // Update this value every time the theme is updated
   name: "dark",
   text: {
     primary: WHITE,
@@ -42,5 +42,9 @@ export default {
       placeholder: GLAUCOUS,
       icons: GLAUCOUS
     }
+  },
+  layout: {
+    bg: XIKETIC,
+    bgSecondary: SPACE_CADET
   }
 }

@@ -9,11 +9,11 @@ const {
   COOL_GREY,
   MEDIUM_SLATE_BLUE,
   MEDIUM_PURPLE,
-  WHITE
+  WHITE,
+  CULTURED
 } = COLORS
 
 export default {
-  id: "light-v0.0.1", // Update this value every time the theme is updated
   name: "light",
   text: {
     primary: RICH_BLACK,
@@ -43,5 +43,9 @@ export default {
       placeholder: GLAUCOUS,
       icons: GLAUCOUS
     }
+  },
+  layout: {
+    bg: CULTURED,
+    bgSecondary: WHITE
   }
 }

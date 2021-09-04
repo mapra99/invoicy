@@ -23,6 +23,7 @@ import { InputGroup } from '../javascript/components/InputGroup';
 import { SelectField } from '../javascript/components/SelectField';
 import { DatePickerField } from '../javascript/components/DatePickerField';
 import themes from '../javascript/themes';
+import { useTheme } from '../javascript/hooks/useTheme';
 
 const keys = Object.keys(COLORS);
 const randomColor = COLORS[keys[ keys.length * Math.random() << 0]];
@@ -101,11 +102,20 @@ Hello.propTypes = {
   name: PropTypes.string
 }
 
+const App = () => {
+  const { currentTheme, switchTheme } = useTheme({ defaultTheme: "light" })
+
+  return (
+    <ThemeProvider theme={themes[currentTheme]}>
+      <Hello name={randomColor} />
+      <PrimaryButton onClick={switchTheme} >Switch Theme</PrimaryButton>
+    </ThemeProvider>
+  )
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <ThemeProvider theme={themes.light}>
-      <Hello name={randomColor} />
-    </ThemeProvider>,
+    <App />,
     document.body.appendChild(document.createElement('div')),
   )
 })
