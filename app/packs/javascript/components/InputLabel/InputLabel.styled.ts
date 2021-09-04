@@ -1,11 +1,10 @@
 import styled from 'styled-components'
-import { COLORS, FONTS } from '../../constants'
+import { FONTS } from '../../constants'
 
-const { GLAUCOUS } = COLORS;
 const { SPARTAN } = FONTS;
 
 export const InputLabel = styled.label`
-  color: ${GLAUCOUS};
+  color: ${props => props.theme.forms.label};
   display: block;
   font-family: ${SPARTAN};
   font-size: 12px;

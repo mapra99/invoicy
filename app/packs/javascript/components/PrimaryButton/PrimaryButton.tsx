@@ -2,8 +2,8 @@ import React from 'react';
 import { StyledPrimaryButton, PrimaryButtonIconWrapper } from './PrimaryButton.styled'
 import { PrimaryButtonProps } from './types';
 
-export const PrimaryButton = ({ icon, children }: PrimaryButtonProps) => (
-  <StyledPrimaryButton>
+export const PrimaryButton = ({ icon, children, ...props }: PrimaryButtonProps) => (
+  <StyledPrimaryButton {...props} >
     { icon && (
       <PrimaryButtonIconWrapper>
         { icon }

@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { Button } from '../Button';
-import { COLORS } from '../../constants'
-
-const { GHOST_WHITE, LAVENDER_WEB, GLAUCOUS } = COLORS;
 
 export const SecondaryButton = styled(Button)`
-  background-color: ${GHOST_WHITE};
-  color: ${GLAUCOUS};
+  background-color: ${props => props.theme.buttons.secondary.bg};
+  color: ${props => props.theme.buttons.secondary.text};
 
   &:hover {
-    background-color: ${LAVENDER_WEB};
+    background-color: ${props => props.theme.buttons.secondary.bgHover};
   }
 `

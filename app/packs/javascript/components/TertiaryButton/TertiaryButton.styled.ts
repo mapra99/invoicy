@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { Button } from '../Button';
-import { COLORS } from '../../constants'
-
-const { SPACE_CADET_GREY, RICH_BLACK, COOL_GREY } = COLORS;
 
 export const TertiaryButton = styled(Button)`
-  background-color: ${SPACE_CADET_GREY};
-  color: ${COOL_GREY};
+  background-color: ${props => props.theme.buttons.tertiary.bg};
+  color: ${props => props.theme.buttons.tertiary.text};
 
   &:hover {
-    background-color: ${RICH_BLACK};
+    background-color: ${props => props.theme.buttons.tertiary.bgHover};
   }
 `
