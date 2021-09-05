@@ -46,6 +46,7 @@ export default {
   },
   layout: {
     bg: CULTURED,
-    bgSecondary: WHITE
+    bgSecondary: WHITE,
+    navbar: SPACE_CADET_GREY
   }
 }

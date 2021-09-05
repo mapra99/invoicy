@@ -6,7 +6,8 @@ html
     meta content="width=device-width,initial-scale=1" name="viewport" /
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_pack_tag 'hello_react', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'hello_react', 'data-turbolinks-track': 'reload'
+
+    = render partial: "layouts/scripts"
+    = render partial: "layouts/stylesheets"
   body
     = yield

@@ -45,6 +45,7 @@ export default {
   },
   layout: {
     bg: XIKETIC,
-    bgSecondary: SPACE_CADET
+    bgSecondary: SPACE_CADET,
+    navbar: SPACE_CADET_GREY
   }
 }
