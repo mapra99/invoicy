@@ -5,11 +5,11 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { ThemeProvider } from '../../javascript/contexts/ThemeContext';
-import { DashboardLayout } from '../../javascript/layouts/DashboardLayout';
-import { Index as InvoicesIndex } from '../../javascript/pages/dashboard/invoices';
-import { GlobalStyle } from '../../javascript/components/GlobalStyle';
-import '../../styles/global';
+import { ThemeProvider } from '../javascript/contexts/ThemeContext';
+import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
+import { Index as InvoicesIndex } from '../javascript/pages/dashboard/invoices';
+import { GlobalStyle } from '../javascript/components/GlobalStyle';
+import '../styles/global';
 
 const App = () => {
   return (
