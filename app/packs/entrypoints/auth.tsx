@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from '../javascript/contexts/ThemeContext';
 import { AuthLayout } from '../javascript/layouts/AuthLayout'
-import { Login } from '../javascript/pages/auth';
+import { Login, Signup } from '../javascript/pages/auth';
 import { GlobalStyle } from '../javascript/components/GlobalStyle';
 import '../styles/global';
 
@@ -20,6 +20,9 @@ const App = () => {
           <Switch>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/signup">
+              <Signup />
             </Route>
           </Switch>
         </AuthLayout>

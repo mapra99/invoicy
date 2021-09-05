@@ -1,30 +1,38 @@
 import React from 'react';
 import { Title } from '../../../components/Title'
 import { Text } from '../../../components/Text'
-import { Link } from '../../../components/Link'
 import { InvoicyHeading } from '../../../components/InvoicyHeading'
 import { InputGroup } from '../../../components/InputGroup'
 import { InputField } from '../../../components/InputField'
 import { PrimaryButton } from '../../../components/PrimaryButton'
-import { LoginForm, LoginTitleWrapper } from './Login.styled'
+import { Link } from '../../../components/Link'
+import { SignupForm, SignupTitleWrapper } from './Signup.styled'
 
-export const Login = () => (
+export const Signup = () => (
   <>
     <InvoicyHeading />
-    <LoginTitleWrapper>
+    <SignupTitleWrapper>
       <Title as="h2">
-        Login
+        Sign Up
       </Title>
       <Text>
         or perhaps you need to
         {' '}
-        <Link to="/signup">
-          sign up
+        <Link to="/login">
+          log in
         </Link>
       </Text>
-    </LoginTitleWrapper>
+    </SignupTitleWrapper>
 
-    <LoginForm>
+    <SignupForm>
+      <InputGroup label="Your Name" htmlFor="name">
+        <InputField
+          id="name"
+          placeholder="Awesome Name"
+          type="text"
+        />
+      </InputGroup>
+
       <InputGroup label="Email" htmlFor="email">
         <InputField
           id="email"
@@ -41,9 +49,17 @@ export const Login = () => (
         />
       </InputGroup>
 
+      <InputGroup label="Confirm your Password" htmlFor="password">
+        <InputField
+          id="password"
+          placeholder="********"
+          type="password"
+        />
+      </InputGroup>
+
       <PrimaryButton type="submit">
-        Log in
+        Sign up
       </PrimaryButton>
-    </LoginForm>
+    </SignupForm>
   </>
 )
