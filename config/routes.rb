@@ -8,5 +8,10 @@ Rails.application.routes.draw do
     namespace :dashboard do
       resources :invoices, only: [:index]
     end
+
+    scope module: :auth do
+      get "login"
+      get "signup"
+    end
   end
 end
