@@ -14,4 +14,12 @@ Rails.application.routes.draw do
       resources :invoices, only: [:index]
     end
   end
+
+  namespace :api, defaults: { format: 'json' } do
+    resources :users, only: [] do
+      collection do
+        get "current"
+      end
+    end
+  end
 end
