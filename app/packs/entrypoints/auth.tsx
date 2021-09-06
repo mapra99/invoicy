@@ -8,7 +8,6 @@ import {
 import { ThemeProvider } from '../javascript/contexts/ThemeContext';
 import { AuthLayout } from '../javascript/layouts/AuthLayout'
 import { Login, Signup } from '../javascript/pages/auth';
-import { GlobalStyle } from '../javascript/components/GlobalStyle';
 import { ROUTES } from '../javascript/constants';
 import '../styles/global';
 
@@ -17,7 +16,6 @@ const { AUTH: AUTH_ROUTES } = ROUTES
 const App = () => {
   return (
     <ThemeProvider>
-      <GlobalStyle />
       <BrowserRouter>
         <AuthLayout>
           <Switch>
