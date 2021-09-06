@@ -9,7 +9,10 @@ import { ThemeProvider } from '../javascript/contexts/ThemeContext';
 import { AuthLayout } from '../javascript/layouts/AuthLayout'
 import { Login, Signup } from '../javascript/pages/auth';
 import { GlobalStyle } from '../javascript/components/GlobalStyle';
+import { ROUTES } from '../javascript/constants';
 import '../styles/global';
+
+const { AUTH: AUTH_ROUTES } = ROUTES
 
 const App = () => {
   return (
@@ -18,10 +21,10 @@ const App = () => {
       <BrowserRouter>
         <AuthLayout>
           <Switch>
-            <Route exact path="/login">
+            <Route exact path={AUTH_ROUTES.SIGN_IN}>
               <Login />
             </Route>
-            <Route exact path="/signup">
+            <Route exact path={AUTH_ROUTES.SIGN_UP}>
               <Signup />
             </Route>
           </Switch>

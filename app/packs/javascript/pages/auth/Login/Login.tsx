@@ -7,6 +7,9 @@ import { InputGroup } from '../../../components/InputGroup'
 import { InputField } from '../../../components/InputField'
 import { PrimaryButton } from '../../../components/PrimaryButton'
 import { LoginForm, LoginTitleWrapper } from './Login.styled'
+import { ROUTES } from '../../../constants'
+
+const { AUTH: AUTH_ROUTES } = ROUTES
 
 export const Login = () => (
   <>
@@ -18,7 +21,7 @@ export const Login = () => (
       <Text>
         or perhaps you need to
         {' '}
-        <Link to="/signup">
+        <Link to={AUTH_ROUTES.SIGN_UP}>
           sign up
         </Link>
       </Text>
