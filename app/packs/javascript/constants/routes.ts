@@ -8,5 +8,8 @@ export const ROUTES = {
     SIGN_IN: "/users/login",
     SIGN_UP: "/users/signup",
     CREATE_USERS: "/users",
+  },
+  API: {
+    CURRENT_USER: "/api/users/current"
   }
 }

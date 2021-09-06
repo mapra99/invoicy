@@ -5,7 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { ThemeProvider } from '../javascript/contexts/ThemeContext';
+import { GlobalProvider } from '../javascript/contexts/GlobalContext';
 import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
 import { Index as InvoicesIndex } from '../javascript/pages/dashboard/invoices';
 import { ROUTES } from '../javascript/constants';
@@ -15,7 +15,7 @@ const { DASHBOARD: DASHBOARD_ROUTES } = ROUTES
 
 const App = () => {
   return (
-    <ThemeProvider>
+    <GlobalProvider>
       <BrowserRouter>
         <DashboardLayout>
           <Switch>
@@ -25,7 +25,7 @@ const App = () => {
           </Switch>
         </DashboardLayout>
       </BrowserRouter>
-    </ThemeProvider>
+    </GlobalProvider>
   )
 }
 

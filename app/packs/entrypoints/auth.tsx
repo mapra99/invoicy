@@ -5,7 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { ThemeProvider } from '../javascript/contexts/ThemeContext';
+import { GlobalProvider } from '../javascript/contexts/GlobalContext';
 import { AuthLayout } from '../javascript/layouts/AuthLayout'
 import { Login, Signup } from '../javascript/pages/auth';
 import { ROUTES } from '../javascript/constants';
@@ -15,7 +15,7 @@ const { AUTH: AUTH_ROUTES } = ROUTES
 
 const App = () => {
   return (
-    <ThemeProvider>
+    <GlobalProvider>
       <BrowserRouter>
         <AuthLayout>
           <Switch>
@@ -28,7 +28,7 @@ const App = () => {
           </Switch>
         </AuthLayout>
       </BrowserRouter>
-    </ThemeProvider>
+    </GlobalProvider>
   )
 }
 
