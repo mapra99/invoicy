@@ -8,6 +8,7 @@ import { PrimaryButton } from '../../../components/PrimaryButton'
 import { Link } from '../../../components/Link'
 import { SignupForm, SignupTitleWrapper } from './Signup.styled'
 import { ROUTES } from '../../../constants'
+import { server } from '../../../utils/server'
 
 const { AUTH: AUTH_ROUTES } = ROUTES
 
@@ -27,12 +28,22 @@ export const Signup = () => (
       </Text>
     </SignupTitleWrapper>
 
-    <SignupForm>
+    <SignupForm
+      action={AUTH_ROUTES.CREATE_USERS}
+      method="post"
+    >
+      <InputField
+        type="hidden"
+        name="authenticity_token"
+        value={server.getAuthenticityToken()}
+      />
+
       <InputGroup label="Your Name" htmlFor="name">
         <InputField
           id="name"
           placeholder="Awesome Name"
           type="text"
+          name="user[name]"
         />
       </InputGroup>
 
@@ -41,6 +52,7 @@ export const Signup = () => (
           id="email"
           placeholder="fulanito@mail.com"
           type="email"
+          name="user[email]"
         />
       </InputGroup>
 
@@ -49,6 +61,7 @@ export const Signup = () => (
           id="password"
           placeholder="********"
           type="password"
+          name="user[password]"
         />
       </InputGroup>
 
@@ -57,6 +70,7 @@ export const Signup = () => (
           id="password"
           placeholder="********"
           type="password"
+          name="user[password_confirmation]"
         />
       </InputGroup>
 

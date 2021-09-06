@@ -5,7 +5,8 @@ export const ROUTES = {
     INVOICES_INDEX: "/dashboard/invoices"
   },
   AUTH: {
-    SIGN_IN: "/login",
-    SIGN_UP: "/signup"
+    SIGN_IN: "/users/login",
+    SIGN_UP: "/users/signup",
+    CREATE_USERS: "/users",
   }
 }

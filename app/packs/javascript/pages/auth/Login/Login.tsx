@@ -8,6 +8,7 @@ import { InputField } from '../../../components/InputField'
 import { PrimaryButton } from '../../../components/PrimaryButton'
 import { LoginForm, LoginTitleWrapper } from './Login.styled'
 import { ROUTES } from '../../../constants'
+import { server } from '../../../utils/server'
 
 const { AUTH: AUTH_ROUTES } = ROUTES
 
@@ -27,12 +28,22 @@ export const Login = () => (
       </Text>
     </LoginTitleWrapper>
 
-    <LoginForm>
+    <LoginForm
+      action={AUTH_ROUTES.SIGN_IN}
+      method="post"
+    >
+      <InputField
+        type="hidden"
+        name="authenticity_token"
+        value={server.getAuthenticityToken()}
+      />
+
       <InputGroup label="Email" htmlFor="email">
         <InputField
           id="email"
           placeholder="fulanito@mail.com"
           type="email"
+          name="user[email]"
         />
       </InputGroup>
 
@@ -41,6 +52,7 @@ export const Login = () => (
           id="password"
           placeholder="********"
           type="password"
+          name="user[password]"
         />
       </InputGroup>
 
