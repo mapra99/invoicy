@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { GlobalProvider } from '../javascript/contexts/GlobalContext';
 import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
-import { Index as InvoicesIndex } from '../javascript/pages/dashboard/invoices';
+import { InvoicesIndex } from '../javascript/pages/dashboard/InvoicesIndex';
 import { ROUTES } from '../javascript/constants';
 import '../styles/global';
 
@@ -19,6 +19,9 @@ const App = () => {
       <BrowserRouter>
         <DashboardLayout>
           <Switch>
+            <Route exact path={ROUTES.ROOT}>
+              <InvoicesIndex />
+            </Route>
             <Route exact path={DASHBOARD_ROUTES.INVOICES_INDEX}>
               <InvoicesIndex />
             </Route>

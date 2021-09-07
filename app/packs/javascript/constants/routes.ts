@@ -1,6 +1,7 @@
 // These routes must be consistent with the ones defined on the server side if needed (config/routes.rb).
 
 export const ROUTES = {
+  ROOT: "/",
   DASHBOARD: {
     INVOICES_INDEX: "/dashboard/invoices"
   },
