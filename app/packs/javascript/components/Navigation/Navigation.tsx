@@ -1,6 +1,7 @@
 import React from 'react';
 import { InvoicyIcon } from '../../icons/InvoicyIcon'
 import { SwitchThemeButton } from '../SwitchThemeButton'
+import { ProfileDropdown } from '../ProfileDropdown'
 import {
   NavigationContainer,
   NavigationLogoWrapper,
@@ -16,6 +17,7 @@ export const Navigation = () => {
 
       <NavigationRightBottomWrapper>
         <SwitchThemeButton />
+        <ProfileDropdown />
       </NavigationRightBottomWrapper>
     </NavigationContainer>
   )

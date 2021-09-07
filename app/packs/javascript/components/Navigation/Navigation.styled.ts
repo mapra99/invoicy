@@ -47,7 +47,14 @@ export const NavigationLogoWrapper = styled.div`
 `
 
 export const NavigationRightBottomWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
   @media (max-width: ${BREAKPOINT_XL}px) {
     margin-left: auto;
+  }
+
+  @media (min-width: ${BREAKPOINT_XL}px) {
+    flex-direction: column;
   }
 `

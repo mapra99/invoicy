@@ -47,6 +47,7 @@ export default {
   layout: {
     bg: CULTURED,
     bgSecondary: WHITE,
-    navbar: SPACE_CADET_GREY
+    navbar: SPACE_CADET_GREY,
+    buttons: GLAUCOUS
   }
 }
