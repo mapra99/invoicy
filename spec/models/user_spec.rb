@@ -14,5 +14,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:locations) }
     it { should have_many(:user_clients) }
     it { should have_many(:clients) }
+    it { should have_many(:invoices) }
+    it { should have_many(:items) }
   end
 end

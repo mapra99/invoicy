@@ -4,6 +4,18 @@ class Client < ApplicationRecord
   has_many :locations, through: :client_locations
   has_many :user_clients, dependent: :destroy
   has_many :users, through: :user_clients
+  has_many :invoices, dependent: :nullify
 
   validates :name, presence: true, uniqueness: true
+  validates :slug, presence: true, uniqueness: true
+
+  before_validation :set_slug, on: :create
+
+  private
+
+  def set_slug
+    return if slug.present?
+
+    self.slug = name.gsub(/\W+/, '_').underscore
+  end
 end
