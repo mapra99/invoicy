@@ -27,6 +27,7 @@ RSpec.describe Invoice, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:invoice_items) }
     it { should have_many(:items) }
+    it { should belong_to(:currency).optional }
   end
 
   context 'hooks' do
