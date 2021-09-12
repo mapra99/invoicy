@@ -1,14 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import { useBreakpoint } from '../../hooks/useBreakpoint'
 import { AuthContext } from '../../contexts/AuthContext'
 import { ProfileIcon } from '../../icons/ProfileIcon'
-import { ProfileDropdownButton } from './ProfileDropdown.styled'
+import {
+  ProfileDropdownButton,
+  ProfileDropdownOptionsWrapper,
+  ProfileDropdownWrapper,
+  ProfileDropdownOption
+} from './ProfileDropdown.styled'
 
 export const ProfileDropdown = () => {
   const { signOut } = useContext(AuthContext)
+  const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
+  const { desktop } = useBreakpoint();
 
   return (
-    <ProfileDropdownButton onClick={signOut}>
-      <ProfileIcon/>
-    </ProfileDropdownButton>
+    <ProfileDropdownWrapper
+      onMouseEnter={() => setOptionsVisible(true)}
+      onMouseLeave={() => setOptionsVisible(false)}
+    >
+      <ProfileDropdownButton  onClick={() => !desktop && setOptionsVisible(!optionsVisible)}>
+        <ProfileIcon/>
+      </ProfileDropdownButton>
+
+      {optionsVisible && (
+        <ProfileDropdownOptionsWrapper onClick={() => setOptionsVisible(false)}>
+          <ProfileDropdownOption onClick={signOut}>
+            Sign out
+          </ProfileDropdownOption>
+        </ProfileDropdownOptionsWrapper>
+      )}
+    </ProfileDropdownWrapper>
   )
 }
