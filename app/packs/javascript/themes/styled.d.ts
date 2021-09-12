@@ -37,7 +37,8 @@ declare module 'styled-components' {
     layout: {
       bg: string,
       bgSecondary: string,
-      navbar: string
+      navbar: string,
+      buttons: string
     }
   }
 }

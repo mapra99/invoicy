@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const Index = () => (
+export const InvoicesIndex = () => (
   <h1>HOLIIII</h1>
 )

@@ -46,6 +46,7 @@ export default {
   layout: {
     bg: XIKETIC,
     bgSecondary: SPACE_CADET,
-    navbar: SPACE_CADET_GREY
+    navbar: SPACE_CADET_GREY,
+    buttons: GLAUCOUS
   }
 }

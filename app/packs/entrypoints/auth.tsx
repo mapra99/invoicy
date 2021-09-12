@@ -6,27 +6,27 @@ import {
   Route
 } from "react-router-dom";
 import { GlobalProvider } from '../javascript/contexts/GlobalContext';
-import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
-import { InvoicesIndex } from '../javascript/pages/dashboard/InvoicesIndex';
+import { AuthLayout } from '../javascript/layouts/AuthLayout'
+import { Login, Signup } from '../javascript/pages/auth';
 import { ROUTES } from '../javascript/constants';
 import '../styles/global';
 
-const { DASHBOARD: DASHBOARD_ROUTES } = ROUTES
+const { AUTH: AUTH_ROUTES } = ROUTES
 
 const App = () => {
   return (
     <GlobalProvider>
       <BrowserRouter>
-        <DashboardLayout>
+        <AuthLayout>
           <Switch>
-            <Route exact path={ROUTES.ROOT}>
-              <InvoicesIndex />
+            <Route exact path={AUTH_ROUTES.SIGN_IN}>
+              <Login />
             </Route>
-            <Route exact path={DASHBOARD_ROUTES.INVOICES_INDEX}>
-              <InvoicesIndex />
+            <Route exact path={AUTH_ROUTES.SIGN_UP}>
+              <Signup />
             </Route>
           </Switch>
-        </DashboardLayout>
+        </AuthLayout>
       </BrowserRouter>
     </GlobalProvider>
   )
