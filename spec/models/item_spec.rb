@@ -13,5 +13,6 @@ RSpec.describe Item, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:invoice_items) }
     it { should have_many(:invoices) }
+    it { should belong_to(:currency).optional }
   end
 end

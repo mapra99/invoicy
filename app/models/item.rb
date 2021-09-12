@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  belongs_to :currency, optional: true
   has_many :invoice_items, dependent: :destroy
   has_many :invoices, through: :invoice_items
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_205126) do
+ActiveRecord::Schema.define(version: 2021_09_12_220145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2021_09_12_205126) do
     t.index ["slug"], name: "index_clients_on_slug", unique: true
   end
 
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "abbreviation", null: false
+    t.string "symbol", default: "$"
+    t.float "min_size", default: 0.01
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["abbreviation"], name: "index_currencies_on_abbreviation", unique: true
+  end
+
   create_table "invoice_items", force: :cascade do |t|
     t.bigint "invoice_id", null: false
     t.bigint "item_id", null: false
@@ -49,6 +59,8 @@ ActiveRecord::Schema.define(version: 2021_09_12_205126) do
     t.float "fixed_unit_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "currency_id"
+    t.index ["currency_id"], name: "index_invoice_items_on_currency_id"
     t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
     t.index ["item_id"], name: "index_invoice_items_on_item_id"
   end
@@ -64,7 +76,9 @@ ActiveRecord::Schema.define(version: 2021_09_12_205126) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "currency_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["currency_id"], name: "index_invoices_on_currency_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
     t.index ["uuid", "client_id"], name: "index_invoices_on_uuid_and_client_id"
     t.index ["uuid", "user_id", "client_id"], name: "index_invoices_on_uuid_and_user_id_and_client_id", unique: true
@@ -78,6 +92,8 @@ ActiveRecord::Schema.define(version: 2021_09_12_205126) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "currency_id"
+    t.index ["currency_id"], name: "index_items_on_currency_id"
     t.index ["name", "user_id"], name: "index_items_on_name_and_user_id", unique: true
     t.index ["user_id"], name: "index_items_on_user_id"
   end
@@ -126,10 +142,13 @@ ActiveRecord::Schema.define(version: 2021_09_12_205126) do
   add_foreign_key "client_emails", "clients"
   add_foreign_key "client_locations", "clients"
   add_foreign_key "client_locations", "locations"
+  add_foreign_key "invoice_items", "currencies"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoice_items", "items"
   add_foreign_key "invoices", "clients"
+  add_foreign_key "invoices", "currencies"
   add_foreign_key "invoices", "users"
+  add_foreign_key "items", "currencies"
   add_foreign_key "items", "users"
   add_foreign_key "user_clients", "clients"
   add_foreign_key "user_clients", "users"
