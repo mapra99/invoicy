@@ -25,6 +25,8 @@ RSpec.describe Invoice, type: :model do
   describe 'associations' do
     it { should belong_to(:client).optional }
     it { should belong_to(:user) }
+    it { should have_many(:invoice_items) }
+    it { should have_many(:items) }
   end
 
   context 'hooks' do

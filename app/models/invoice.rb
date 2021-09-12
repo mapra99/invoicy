@@ -1,6 +1,8 @@
 class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :client, required: false # to allow draft invoices not to have a client set
+  has_many :invoice_items, dependent: :destroy
+  has_many :items, through: :invoice_items
 
   enum status: { draft: 0, pending: 1, paid: 2 }
 
