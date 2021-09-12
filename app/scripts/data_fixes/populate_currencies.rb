@@ -1,4 +1,4 @@
-module Scripts
+module DataFixes
   class PopulateCurrencies
     class << self
       def call
