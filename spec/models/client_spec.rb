@@ -10,5 +10,7 @@ RSpec.describe Client, type: :model do
   describe "associations" do
     it { should have_many(:emails) }
     it { should have_many(:locations) }
+    it { should have_many(:user_clients) }
+    it { should have_many(:users) }
   end
 end
