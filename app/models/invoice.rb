@@ -13,6 +13,9 @@ class Invoice < ApplicationRecord
 
   before_validation :set_uuid
 
+  scope :sort_by_issue_date, -> { order(issue_date: :desc) }
+  scope :sort_by_due_date, -> { order(due_date: :desc) }
+
   def draft?
     status == 'draft'
   end
