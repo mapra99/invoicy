@@ -1,4 +1,6 @@
 class Invoice < ApplicationRecord
+  include Paginable
+
   belongs_to :user
   belongs_to :client, required: false # to allow draft invoices not to have a client set
   belongs_to :currency, required: false # to allow draft invoices not to have a client set
