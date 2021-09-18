@@ -21,5 +21,7 @@ Rails.application.routes.draw do
         get "current"
       end
     end
+
+    resources :invoices, only: [:index]
   end
 end

@@ -1,4 +1,6 @@
 class Invoice < ApplicationRecord
+  include Paginable
+
   belongs_to :user
   belongs_to :client, required: false # to allow draft invoices not to have a client set
   belongs_to :currency, required: false # to allow draft invoices not to have a client set
@@ -12,6 +14,9 @@ class Invoice < ApplicationRecord
   validates_presence_of :name, :issue_date, :due_date, :total_price, :status, :uuid, unless: :draft?
 
   before_validation :set_uuid
+
+  scope :sort_by_issue_date, -> { order(issue_date: :desc) }
+  scope :sort_by_due_date, -> { order(due_date: :desc) }
 
   def draft?
     status == 'draft'

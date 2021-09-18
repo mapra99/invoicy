@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/shared/paginated_model'
 
 RSpec.describe Invoice, type: :model do
   subject { create(:invoice) }
@@ -65,6 +66,26 @@ RSpec.describe Invoice, type: :model do
 
         expect(invoice4.uuid).to eq('client_slug_5')
       end
+    end
+  end
+
+  context 'pagination' do
+    subject { Invoice }
+    let!(:invoices) { create_list(:invoice, 20) }
+
+    it_should_behave_like 'paginated model'
+  end
+
+  describe '#draft?' do
+    let(:draft_invoice) { create(:draft_invoice) }
+    let(:finished_invoice) { create(:invoice) }
+
+    it 'returns true if invoice is draft' do
+      expect(draft_invoice.draft?).to eq true
+    end
+
+    it 'returns false if invoice is not draft' do
+      expect(finished_invoice.draft?).to eq false
     end
   end
 end

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'byebug'
 
 RSpec.describe Api::UsersController, type: :controller do
   render_views
@@ -8,8 +7,6 @@ RSpec.describe Api::UsersController, type: :controller do
     describe 'not authenticated' do
       before :each do
         get :current, format: :json
-
-        @payload = JSON.parse(response.body)
       end
 
       it 'should respond with a 204 status' do
@@ -17,7 +14,7 @@ RSpec.describe Api::UsersController, type: :controller do
       end
 
       it 'is empty' do
-        expect(@payload).to be_empty
+        expect(response.body).to be_empty
       end
     end
 
