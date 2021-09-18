@@ -48,8 +48,5 @@ export default {
     bgSecondary: SPACE_CADET,
     navbar: SPACE_CADET_GREY,
     buttons: GLAUCOUS
-  },
-  invoices: {
-    countText: LAVENDER_WEB
   }
 }

@@ -3,18 +3,20 @@ import { Title } from '../../../components/Title'
 import { PlusIcon } from '../../../icons/PlusIcon'
 import { PrimaryButton } from '../../../components/PrimaryButton'
 import { InvoicesFilter } from '../../../components/InvoicesFilter'
-import { InvoicesBody } from '../../../components/InvoicesBody'
+import { EmptyFeedBanner } from '../../../components/EmptyFeedBanner'
 import {
   MainContainer,
   Heading,
   HeadingTitle,
   HeadingActions,
-  InvoiceCountText
+  InvoiceCountText,
+  InvoicesBody
 } from './InvoicesIndex.styled'
 import { useBreakpoint } from '../../../hooks/useBreakpoint'
 
 export const InvoicesIndex = () => {
   const { mobile } = useBreakpoint()
+  const newInvoiceButtonText = mobile ? "New" : "New Invoice"
 
   return (
     <MainContainer>
@@ -29,12 +31,14 @@ export const InvoicesIndex = () => {
         <HeadingActions>
           <InvoicesFilter />
           <PrimaryButton icon={<PlusIcon />}>
-            { mobile ? "New" : "New Invoice" }
+            { newInvoiceButtonText }
           </PrimaryButton>
         </HeadingActions>
       </Heading>
 
-      <InvoicesBody />
+      <InvoicesBody>
+        <EmptyFeedBanner invoiceButtonText={newInvoiceButtonText} />
+      </InvoicesBody>
     </MainContainer>
   )
 }

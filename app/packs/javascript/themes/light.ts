@@ -49,8 +49,5 @@ export default {
     bgSecondary: WHITE,
     navbar: SPACE_CADET_GREY,
     buttons: GLAUCOUS
-  },
-  invoices: {
-    countText: COOL_GREY
   }
 }

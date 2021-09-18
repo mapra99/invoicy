@@ -6,11 +6,6 @@ const { BREAKPOINT_S } = BREAKPOINTS
 
 export const InvoicesFilterButton = styled(SecondaryButton)`
   background: none;
-  margin-right: 4px;
-
-  @media (min-width: ${BREAKPOINT_S}px) {
-    margin-right: 16px;
-  }
 `
 
 export const IconWrapper = styled.div`
