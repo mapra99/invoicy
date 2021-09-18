@@ -10,6 +10,6 @@ class Api::BaseController < ApplicationController
   def handle_context_error_state(context)
     return if context.success?
 
-    render json: {error: context.message}, status: 500
+    render json: { error: context.message }, status: 500
   end
 end

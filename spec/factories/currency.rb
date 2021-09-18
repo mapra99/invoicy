@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :currency do
-    name { 'Colombian Peso' }
-    abbreviation { %w[COP USD EUR UYU MXN ZWL UGX].sample }
-    symbol { '$' }
+    name { Faker::Currency.name }
+    abbreviation { "#{Faker::Currency.code}#{Random.rand}" }
+    symbol { Faker::Currency.symbol }
     min_size { 50 }
   end
 end

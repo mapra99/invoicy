@@ -5,9 +5,8 @@ module InvoicesFeedService
     def call
       context.fail!(message: 'FetchUserInvoices needs a user in the context') if context.user.blank?
 
-      context.invoices = context.user
-                                .invoices
-                                .includes(:client, :currency)
+      context.invoices = Invoice.includes(:client, :currency)
+                                .where(user: context.user)
                                 .sort_by_due_date
     end
   end

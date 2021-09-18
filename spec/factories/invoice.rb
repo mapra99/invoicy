@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :invoice do
     association :user
     association :client
+    association :currency
 
     name { Faker::Name.name }
     issue_date { Time.current - 2.days }
