@@ -39,6 +39,9 @@ declare module 'styled-components' {
       bgSecondary: string,
       navbar: string,
       buttons: string
+    },
+    invoices: {
+      countText: string,
     }
   }
 }

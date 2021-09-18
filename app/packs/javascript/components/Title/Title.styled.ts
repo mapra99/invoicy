@@ -1,14 +1,19 @@
 import styled from 'styled-components';
 import { TitleProps } from './types';
-import { FONTS } from '../../constants';
+import { FONTS, BREAKPOINTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
+const { BREAKPOINT_S, BREAKPOINT_XL } = BREAKPOINTS;
 
 const typeSpecifics = {
   h1: `
-    font-size: 32px;
     line-height: 1.125;
-    letter-spacing: -1px;
+    font-size: 20px;
+
+    @media (min-width: ${BREAKPOINT_S}px) {
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
   `,
   h2: `
     font-size: 20px;
