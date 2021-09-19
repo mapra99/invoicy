@@ -24,6 +24,7 @@ export const Heading = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 `
 
 export const HeadingTitle = styled.div`
@@ -41,8 +42,7 @@ export const InvoiceCountText = styled(Text)`
 export const HeadingActions = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  max-width: 180px;
+  min-width: 180px;
 
   @media (min-width: ${BREAKPOINT_S}px) {
     max-width: 340px;
