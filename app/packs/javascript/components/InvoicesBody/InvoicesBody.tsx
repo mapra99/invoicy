@@ -11,25 +11,17 @@ import { Text } from '../Text'
 export const InvoicesBody = () => {
   const { invoices, loading } = useContext(InvoicesContext)
 
-  if (loading) return (
-    <InvoicesBodyWrapper>
-      <LoadingSpinnerWrapper>
-        <LoadingSpinner />
-      </LoadingSpinnerWrapper>
-    </InvoicesBodyWrapper>
-  )
-
-  if (invoices.length === 0) return (
-    <InvoicesBodyWrapper>
-      <EmptyFeedBanner />
-    </InvoicesBodyWrapper>
-  )
-
   return (
     <InvoicesBodyWrapper>
       { invoices.map(invoice => (
         <Text>{invoice.uuid}</Text>
       )) }
+
+      { loading && (
+        <LoadingSpinnerWrapper>
+          <LoadingSpinner />
+        </LoadingSpinnerWrapper>
+      )}
     </InvoicesBodyWrapper>
   )
 }
