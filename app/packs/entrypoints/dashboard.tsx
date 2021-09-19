@@ -6,6 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import { GlobalProvider } from '../javascript/contexts/GlobalContext';
+import { InvoicesProvider } from '../javascript/contexts/InvoicesContext';
 import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
 import { InvoicesIndex } from '../javascript/pages/dashboard/InvoicesIndex';
 import { ROUTES } from '../javascript/constants';
@@ -16,18 +17,20 @@ const { DASHBOARD: DASHBOARD_ROUTES } = ROUTES
 const App = () => {
   return (
     <GlobalProvider>
-      <BrowserRouter>
-        <DashboardLayout>
-          <Switch>
-            <Route exact path={ROUTES.ROOT}>
-              <InvoicesIndex />
-            </Route>
-            <Route exact path={DASHBOARD_ROUTES.INVOICES_INDEX}>
-              <InvoicesIndex />
-            </Route>
-          </Switch>
-        </DashboardLayout>
-      </BrowserRouter>
+      <InvoicesProvider>
+        <BrowserRouter>
+          <DashboardLayout>
+            <Switch>
+              <Route exact path={ROUTES.ROOT}>
+                <InvoicesIndex />
+              </Route>
+              <Route exact path={DASHBOARD_ROUTES.INVOICES_INDEX}>
+                <InvoicesIndex />
+              </Route>
+            </Switch>
+          </DashboardLayout>
+        </BrowserRouter>
+      </InvoicesProvider>
     </GlobalProvider>
   )
 }

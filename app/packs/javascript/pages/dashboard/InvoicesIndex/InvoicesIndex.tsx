@@ -1,22 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { InvoicesContext } from '../../../contexts/InvoicesContext'
 import { Title } from '../../../components/Title'
 import { PlusIcon } from '../../../icons/PlusIcon'
 import { PrimaryButton } from '../../../components/PrimaryButton'
 import { InvoicesFilter } from '../../../components/InvoicesFilter'
-import { EmptyFeedBanner } from '../../../components/EmptyFeedBanner'
+import { InvoicesBody } from '../../../components/InvoicesBody'
 import {
   MainContainer,
   Heading,
   HeadingTitle,
   HeadingActions,
-  InvoiceCountText,
-  InvoicesBody
+  InvoiceCountText
 } from './InvoicesIndex.styled'
 import { useBreakpoint } from '../../../hooks/useBreakpoint'
 
 export const InvoicesIndex = () => {
   const { mobile } = useBreakpoint()
-  const newInvoiceButtonText = mobile ? "New" : "New Invoice"
+  const { invoices, loading } = useContext(InvoicesContext)
+
+  let countText = mobile ? "7 invoices" : "There are 7 total invoices"
+  if(invoices.length === 0) countText = "No Invoices"
 
   return (
     <MainContainer>
@@ -24,21 +27,19 @@ export const InvoicesIndex = () => {
         <HeadingTitle>
           <Title>Invoices</Title>
           <InvoiceCountText>
-            { mobile ? "7 invoices" : "There are 7 total invoices" }
+            { !loading && countText }
           </InvoiceCountText>
         </HeadingTitle>
   
         <HeadingActions>
           <InvoicesFilter />
           <PrimaryButton icon={<PlusIcon />}>
-            { newInvoiceButtonText }
+            { mobile ? "New" : "New Invoice" }
           </PrimaryButton>
         </HeadingActions>
       </Heading>
 
-      <InvoicesBody>
-        <EmptyFeedBanner invoiceButtonText={newInvoiceButtonText} />
-      </InvoicesBody>
+      <InvoicesBody />
     </MainContainer>
   )
 }

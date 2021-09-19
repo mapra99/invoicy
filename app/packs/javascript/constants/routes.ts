@@ -13,6 +13,9 @@ export const ROUTES = {
     AFTER_SIGN_OUT: "/"
   },
   API: {
-    CURRENT_USER: "/api/users/current"
+    CURRENT_USER: "/api/users/current",
+    INVOICES: {
+      INDEX: "/api/invoices"
+    }
   }
 }

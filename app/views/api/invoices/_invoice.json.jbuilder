@@ -4,11 +4,12 @@ json.dueDate invoice.due_date
 
 if invoice.client.present?
   json.client do
+    json.id invoice.client.id
     json.name invoice.client.name
   end
 end
 
-json.total_price invoice.total_price
+json.totalPrice invoice.total_price
 
 if invoice.currency.present?
   json.currency do
