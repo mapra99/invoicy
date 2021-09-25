@@ -1,10 +1,12 @@
 import React from 'react';
 import { Navigation } from '../../components/Navigation';
-import { DashboardLayoutContainer } from './DashboardLayout.styled'
+import { DashboardLayoutContainer, DashboardLayoutMainContainer } from './DashboardLayout.styled'
 
 export const DashboardLayout = ({ children }) => (
   <DashboardLayoutContainer>
     <Navigation />
-    { children }
+    <DashboardLayoutMainContainer>
+      { children }
+    </DashboardLayoutMainContainer>
   </DashboardLayoutContainer>
 )

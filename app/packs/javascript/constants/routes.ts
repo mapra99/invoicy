@@ -3,7 +3,8 @@
 export const ROUTES = {
   ROOT: "/",
   DASHBOARD: {
-    INVOICES_INDEX: "/dashboard/invoices"
+    INVOICES_INDEX: "/dashboard/invoices",
+    NEW_INVOICE: "/dashboard/invoices/new"
   },
   AUTH: {
     SIGN_IN: "/users/login",
