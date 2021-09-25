@@ -12,13 +12,15 @@ import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
 import { InvoicesIndex } from '../javascript/pages/dashboard/InvoicesIndex';
 import { NewInvoice } from '../javascript/pages/dashboard/NewInvoice';
 import { ROUTES } from '../javascript/constants';
+import { useBreakpoint } from '../javascript/hooks/useBreakpoint';
 import '../styles/global';
 
 const { DASHBOARD: DASHBOARD_ROUTES } = ROUTES
 
 const DashboardRoutes = () => {
   const location = useLocation();
-  const background = location.state && location.state.background;
+  const { mobile } = useBreakpoint();
+  const background = !mobile && location.state && location.state.background;
 
   return (
     <>

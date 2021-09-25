@@ -45,6 +45,9 @@ declare module 'styled-components' {
         paid: string,
         pending: string,
         draft: string
+      },
+      newInvoice: {
+        bg: string
       }
     }
   }

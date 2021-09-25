@@ -57,6 +57,9 @@ export default {
       paid: CARIBEAN_GREEN,
       pending: DARK_ORANGE,
       draft: SPACE_CADET_GREY
+    },
+    newInvoice: {
+      bg: WHITE
     }
   }
 }
