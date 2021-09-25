@@ -56,6 +56,9 @@ export default {
       paid: CARIBEAN_GREEN,
       pending: DARK_ORANGE,
       draft: LAVENDER_WEB
+    },
+    newInvoice: {
+      bg: XIKETIC
     }
   }
 }
