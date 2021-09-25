@@ -10,10 +10,12 @@ export const InvoiceCardWrapper = styled.div`
   background: ${props => props.theme.layout.bgSecondary};
   box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
   border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 1);
   margin-bottom: 16px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  transition: border 0.2s;
 
   @media(min-width: ${BREAKPOINT_S}px) {
     padding: 16px 24px;
@@ -24,6 +26,7 @@ export const InvoiceCardWrapper = styled.div`
 
   &:hover {
     cursor: pointer;
+    border: 1px solid ${props => props.theme.text.secondary};
   }
 `
 
@@ -68,16 +71,18 @@ export const InvoiceDueDate = styled(Text)`
   text-overflow: ellipsis;
 
   &.mobile {
+    margin-bottom: 8px;
+
     @media(min-width: ${BREAKPOINT_S}px) {
       display: none;
-      flex: 1 1;
     }
   }
 
   &.desktop {
+    flex: 1 1;
+
     @media(max-width: ${BREAKPOINT_S}px) {
       display: none;
-      margin-bottom: 8px;
     }
   }
 `
@@ -99,6 +104,8 @@ export const InvoiceDueDatePriceWrapper = styled.div`
   @media(min-width: ${BREAKPOINT_S}px) {
     width: auto;
     flex: 1 1;
+    text-align: right;
+    margin-right: 20px;
   }
 `
 

@@ -4,14 +4,14 @@ import { BREAKPOINTS } from '../../constants'
 const { BREAKPOINT_S, BREAKPOINT_XL } = BREAKPOINTS
 
 export const InvoicesBodyWrapper = styled.div`
-  padding-top: 32px;
+  padding: 32px 0;
 
   @media (min-width: ${BREAKPOINT_S}px) {
-    padding-top: 56px;
+    padding: 56px 0;
   }
 
   @media (min-width: ${BREAKPOINT_XL}px) {
-    padding-top: 65px;
+    padding: 65px 0;
   }
 `
 

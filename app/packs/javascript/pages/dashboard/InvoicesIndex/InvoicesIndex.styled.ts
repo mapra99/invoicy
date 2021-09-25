@@ -7,7 +7,7 @@ const { BREAKPOINT_S, BREAKPOINT_XL } = BREAKPOINTS
 export const MainContainer = styled.div`
   width: 100%;
   padding: 32px 24px 0;
-  max-width: 780px;
+  max-width: 826px;
   margin: 72px auto 0;
 
   @media (min-width: ${BREAKPOINT_S}px) {
