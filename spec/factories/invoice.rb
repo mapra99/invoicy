@@ -7,7 +7,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     issue_date { Time.current - 2.days }
     due_date { Time.current - 10.days }
-    status { 'pending' }
+    status { Invoice.statuses.keys.sample }
     total_price { 100.59 }
   end
 

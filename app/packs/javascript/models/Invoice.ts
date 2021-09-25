@@ -10,4 +10,5 @@ export interface Invoice {
   updatedAt: Date;
   client: Client;
   currency: Currency;
+  status: 'draft' | 'pending' | 'paid';
 }

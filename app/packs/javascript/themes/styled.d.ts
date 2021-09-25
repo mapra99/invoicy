@@ -39,6 +39,13 @@ declare module 'styled-components' {
       bgSecondary: string,
       navbar: string,
       buttons: string
+    },
+    invoices: {
+      status: {
+        paid: string,
+        pending: string,
+        draft: string
+      }
     }
   }
 }

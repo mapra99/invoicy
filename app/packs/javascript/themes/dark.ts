@@ -9,7 +9,9 @@ const {
   MEDIUM_SLATE_BLUE,
   MEDIUM_PURPLE,
   GLAUCOUS,
-  XIKETIC
+  XIKETIC,
+  CARIBEAN_GREEN,
+  DARK_ORANGE
 } = COLORS
 
 export default {
@@ -48,5 +50,12 @@ export default {
     bgSecondary: SPACE_CADET,
     navbar: SPACE_CADET_GREY,
     buttons: GLAUCOUS
+  },
+  invoices: {
+    status: {
+      paid: CARIBEAN_GREEN,
+      pending: DARK_ORANGE,
+      draft: LAVENDER_WEB
+    }
   }
 }

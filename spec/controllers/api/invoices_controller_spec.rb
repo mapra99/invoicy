@@ -44,6 +44,7 @@ RSpec.describe Api::InvoicesController, type: :controller do
         expect(invoice).to have_key('totalPrice')
         expect(invoice).to have_key('createdAt')
         expect(invoice).to have_key('updatedAt')
+        expect(invoice).to have_key('status')
       end
 
       describe 'failed context' do

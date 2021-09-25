@@ -1,6 +1,8 @@
 json.id invoice.id
 json.uuid invoice.uuid
 json.dueDate invoice.due_date
+json.totalPrice invoice.total_price
+json.status invoice.status
 
 if invoice.client.present?
   json.client do
@@ -8,8 +10,6 @@ if invoice.client.present?
     json.name invoice.client.name
   end
 end
-
-json.totalPrice invoice.total_price
 
 if invoice.currency.present?
   json.currency do

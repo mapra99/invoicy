@@ -18,7 +18,7 @@ export const InvoicesIndex = () => {
   const { mobile } = useBreakpoint()
   const { invoices, loading } = useContext(InvoicesContext)
 
-  let countText = mobile ? "7 invoices" : "There are 7 total invoices"
+  let countText = mobile ? `${invoices.length} invoices` : `There are ${invoices.length} total invoices`
   if(invoices.length === 0) countText = "No Invoices"
 
   return (
