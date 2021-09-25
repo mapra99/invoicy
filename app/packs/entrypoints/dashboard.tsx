@@ -3,16 +3,35 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter,
   Switch,
-  Route
+  Route,
+  useLocation
 } from "react-router-dom";
 import { GlobalProvider } from '../javascript/contexts/GlobalContext';
 import { InvoicesProvider } from '../javascript/contexts/InvoicesContext';
 import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
 import { InvoicesIndex } from '../javascript/pages/dashboard/InvoicesIndex';
+import { NewInvoice } from '../javascript/pages/dashboard/NewInvoice';
 import { ROUTES } from '../javascript/constants';
 import '../styles/global';
 
 const { DASHBOARD: DASHBOARD_ROUTES } = ROUTES
+
+const DashboardRoutes = () => {
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
+  return (
+    <>
+      <Switch location={background || location} >
+        <Route exact path={ROUTES.ROOT} children={<InvoicesIndex />} />
+        <Route exact path={DASHBOARD_ROUTES.INVOICES_INDEX} children={<InvoicesIndex />} />
+        <Route exact path={DASHBOARD_ROUTES.NEW_INVOICE} children={<NewInvoice />} />
+      </Switch>
+
+      { background && <Route exact path={DASHBOARD_ROUTES.NEW_INVOICE} children={<NewInvoice />} /> }
+    </>
+  )
+}
 
 const App = () => {
   return (
@@ -20,14 +39,7 @@ const App = () => {
       <InvoicesProvider>
         <BrowserRouter>
           <DashboardLayout>
-            <Switch>
-              <Route exact path={ROUTES.ROOT}>
-                <InvoicesIndex />
-              </Route>
-              <Route exact path={DASHBOARD_ROUTES.INVOICES_INDEX}>
-                <InvoicesIndex />
-              </Route>
-            </Switch>
+            <DashboardRoutes />
           </DashboardLayout>
         </BrowserRouter>
       </InvoicesProvider>

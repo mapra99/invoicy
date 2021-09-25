@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
 import { InvoicesContext } from '../../../contexts/InvoicesContext'
 import { Title } from '../../../components/Title'
-import { PlusIcon } from '../../../icons/PlusIcon'
-import { PrimaryButton } from '../../../components/PrimaryButton'
+import { NewInvoiceButton } from '../../../components/NewInvoiceButton'
 import { InvoicesFilter } from '../../../components/InvoicesFilter'
 import { InvoicesBody } from '../../../components/InvoicesBody'
 import {
@@ -33,9 +32,7 @@ export const InvoicesIndex = () => {
   
         <HeadingActions>
           <InvoicesFilter />
-          <PrimaryButton icon={<PlusIcon />}>
-            { mobile ? "New" : "New Invoice" }
-          </PrimaryButton>
+          <NewInvoiceButton />
         </HeadingActions>
       </Heading>
 
