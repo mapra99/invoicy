@@ -10,7 +10,9 @@ const {
   MEDIUM_SLATE_BLUE,
   MEDIUM_PURPLE,
   WHITE,
-  CULTURED
+  CULTURED,
+  CARIBEAN_GREEN,
+  DARK_ORANGE
 } = COLORS
 
 export default {
@@ -49,5 +51,12 @@ export default {
     bgSecondary: WHITE,
     navbar: SPACE_CADET_GREY,
     buttons: GLAUCOUS
+  },
+  invoices: {
+    status: {
+      paid: CARIBEAN_GREEN,
+      pending: DARK_ORANGE,
+      draft: SPACE_CADET_GREY
+    }
   }
 }

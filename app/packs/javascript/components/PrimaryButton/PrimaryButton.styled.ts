@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { Button } from '../Button';
-import { COLORS } from '../../constants'
+import { COLORS, BREAKPOINTS } from '../../constants'
 
 const { MEDIUM_SLATE_BLUE, MEDIUM_PURPLE, WHITE } = COLORS;
+const { BREAKPOINT_S } = BREAKPOINTS;
 
 export const StyledPrimaryButton = styled(Button)`
   background-color: ${MEDIUM_SLATE_BLUE};
@@ -21,9 +22,13 @@ export const PrimaryButtonIconWrapper = styled.div`
   font-size: 18px;
   height: 32px;
   line-height: 32px;
-  margin: 0 16px 0 -16px;
+  margin: 0 8px 0 -8px;
   text-align: center;
   width: 32px;
+
+  @media (min-width: ${BREAKPOINT_S}px) {
+    margin: 0 16px 0 -16px;
+  }
 
   svg {
     width: 10px;

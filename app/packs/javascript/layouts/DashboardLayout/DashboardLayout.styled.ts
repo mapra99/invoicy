@@ -11,6 +11,5 @@ export const DashboardLayoutContainer = styled.div`
   @media (min-width: ${BREAKPOINT_XL}px) {
     display: flex;
     height: 100vh;
-    overflow-y: hidden;
   }
 `

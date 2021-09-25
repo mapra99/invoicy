@@ -12,6 +12,9 @@ export const NavigationContainer = styled.div`
   background-color: ${props => props.theme.layout.navbar};
   display: flex;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
 
   @media (min-width: ${BREAKPOINT_S}px) {
     height: 80px;
