@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Text } from '../../../components/Text'
 import { BREAKPOINTS } from '../../../constants'
 
-const { BREAKPOINT_S } = BREAKPOINTS
+const { BREAKPOINT_S, BREAKPOINT_XL } = BREAKPOINTS
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -12,6 +12,10 @@ export const MainContainer = styled.div`
 
   @media (min-width: ${BREAKPOINT_S}px) {
     padding: 56px 48px 0;
+  }
+
+  @media (min-width: ${BREAKPOINT_XL}px) {
+    padding: 0 48px;
   }
 `
 
