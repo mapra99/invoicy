@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 import { Title } from '../Title'
+import { BREAKPOINTS } from '../../constants'
+
+const { BREAKPOINT_S } = BREAKPOINTS;
 
 export const InvoiceFormWrapper = styled.form`
   padding-bottom: 88px;
@@ -38,13 +41,15 @@ export const PostcodeWrapper = styled.div`
 
 export const InvoiceFormControlsWrapper = styled.div`
   background: ${props => props.theme.layout.bgSecondary};
-  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 22px 24px;
   display: flex;
   justify-content: space-between;
-  /* box-shadow: 0px -64px 0px 0px linear-gradient(180deg, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.1) 100%); */
   box-shadow: 0px 0px 64px 0px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: ${BREAKPOINT_S}px) {
+    position: fixed;
+  }
 `
