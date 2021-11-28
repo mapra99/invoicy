@@ -4,13 +4,16 @@ import { InputField } from '../InputField'
 import { DatePickerField } from '../DatePickerField'
 import { SelectField } from '../SelectField'
 import { InvoiceItemInput } from '../InvoiceItemInput'
+import { PrimaryButton } from '../PrimaryButton'
 import { SecondaryButton } from '../SecondaryButton'
+import { TertiaryButton } from '../TertiaryButton'
 import {
   InvoiceFormWrapper,
   InvoiceFormSectionTitle,
   CityWrapper,
   PostcodeWrapper,
-  InvoiceFormSection
+  InvoiceFormSection,
+  InvoiceFormControlsWrapper
 } from './InvoiceForm.styled'
 
 export const InvoiceForm = () => {
@@ -191,6 +194,18 @@ export const InvoiceForm = () => {
           + Add new Item
         </SecondaryButton>
       </InvoiceFormSection>
+
+      <InvoiceFormControlsWrapper>
+        <SecondaryButton>
+          Discard
+        </SecondaryButton>
+        <TertiaryButton>
+          Save as Draft
+        </TertiaryButton>
+        <PrimaryButton>
+          Save & Send
+        </PrimaryButton>
+      </InvoiceFormControlsWrapper>
     </InvoiceFormWrapper>
   )
 }
