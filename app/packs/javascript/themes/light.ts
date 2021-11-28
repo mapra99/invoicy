@@ -59,7 +59,8 @@ export default {
       draft: SPACE_CADET_GREY
     },
     newInvoice: {
-      bg: WHITE
+      bg: WHITE,
+      totalPrice: COOL_GREY
     }
   }
 }
