@@ -1,16 +1,32 @@
 import styled from 'styled-components';
 import { Title } from '../Title'
 import { TransparentButton } from '../TransparentButton'
+import { BREAKPOINTS } from '../../constants'
+
+const { BREAKPOINT_S } = BREAKPOINTS
 
 export const InvoiceItemInputWrapper = styled.div`
   margin-bottom: 48px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  column-gap: 24px;
+  column-gap: 16px;
+
+  @media (min-width: ${BREAKPOINT_S}px) {
+    margin-bottom: 18px;
+  }
 
   > * {
     width: 100%;
+  }
+`
+
+export const ItemNameWrapper = styled.div`
+  margin-bottom: 24px;
+
+  @media (min-width: ${BREAKPOINT_S}px) {
+    flex: 2 2;
+    margin-bottom: 0;
   }
 `
 

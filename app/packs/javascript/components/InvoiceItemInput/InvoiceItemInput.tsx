@@ -2,6 +2,7 @@ import React from 'react'
 import { InputGroup } from '../InputGroup'
 import { InputField } from '../InputField'
 import {
+  ItemNameWrapper,
   QuantityWrapper,
   PriceWrapper,
   TotalPriceWrapper,
@@ -15,16 +16,18 @@ import { TrashIcon } from '../../icons/TrashIcon'
 export const InvoiceItemInput = () => {
   return (
     <InvoiceItemInputWrapper>
-      <InputGroup
-        htmlFor="invoice-item-name"
-        label="Item Name"
-      >
-        <InputField
-          id="invoice-item-name"
-          name="invoice_item[name]"
-          type="text"
-        />
-      </InputGroup>
+      <ItemNameWrapper>
+        <InputGroup
+          htmlFor="invoice-item-name"
+          label="Item Name"
+        >
+          <InputField
+            id="invoice-item-name"
+            name="invoice_item[name]"
+            type="text"
+          />
+        </InputGroup>
+      </ItemNameWrapper>
 
       <QuantityWrapper>
         <InputGroup
@@ -34,7 +37,7 @@ export const InvoiceItemInput = () => {
           <InputField
             id="invoice-item-quantity"
             name="invoice_item[quantity]"
-            type="number"
+            type="text"
           />
         </InputGroup>
       </QuantityWrapper>
