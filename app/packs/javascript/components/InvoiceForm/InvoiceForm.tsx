@@ -3,6 +3,8 @@ import { InputGroup } from '../InputGroup'
 import { InputField } from '../InputField'
 import { DatePickerField } from '../DatePickerField'
 import { SelectField } from '../SelectField'
+import { InvoiceItemInput } from '../InvoiceItemInput'
+import { SecondaryButton } from '../SecondaryButton'
 import {
   InvoiceFormWrapper,
   InvoiceFormSectionTitle,
@@ -176,6 +178,18 @@ export const InvoiceForm = () => {
               type="text"
             />
         </InputGroup>
+      </InvoiceFormSection>
+
+      <InvoiceFormSection>
+        <InvoiceFormSectionTitle as="h2">
+          Item List
+        </InvoiceFormSectionTitle>
+        <InvoiceItemInput />
+        <InvoiceItemInput />
+
+        <SecondaryButton>
+          + Add new Item
+        </SecondaryButton>
       </InvoiceFormSection>
     </InvoiceFormWrapper>
   )

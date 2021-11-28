@@ -47,7 +47,8 @@ declare module 'styled-components' {
         draft: string
       },
       newInvoice: {
-        bg: string
+        bg: string,
+        totalPrice: string
       }
     }
   }

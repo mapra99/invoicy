@@ -16,9 +16,13 @@ const typeSpecifics = {
     }
   `,
   h2: `
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.1;
     letter-spacing: -0.63px;
+
+    @media (min-width: ${BREAKPOINT_S}px) {
+      font-size: 20px;
+    }
   `,
   h3: `
     font-size: 16px;

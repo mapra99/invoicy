@@ -11,7 +11,8 @@ const {
   GLAUCOUS,
   XIKETIC,
   CARIBEAN_GREEN,
-  DARK_ORANGE
+  DARK_ORANGE,
+  COOL_GREY
 } = COLORS
 
 export default {
@@ -58,7 +59,8 @@ export default {
       draft: LAVENDER_WEB
     },
     newInvoice: {
-      bg: XIKETIC
+      bg: XIKETIC,
+      totalPrice: COOL_GREY
     }
   }
 }

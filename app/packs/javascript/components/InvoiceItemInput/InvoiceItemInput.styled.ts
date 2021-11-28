@@ -1,0 +1,48 @@
+import styled from 'styled-components';
+import { Title } from '../Title'
+import { TransparentButton } from '../TransparentButton'
+
+export const InvoiceItemInputWrapper = styled.div`
+  margin-bottom: 48px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 24px;
+
+  > * {
+    width: 100%;
+  }
+`
+
+export const QuantityWrapper = styled.div`
+  flex: 0.7 0.7;
+`
+
+export const PriceWrapper = styled.div`
+  flex: 1 1;
+`
+
+export const TotalPriceWrapper = styled.div`
+  flex: 1 1;
+`
+
+export const DeleteButtonWrapper = styled.div`
+  flex: 0.15 0.15;
+  align-items: center;
+  display: flex;
+  padding-top: 25px;
+`
+
+export const DeleteButton = styled(TransparentButton)`
+  padding: 0;
+  width: auto;
+
+  svg {
+    width: 100%;
+  }
+`
+
+export const TotalPriceText = styled(Title)`
+  color: ${props => props.theme.invoices.newInvoice.totalPrice};
+  line-height: 48px;
+`
