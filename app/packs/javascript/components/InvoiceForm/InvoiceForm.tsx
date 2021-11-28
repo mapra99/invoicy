@@ -1,4 +1,5 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { InputGroup } from '../InputGroup'
 import { InputField } from '../InputField'
 import { DatePickerField } from '../DatePickerField'
@@ -12,11 +13,16 @@ import {
   InvoiceFormSectionTitle,
   CityWrapper,
   PostcodeWrapper,
+  CountryWrapper,
+  InvoiceDateWrapper,
+  PaymentTermsWrapper,
   InvoiceFormSection,
   InvoiceFormControlsWrapper
 } from './InvoiceForm.styled'
 
 export const InvoiceForm = () => {
+  const history = useHistory();
+
   return (
     <InvoiceFormWrapper>
       <InvoiceFormSection>
@@ -36,31 +42,32 @@ export const InvoiceForm = () => {
 
         <CityWrapper>
           <InputGroup
-              htmlFor="invoice-user-city"
-              label="City"
-            >
-              <InputField
-                id="invoice-user-city"
-                name="user_location[city]"
-                type="text"
-              />
+            htmlFor="invoice-user-city"
+            label="City"
+          >
+            <InputField
+              id="invoice-user-city"
+              name="user_location[city]"
+              type="text"
+            />
           </InputGroup>
         </CityWrapper>
 
         <PostcodeWrapper>
           <InputGroup
-              htmlFor="invoice-user-postcode"
-              label="Post Code"
-            >
-              <InputField
-                id="invoice-user-postcode"
-                name="user_location[postcode]"
-                type="text"
-              />
+            htmlFor="invoice-user-postcode"
+            label="Post Code"
+          >
+            <InputField
+              id="invoice-user-postcode"
+              name="user_location[postcode]"
+              type="text"
+            />
           </InputGroup>
         </PostcodeWrapper>
 
-        <InputGroup
+        <CountryWrapper>
+          <InputGroup
             htmlFor="invoice-user-country"
             label="Country"
           >
@@ -69,7 +76,8 @@ export const InvoiceForm = () => {
               name="user_location[country]"
               type="text"
             />
-        </InputGroup>
+          </InputGroup>
+        </CountryWrapper>
       </InvoiceFormSection>
 
 
@@ -112,31 +120,31 @@ export const InvoiceForm = () => {
 
         <CityWrapper>
           <InputGroup
-              htmlFor="invoice-client-city"
-              label="City"
-            >
-              <InputField
-                id="invoice-client-city"
-                name="client_location[city]"
-                type="text"
-              />
+            htmlFor="invoice-client-city"
+            label="City"
+          >
+            <InputField
+              id="invoice-client-city"
+              name="client_location[city]"
+              type="text"
+            />
           </InputGroup>
         </CityWrapper>
 
         <PostcodeWrapper>
           <InputGroup
-              htmlFor="invoice-client-postcode"
-              label="Post Code"
-            >
-              <InputField
-                id="invoice-client-postcode"
-                name="client_location[postcode]"
-                type="text"
-              />
+            htmlFor="invoice-client-postcode"
+            label="Post Code"
+          >
+            <InputField
+              id="invoice-client-postcode"
+              name="client_location[postcode]"
+              type="text"
+            />
           </InputGroup>
         </PostcodeWrapper>
-
-        <InputGroup
+        <CountryWrapper>
+          <InputGroup
             htmlFor="invoice-client-country"
             label="Country"
           >
@@ -145,41 +153,46 @@ export const InvoiceForm = () => {
               name="client_location[country]"
               type="text"
             />
-        </InputGroup>
+          </InputGroup>
+        </CountryWrapper>
       </InvoiceFormSection>
 
 
       <InvoiceFormSection>
-        <InputGroup
-          htmlFor="invoice-issue-date"
-          label="Invoice Date"
-        >
-          <DatePickerField />
-        </InputGroup>
-
-        <InputGroup
-          htmlFor="invoice-payment-terms"
-          label="Payment Terms"
-        >
-          <SelectField
-            options={[
-              { value: 0, label: "Inmediate" },
-              { value: 10, label: "Next 10 Days" },
-              { value: 30, label: "Next 30 Days" },
-              { value: 60, label: "Next 60 Days" }
-            ]}
-          />
-        </InputGroup>
-
-        <InputGroup
-            htmlFor="invoice-name"
-            label="Project Description"
+        <InvoiceDateWrapper>
+          <InputGroup
+            htmlFor="invoice-issue-date"
+            label="Invoice Date"
           >
-            <InputField
-              id="invoice-name"
-              name="invoice[name]"
-              type="text"
+            <DatePickerField />
+          </InputGroup>
+        </InvoiceDateWrapper>
+
+        <PaymentTermsWrapper>
+          <InputGroup
+            htmlFor="invoice-payment-terms"
+            label="Payment Terms"
+          >
+            <SelectField
+              options={[
+                { value: 0, label: "Inmediate" },
+                { value: 10, label: "Next 10 Days" },
+                { value: 30, label: "Next 30 Days" },
+                { value: 60, label: "Next 60 Days" }
+              ]}
             />
+          </InputGroup>
+        </PaymentTermsWrapper>
+
+        <InputGroup
+          htmlFor="invoice-name"
+          label="Project Description"
+        >
+          <InputField
+            id="invoice-name"
+            name="invoice[name]"
+            type="text"
+          />
         </InputGroup>
       </InvoiceFormSection>
 
@@ -196,7 +209,10 @@ export const InvoiceForm = () => {
       </InvoiceFormSection>
 
       <InvoiceFormControlsWrapper>
-        <SecondaryButton>
+        <SecondaryButton
+          onClick={() => history.goBack()}
+          type="button"
+        >
           Discard
         </SecondaryButton>
         <TertiaryButton>
