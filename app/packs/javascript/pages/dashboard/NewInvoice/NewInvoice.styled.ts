@@ -5,6 +5,8 @@ export const NewInvoiceContainer = styled.div`
   width: 100%;
   height: 100%;
   padding: 32px 24px;
+  max-width: 719px;
+  overflow-y: scroll;
 `
 
 export const NewInvoiceHeading = styled.div`

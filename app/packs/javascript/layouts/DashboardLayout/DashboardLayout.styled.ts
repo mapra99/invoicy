@@ -13,6 +13,11 @@ export const DashboardLayoutContainer = styled.div`
     display: flex;
     height: 100vh;
   }
+
+  &.modal-active {
+    overflow-y: hidden;
+    max-height: 100vh;
+  }
 `
 
 export const DashboardLayoutMainContainer = styled.div`
