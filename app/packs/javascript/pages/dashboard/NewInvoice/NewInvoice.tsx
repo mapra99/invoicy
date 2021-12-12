@@ -17,7 +17,7 @@ const NewInvoiceContent = () => (
         New Invoice
       </Title>
     </NewInvoiceHeading>
-    
+
     <InvoiceForm />
   </NewInvoiceContainer>
 )

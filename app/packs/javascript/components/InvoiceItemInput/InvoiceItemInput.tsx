@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { InputGroup } from '../InputGroup'
 import { InputField } from '../InputField'
 import {
@@ -12,8 +12,39 @@ import {
   InvoiceItemInputWrapper
 } from './InvoiceItemInput.styled'
 import { TrashIcon } from '../../icons/TrashIcon'
+import {
+  InvoiceItemInputProps,
+  InvoiceItemFields
+} from './types'
+import { round } from '../../utils/round'
 
-export const InvoiceItemInput = () => {
+export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove }: InvoiceItemInputProps) => {
+  const [currentInvoiceItem, setCurrentInvoiceItem] = useState<InvoiceItemFields>(invoiceItem)
+  
+  const updateInvoiceItem = (event) => {
+    const { name, value } = event.target
+
+    setCurrentInvoiceItem({
+      ...currentInvoiceItem,
+      [name]: value
+    })
+  }
+
+  useEffect(() => {
+    const { price, quantity } = currentInvoiceItem
+
+    const totalPrice = round(price * quantity, 2)
+    const updatedCurrentInvoiceItem = {
+      ...currentInvoiceItem,
+      total_price: round(price * quantity, 2)
+    }
+
+    if (onChange) onChange(updatedCurrentInvoiceItem)
+    if (totalPrice === currentInvoiceItem.total_price) return
+
+    setCurrentInvoiceItem(updatedCurrentInvoiceItem)
+  }, [currentInvoiceItem])
+
   return (
     <InvoiceItemInputWrapper>
       <ItemNameWrapper>
@@ -23,8 +54,10 @@ export const InvoiceItemInput = () => {
         >
           <InputField
             id="invoice-item-name"
-            name="invoice_item[name]"
+            name="name"
             type="text"
+            value={currentInvoiceItem.name}
+            onChange={updateInvoiceItem}
           />
         </InputGroup>
       </ItemNameWrapper>
@@ -36,8 +69,10 @@ export const InvoiceItemInput = () => {
         >
           <InputField
             id="invoice-item-quantity"
-            name="invoice_item[quantity]"
+            name="quantity"
             type="text"
+            value={currentInvoiceItem.quantity}
+            onChange={updateInvoiceItem}
           />
         </InputGroup>
       </QuantityWrapper>
@@ -49,8 +84,10 @@ export const InvoiceItemInput = () => {
         >
           <InputField
             id="invoice-item-price"
-            name="invoice_item[price]"
+            name="price"
             type="text"
+            value={currentInvoiceItem.price}
+            onChange={updateInvoiceItem}
           />
         </InputGroup>
       </PriceWrapper>
@@ -60,13 +97,16 @@ export const InvoiceItemInput = () => {
           label="Total"
         >
           <TotalPriceText as="h4">
-            150.00
+            { currentInvoiceItem.total_price }
           </TotalPriceText>
         </InputGroup>
       </TotalPriceWrapper>
 
       <DeleteButtonWrapper>
-        <DeleteButton>
+        <DeleteButton
+          type="button"
+          onClick={onRemove}
+        >
           <TrashIcon />
         </DeleteButton>
       </DeleteButtonWrapper>
