@@ -1,60 +1,30 @@
 import { useState, useEffect } from 'react'
+import { ValidationError } from 'yup'
 import {
   NewInvoicePayload,
   NewInvoiceItemPayload,
   UserLocationPayload,
   ClientPayload,
-  PaymentTermsOption
 } from './types'
 
-export const useInvoiceForm = () => {
-  const today = new Date();
+import {
+  itemPayload,
+  userLocationPayload,
+  clientPayload,
+  basePayload,
+  paymentTermsOptions,
+  baseErrors,
+  baseInvoiceItemError
+} from './initialValues'
 
-  const itemPayload: NewInvoiceItemPayload = {
-    name: "",
-    quantity: 0,
-    price: 0,
-    total_price: 0
-  }
+import { newInvoiceSchema } from './validationSchema'
 
-  const userLocationPayload: UserLocationPayload = {
-    street_address: "",
-    city: "",
-    postcode: "",
-    country: ""
-  }
-
-  const clientPayload: ClientPayload = {
-    name: "",
-    email: "",
-    location: {
-      street_address: "",
-      city: "",
-      postcode: "",
-      country: ""
-    }
-  }
-
-  const basePayload: NewInvoicePayload = {
-    user_location: userLocationPayload,
-    client: clientPayload,
-    issue_date: today,
-    payment_terms: 0,
-    project_description: "",
-    items_list: [itemPayload]
-  }
-
-  const paymentTermsOptions: PaymentTermsOption[] = [
-    { value: 0, label: "Inmediate" },
-    { value: 10, label: "Next 10 Days" },
-    { value: 30, label: "Next 30 Days" },
-    { value: 60, label: "Next 60 Days" }
-  ]
-
+export const useNewInvoice = () => {
   const [newInvoicePayload, setNewInvoicePayload] = useState<NewInvoicePayload>(basePayload)
   const [userLocation, setUserLocation] = useState<UserLocationPayload>(userLocationPayload)
   const [client, setClient] = useState<ClientPayload>(clientPayload)
   const [invoiceItems, setInvoiceItems] = useState<NewInvoiceItemPayload[]>([itemPayload])
+  const [errors, setErrors] = useState(baseErrors)
 
   useEffect(() => {
     setNewInvoicePayload({
@@ -64,10 +34,6 @@ export const useInvoiceForm = () => {
       items_list: invoiceItems
     })
   }, [userLocation, client, invoiceItems])
-
-  useEffect(() => {
-    console.log(newInvoicePayload)
-  }, [newInvoicePayload])
 
   const onUserLocationChange = (event) => {
     const { name, value } = event.target
@@ -116,6 +82,13 @@ export const useInvoiceForm = () => {
     updatedInvoiceItems.splice(index, 1)
 
     setInvoiceItems(updatedInvoiceItems)
+
+    const updatedInvoiceItemsErrors = [...errors.items_list]
+    updatedInvoiceItemsErrors.splice(index, 1)
+    setErrors({
+      ...errors,
+      items_list: updatedInvoiceItemsErrors
+    })
   }
 
   const addNewInvoiceItem = () => {
@@ -123,17 +96,52 @@ export const useInvoiceForm = () => {
       ...invoiceItems,
       itemPayload
     ])
+
+    setErrors({
+      ...errors,
+      items_list: [
+        ...errors.items_list,
+        baseInvoiceItemError
+      ]
+    })
+  }
+
+  const parseValidationErrors = (errorObjects) => {
+    const errorsDup = {...baseErrors}
+    errorObjects.forEach(error => {
+      const { path, errors: messages } = error;
+      eval(`errorsDup.${path} = "${messages}"`)
+    })
+
+    console.log({baseErrors, errorsDup, newInvoicePayload})
+    setErrors(errorsDup)
+  }
+
+  const runValidations = async () => {
+    try {
+      await newInvoiceSchema.validate(newInvoicePayload, { abortEarly: false })
+      return true
+    } catch (err) {
+      if (err instanceof ValidationError) {
+        parseValidationErrors(err.inner)
+        return false
+      } else {
+        throw err
+      }
+    }
   }
 
   return {
     newInvoicePayload,
     paymentTermsOptions,
+    errors,
     onUserLocationChange,
     onClientDetailsChange,
     onClientLocationChange,
     onInvoiceDetailsChange,
     onInvoiceItemChange,
     onInvoiceItemRemove,
-    addNewInvoiceItem
+    addNewInvoiceItem,
+    runValidations
   }
 }

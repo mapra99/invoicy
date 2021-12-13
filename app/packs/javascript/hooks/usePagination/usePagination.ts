@@ -42,11 +42,17 @@ export const usePagination = <DataType>({url, limit = 10, initialOffset = 0}: Pa
     if (scrollY > windowBottom - 200 ) fetchPageOnCallback()
   }, [scrollY])
 
+  const resetPagination = () => {
+    setOffset(initialOffset);
+    fetchPage();
+  }
+
   return {
     data,
     setData,
     fetchPage,
     fetchPageOnCallback,
+    resetPagination,
     loading,
     end
   }

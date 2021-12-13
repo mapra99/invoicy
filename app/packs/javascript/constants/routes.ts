@@ -16,7 +16,8 @@ export const ROUTES = {
   API: {
     CURRENT_USER: "/api/users/current",
     INVOICES: {
-      INDEX: "/api/invoices"
+      INDEX: "/api/invoices",
+      CREATE: "/api/invoices"
     }
   }
 }
