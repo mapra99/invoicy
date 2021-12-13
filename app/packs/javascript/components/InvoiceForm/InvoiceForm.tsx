@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { useInvoiceForm } from '../../hooks/useInvoiceForm'
 import { InputGroup } from '../InputGroup'
 import { InputField } from '../InputField'
 import { DatePickerField } from '../DatePickerField'
@@ -17,11 +18,22 @@ import {
   InvoiceDateWrapper,
   PaymentTermsWrapper,
   InvoiceFormSection,
-  InvoiceFormControlsWrapper
+  InvoiceFormControlsWrapper,
 } from './InvoiceForm.styled'
 
 export const InvoiceForm = () => {
   const history = useHistory();
+  const {
+    newInvoicePayload,
+    paymentTermsOptions,
+    onUserLocationChange,
+    onClientDetailsChange,
+    onClientLocationChange,
+    onInvoiceDetailsChange,
+    onInvoiceItemChange,
+    onInvoiceItemRemove,
+    addNewInvoiceItem
+  } = useInvoiceForm();
 
   return (
     <InvoiceFormWrapper>
@@ -35,8 +47,10 @@ export const InvoiceForm = () => {
         >
           <InputField
             id="invoice-user-address"
-            name="user_location[street_address]"
+            name="street_address"
             type="text"
+            value={newInvoicePayload.user_location.street_address}
+            onChange={onUserLocationChange}
           />
         </InputGroup>
 
@@ -47,8 +61,10 @@ export const InvoiceForm = () => {
           >
             <InputField
               id="invoice-user-city"
-              name="user_location[city]"
+              name="city"
               type="text"
+              value={newInvoicePayload.user_location.city}
+              onChange={onUserLocationChange}
             />
           </InputGroup>
         </CityWrapper>
@@ -60,8 +76,10 @@ export const InvoiceForm = () => {
           >
             <InputField
               id="invoice-user-postcode"
-              name="user_location[postcode]"
+              name="postcode"
               type="text"
+              value={newInvoicePayload.user_location.postcode}
+              onChange={onUserLocationChange}
             />
           </InputGroup>
         </PostcodeWrapper>
@@ -73,8 +91,10 @@ export const InvoiceForm = () => {
           >
             <InputField
               id="invoice-user-country"
-              name="user_location[country]"
+              name="country"
               type="text"
+              value={newInvoicePayload.user_location.country}
+              onChange={onUserLocationChange}
             />
           </InputGroup>
         </CountryWrapper>
@@ -91,8 +111,10 @@ export const InvoiceForm = () => {
         >
           <InputField
             id="invoice-client-name"
-            name="client[name]"
+            name="name"
             type="text"
+            value={newInvoicePayload.client.name}
+            onChange={onClientDetailsChange}
           />
         </InputGroup>
 
@@ -102,8 +124,10 @@ export const InvoiceForm = () => {
         >
           <InputField
             id="invoice-client-email"
-            name="client[email]"
+            name="email"
             type="email"
+            value={newInvoicePayload.client.email}
+            onChange={onClientDetailsChange}
           />
         </InputGroup>
 
@@ -113,8 +137,10 @@ export const InvoiceForm = () => {
         >
           <InputField
             id="invoice-client-address"
-            name="client_location[street_address]"
+            name="street_address"
             type="text"
+            value={newInvoicePayload.client.location.street_address}
+            onChange={onClientLocationChange}
           />
         </InputGroup>
 
@@ -125,8 +151,10 @@ export const InvoiceForm = () => {
           >
             <InputField
               id="invoice-client-city"
-              name="client_location[city]"
+              name="city"
               type="text"
+              value={newInvoicePayload.client.location.city}
+              onChange={onClientLocationChange}
             />
           </InputGroup>
         </CityWrapper>
@@ -138,8 +166,10 @@ export const InvoiceForm = () => {
           >
             <InputField
               id="invoice-client-postcode"
-              name="client_location[postcode]"
+              name="postcode"
               type="text"
+              value={newInvoicePayload.client.location.postcode}
+              onChange={onClientLocationChange}
             />
           </InputGroup>
         </PostcodeWrapper>
@@ -150,8 +180,10 @@ export const InvoiceForm = () => {
           >
             <InputField
               id="invoice-client-country"
-              name="client_location[country]"
+              name="country"
               type="text"
+              value={newInvoicePayload.client.location.country}
+              onChange={onClientLocationChange}
             />
           </InputGroup>
         </CountryWrapper>
@@ -164,7 +196,10 @@ export const InvoiceForm = () => {
             htmlFor="invoice-issue-date"
             label="Invoice Date"
           >
-            <DatePickerField />
+            <DatePickerField
+              value={newInvoicePayload.issue_date}
+              onChange={(value) => onInvoiceDetailsChange({target: {name: "issue_date", value }})}
+            />
           </InputGroup>
         </InvoiceDateWrapper>
 
@@ -174,12 +209,9 @@ export const InvoiceForm = () => {
             label="Payment Terms"
           >
             <SelectField
-              options={[
-                { value: 0, label: "Inmediate" },
-                { value: 10, label: "Next 10 Days" },
-                { value: 30, label: "Next 30 Days" },
-                { value: 60, label: "Next 60 Days" }
-              ]}
+              options={paymentTermsOptions}
+              value={newInvoicePayload.payment_terms}
+              onChange={(value) => onInvoiceDetailsChange({target: {name: "payment_terms", value}})}
             />
           </InputGroup>
         </PaymentTermsWrapper>
@@ -190,8 +222,10 @@ export const InvoiceForm = () => {
         >
           <InputField
             id="invoice-name"
-            name="invoice[name]"
+            name="project_description"
             type="text"
+            value={newInvoicePayload.project_description}
+            onChange={onInvoiceDetailsChange}
           />
         </InputGroup>
       </InvoiceFormSection>
@@ -200,10 +234,21 @@ export const InvoiceForm = () => {
         <InvoiceFormSectionTitle as="h2">
           Item List
         </InvoiceFormSectionTitle>
-        <InvoiceItemInput />
-        <InvoiceItemInput />
+        {
+          newInvoicePayload.items_list.map((invoiceItem, index) => (
+            <InvoiceItemInput
+              key={index}
+              invoiceItem={invoiceItem}
+              onChange={(invoiceItem) => onInvoiceItemChange(invoiceItem, index)}
+              onRemove={() => onInvoiceItemRemove(index)}
+            />
+          ))
+        }
 
-        <SecondaryButton>
+        <SecondaryButton
+          type="button"
+          onClick={addNewInvoiceItem}
+        >
           + Add new Item
         </SecondaryButton>
       </InvoiceFormSection>
