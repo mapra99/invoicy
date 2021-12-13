@@ -80,7 +80,6 @@ export const selectStyles = (theme) => ({
     color: theme.forms.input.text
   }),
   option: (provided, state) => {
-    console.log(state)
     const baseStyles = {
       ...provided,
       padding: "16px 24px",
