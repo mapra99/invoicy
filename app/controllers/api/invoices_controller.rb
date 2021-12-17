@@ -6,5 +6,10 @@ module Api
 
       handle_context_error_state(result)
     end
+
+    def create
+      byebug
+      render json: {status: "OK"}
+    end
   end
 end

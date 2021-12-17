@@ -12,7 +12,8 @@ const {
   XIKETIC,
   CARIBEAN_GREEN,
   DARK_ORANGE,
-  COOL_GREY
+  COOL_GREY,
+  RED_SALSA
 } = COLORS
 
 export default {
@@ -20,7 +21,8 @@ export default {
   text: {
     primary: WHITE,
     secondary: MEDIUM_SLATE_BLUE,
-    tertiary: LAVENDER_WEB
+    tertiary: LAVENDER_WEB,
+    danger: RED_SALSA
   },
   buttons: {
     secondary: {

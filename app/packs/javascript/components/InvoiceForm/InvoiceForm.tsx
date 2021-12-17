@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { InvoicesContext } from '../../contexts/InvoicesContext'
 import { useHistory } from 'react-router-dom'
-import { useInvoiceForm } from '../../hooks/useInvoiceForm'
+import { useNewInvoice } from '../../hooks/useNewInvoice'
 import { InputGroup } from '../InputGroup'
 import { InputField } from '../InputField'
 import { DatePickerField } from '../DatePickerField'
@@ -9,6 +10,7 @@ import { InvoiceItemInput } from '../InvoiceItemInput'
 import { PrimaryButton } from '../PrimaryButton'
 import { SecondaryButton } from '../SecondaryButton'
 import { TertiaryButton } from '../TertiaryButton'
+import { LoadingSpinner } from '../../icons/LoadingSpinner'
 import {
   InvoiceFormWrapper,
   InvoiceFormSectionTitle,
@@ -26,17 +28,33 @@ export const InvoiceForm = () => {
   const {
     newInvoicePayload,
     paymentTermsOptions,
+    errors,
     onUserLocationChange,
     onClientDetailsChange,
     onClientLocationChange,
     onInvoiceDetailsChange,
     onInvoiceItemChange,
     onInvoiceItemRemove,
-    addNewInvoiceItem
-  } = useInvoiceForm();
+    addNewInvoiceItem,
+    runValidations
+  } = useNewInvoice();
+
+  const { saveInvoice, loadingNewInvoice } = useContext(InvoicesContext);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const valid = await runValidations();
+    if (!valid) return
+
+    await saveInvoice(newInvoicePayload);
+  }
+
+  if (loadingNewInvoice) return (
+    <LoadingSpinner />
+  )
 
   return (
-    <InvoiceFormWrapper>
+    <InvoiceFormWrapper onSubmit={handleSubmit}>
       <InvoiceFormSection>
         <InvoiceFormSectionTitle as="h4">
           Bill From
@@ -44,6 +62,7 @@ export const InvoiceForm = () => {
         <InputGroup
           htmlFor="invoice-user-address"
           label="Street Address"
+          error={errors.user_location.street_address}
         >
           <InputField
             id="invoice-user-address"
@@ -58,6 +77,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-user-city"
             label="City"
+            error={errors.user_location.city}
           >
             <InputField
               id="invoice-user-city"
@@ -73,6 +93,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-user-postcode"
             label="Post Code"
+            error={errors.user_location.postcode}
           >
             <InputField
               id="invoice-user-postcode"
@@ -88,6 +109,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-user-country"
             label="Country"
+            error={errors.user_location.country}
           >
             <InputField
               id="invoice-user-country"
@@ -108,6 +130,7 @@ export const InvoiceForm = () => {
         <InputGroup
           htmlFor="invoice-client-name"
           label="Client's Name"
+          error={errors.client.name}
         >
           <InputField
             id="invoice-client-name"
@@ -121,6 +144,7 @@ export const InvoiceForm = () => {
         <InputGroup
           htmlFor="invoice-client-email"
           label="Client's Email"
+          error={errors.client.email}
         >
           <InputField
             id="invoice-client-email"
@@ -134,6 +158,7 @@ export const InvoiceForm = () => {
         <InputGroup
           htmlFor="invoice-client-address"
           label="Street Address"
+          error={errors.client.location.street_address}
         >
           <InputField
             id="invoice-client-address"
@@ -148,6 +173,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-client-city"
             label="City"
+            error={errors.client.location.city}
           >
             <InputField
               id="invoice-client-city"
@@ -163,6 +189,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-client-postcode"
             label="Post Code"
+            error={errors.client.location.postcode}
           >
             <InputField
               id="invoice-client-postcode"
@@ -177,6 +204,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-client-country"
             label="Country"
+            error={errors.client.location.country}
           >
             <InputField
               id="invoice-client-country"
@@ -195,6 +223,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-issue-date"
             label="Invoice Date"
+            error={errors.issue_date}
           >
             <DatePickerField
               value={newInvoicePayload.issue_date}
@@ -207,6 +236,7 @@ export const InvoiceForm = () => {
           <InputGroup
             htmlFor="invoice-payment-terms"
             label="Payment Terms"
+            error={errors.payment_terms}
           >
             <SelectField
               options={paymentTermsOptions}
@@ -219,6 +249,7 @@ export const InvoiceForm = () => {
         <InputGroup
           htmlFor="invoice-name"
           label="Project Description"
+          error={errors.project_description}
         >
           <InputField
             id="invoice-name"
@@ -240,6 +271,7 @@ export const InvoiceForm = () => {
               key={index}
               invoiceItem={invoiceItem}
               onChange={(invoiceItem) => onInvoiceItemChange(invoiceItem, index)}
+              errors={errors.items_list[index]}
               onRemove={() => onInvoiceItemRemove(index)}
             />
           ))
@@ -263,7 +295,7 @@ export const InvoiceForm = () => {
         <TertiaryButton>
           Save as Draft
         </TertiaryButton>
-        <PrimaryButton>
+        <PrimaryButton type = "submit">
           Save & Send
         </PrimaryButton>
       </InvoiceFormControlsWrapper>

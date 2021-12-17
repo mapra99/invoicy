@@ -8,7 +8,8 @@ declare module 'styled-components' {
     text: {
       primary: string,
       secondary: string,
-      tertiary: string
+      tertiary: string,
+      danger: string
     },
     buttons: {
       secondary: {

@@ -18,7 +18,7 @@ import {
 } from './types'
 import { round } from '../../utils/round'
 
-export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove }: InvoiceItemInputProps) => {
+export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: InvoiceItemInputProps) => {
   const [currentInvoiceItem, setCurrentInvoiceItem] = useState<InvoiceItemFields>(invoiceItem)
   
   const updateInvoiceItem = (event) => {
@@ -51,6 +51,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove }: InvoiceIte
         <InputGroup
           htmlFor="invoice-item-name"
           label="Item Name"
+          error={errors.name}
         >
           <InputField
             id="invoice-item-name"
@@ -66,6 +67,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove }: InvoiceIte
         <InputGroup
           htmlFor="invoice-item-quantity"
           label="Qty."
+          error={errors.quantity}
         >
           <InputField
             id="invoice-item-quantity"
@@ -81,6 +83,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove }: InvoiceIte
         <InputGroup
           label="Price"
           htmlFor="invoice-item-price"
+          error={errors.price}
         >
           <InputField
             id="invoice-item-price"
@@ -95,6 +98,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove }: InvoiceIte
       <TotalPriceWrapper>
         <InputGroup
           label="Total"
+          error={errors.total_price}
         >
           <TotalPriceText as="h4">
             { currentInvoiceItem.total_price }
