@@ -1,0 +1,72 @@
+{
+    "info": {
+        "_postman_id": "886f2641-cd9f-4c2c-a945-313cc809b177",
+        "name": "Invoicy API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "invoices",
+            "item": [
+                {
+                    "name": "Create Invoice",
+                    "id": "a2c0f3a3-5dec-40cc-998b-38d211c385a2",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "X-CSRF-TOKEN",
+                                "value": "HEW77rCuExsG_BwPaiiaUQawhc_j-jLYDvuXsQ-hs4Ha3yGNpI0CIXBBoEOtss5qBcA7yxWS9sYIoN3rZXk2Sw"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_location\":{\"street_address\":\"Calle 155 # 9 - 45 T2-702\",\"city\":\"Bogotá\",\"postcode\":\"110131\",\"country\":\"Colombia\"},\"client\":{\"name\":\"Austin Software\",\"email\":\"ap@austinsoftware.com\",\"location\":{\"street_address\":\"1123  Willow Street\",\"city\":\"Austin\",\"postcode\":\"11231\",\"country\":\"United States\"}},\"issue_date\":\"2021-12-18T05:00:00.000Z\",\"payment_terms\":0,\"project_description\":\"Software Development Services\",\"items_list\":[{\"name\":\"December\",\"quantity\":\"1\",\"price\":\"12222\",\"total_price\":12222}]}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/invoices",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "invoices"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "63de2e1a-f908-4948-9879-824b9ade565f"
+        }
+    ],
+    "auth": {
+        "type": "basic",
+        "basic": [
+            {
+                "key": "username",
+                "value": "<Basic Auth Username>",
+                "type": "string"
+            },
+            {
+                "key": "password",
+                "value": "<Basic Auth Password>",
+                "type": "string"
+            }
+        ]
+    },
+    "variable": [
+        {
+            "id": "40b9b42b-af42-44f1-bf7d-fa2345a59ddf",
+            "key": "baseUrl",
+            "value": "localhost:3000",
+            "type": "string"
+        }
+    ]
+}
