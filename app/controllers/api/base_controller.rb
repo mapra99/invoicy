@@ -1,15 +1,19 @@
-class Api::BaseController < ApplicationController
-  before_action :authenticate_user!
+# frozen_string_literal: true
 
-  private
+module Api
+  class BaseController < ApplicationController
+    include Api::SecurableApi
 
-  def pagination_params
-    params.permit(:limit, :offset)
-  end
+    private
 
-  def handle_context_error_state(context)
-    return if context.success?
+    def pagination_params
+      params.permit(:limit, :offset)
+    end
 
-    render json: { error: context.message }, status: 500
+    def handle_context_error_state(context)
+      return if context.success?
+
+      render json: { error: context.message }, status: 500
+    end
   end
 end
