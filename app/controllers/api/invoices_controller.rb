@@ -12,7 +12,7 @@ module Api
     end
 
     def create
-      result = InvoiceCreatorService::CreateInvoice.call(payload: invoice_params)
+      result = InvoiceCreatorService::CreateInvoice.call(user: current_user, payload: invoice_params)
       @invoice = result.invoice if result.success?
 
       handle_context_error_state(result)

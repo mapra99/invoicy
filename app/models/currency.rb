@@ -5,4 +5,6 @@ class Currency < ApplicationRecord
 
   validates :abbreviation, presence: true, uniqueness: true
   validates :name, presence: true
+
+  scope :default_currency, -> { find_by(abbreviation: 'USD') }
 end

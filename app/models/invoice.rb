@@ -1,9 +1,13 @@
 class Invoice < ApplicationRecord
   include Paginable
+  include Currencies
 
   belongs_to :user
   belongs_to :client, required: false # to allow draft invoices not to have a client set
   belongs_to :currency, required: false # to allow draft invoices not to have a client set
+  belongs_to :user_location
+  belongs_to :client_location
+  belongs_to :client_email
   has_many :invoice_items, dependent: :destroy
   has_many :items, through: :invoice_items
 
