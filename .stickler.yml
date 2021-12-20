@@ -1,6 +1,9 @@
 linters:
-  tslint: {  }
   rubocop:
+    display_cop_names: true
+    fixer: true
+  eslint:
+    config: './.eslintrc.js'
     fixer: true
 files:
   ignore:
