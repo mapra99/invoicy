@@ -1,0 +1,13 @@
+linters:
+  rubocop:
+    display_cop_names: true
+    fixer: true
+  eslint:
+    config: './.eslintrc.js'
+    fixer: true
+files:
+  ignore:
+    - 'bower_components/*'
+    - 'node_modules/*'
+fixers:
+  enable: true
