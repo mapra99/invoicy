@@ -8,7 +8,6 @@ module Api
     end
 
     def create
-      byebug
       render json: { status: 'OK' }
     end
   end
