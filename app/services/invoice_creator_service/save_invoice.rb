@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module InvoiceCreatorService
   class SaveInvoice
     include Interactor
