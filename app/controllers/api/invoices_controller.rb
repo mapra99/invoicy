@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   class InvoicesController < BaseController
     before_action :invoice_params, only: [:create]
