@@ -5,9 +5,9 @@ class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :client, required: false # to allow draft invoices not to have a client set
   belongs_to :currency, required: false # to allow draft invoices not to have a client set
-  belongs_to :user_location
-  belongs_to :client_location
-  belongs_to :client_email
+  belongs_to :user_location, required: false # to allow draft invoices not to have a client set
+  belongs_to :client_location, required: false # to allow draft invoices not to have a client set
+  belongs_to :client_email, required: false # to allow draft invoices not to have a client set
   has_many :invoice_items, dependent: :destroy
   has_many :items, through: :invoice_items
 

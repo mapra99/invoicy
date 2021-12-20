@@ -3,6 +3,9 @@ FactoryBot.define do
     association :user
     association :client
     association :currency
+    association :user_location
+    association :client_location
+    association :client_email
 
     name { Faker::Name.name }
     issue_date { Time.current - 2.days }

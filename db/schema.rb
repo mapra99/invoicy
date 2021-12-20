@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(version: 2021_12_20_032719) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "currency_id"
-    t.bigint "user_location_id", null: false
-    t.bigint "client_location_id", null: false
-    t.bigint "client_email_id", null: false
+    t.bigint "user_location_id"
+    t.bigint "client_location_id"
+    t.bigint "client_email_id"
     t.index ["client_email_id"], name: "index_invoices_on_client_email_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["client_location_id"], name: "index_invoices_on_client_location_id"

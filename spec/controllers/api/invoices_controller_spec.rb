@@ -69,4 +69,8 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
     end
   end
+
+  context 'POST /' do
+    
+  end
 end
