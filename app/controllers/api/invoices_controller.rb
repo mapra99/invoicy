@@ -25,6 +25,7 @@ module Api
         :issue_date,
         :payment_terms,
         :project_description,
+        :status,
         user_location: %i[street_address city postcode country],
         client: [:name, :email, { location: %i[street_address city postcode country] }],
         items_list: %i[name quantity price total_price]

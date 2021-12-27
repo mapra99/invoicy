@@ -4,9 +4,14 @@ module InvoiceCreatorService
   class CreateInvoiceItems
     include Interactor
 
+    before do
+      context.fail!(message: 'Expected payload in context') if context.payload.blank?
+      context.fail!(message: 'Expected items_list in payload') if context.payload[:items_list].blank?
+      context.fail!(message: 'Expected user in context') if context.user.blank?
+    end
+
     def call
       items_list = context.payload[:items_list]
-      context.fail!('Expected items_list in payload') if items_list.blank?
 
       context.invoice_items = items_list.map do |item_params|
         item = find_or_create_item(item_params)

@@ -4,9 +4,14 @@ module InvoiceCreatorService
   class CreateUserClient
     include Interactor
 
+    before do
+      context.fail!(message: 'Expected payload in context') if context.payload.blank?
+      context.fail!(message: 'Expected client in payload') if context.payload[:client].blank?
+      context.fail!(message: 'Expected user in context') if context.user.blank?
+    end
+
     def call
       client_params = context.payload[:client]
-      context.fail!('Expected client in payload') if client_params.blank?
 
       resolve_client(client_params)
       resolve_client_email(client_params)

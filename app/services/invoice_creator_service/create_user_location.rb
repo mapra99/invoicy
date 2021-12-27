@@ -4,10 +4,14 @@ module InvoiceCreatorService
   class CreateUserLocation
     include Interactor
 
+    before do
+      context.fail!(message: 'Expected payload in context') if context.payload.blank?
+      context.fail!(message: 'Expected user_location in payload') if context.payload[:user_location].blank?
+      context.fail!(message: 'Expected user in context') if context.user.blank?
+    end
+
     def call
       user_location_params = context.payload[:user_location]
-      context.fail!('Expected user_location in payload') if user_location_params.blank?
-
       location = resolve_location(user_location_params)
       update_user(location)
     end
