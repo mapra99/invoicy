@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_12_220145) do
+ActiveRecord::Schema.define(version: 2021_12_20_032719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_09_12_220145) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "currency_id"
+    t.float "total_price"
     t.index ["currency_id"], name: "index_invoice_items_on_currency_id"
     t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
     t.index ["item_id"], name: "index_invoice_items_on_item_id"
@@ -77,9 +78,15 @@ ActiveRecord::Schema.define(version: 2021_09_12_220145) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "currency_id"
+    t.bigint "user_location_id"
+    t.bigint "client_location_id"
+    t.bigint "client_email_id"
+    t.index ["client_email_id"], name: "index_invoices_on_client_email_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["client_location_id"], name: "index_invoices_on_client_location_id"
     t.index ["currency_id"], name: "index_invoices_on_currency_id"
     t.index ["user_id"], name: "index_invoices_on_user_id"
+    t.index ["user_location_id"], name: "index_invoices_on_user_location_id"
     t.index ["uuid", "client_id"], name: "index_invoices_on_uuid_and_client_id"
     t.index ["uuid", "user_id", "client_id"], name: "index_invoices_on_uuid_and_user_id_and_client_id", unique: true
     t.index ["uuid", "user_id"], name: "index_invoices_on_uuid_and_user_id"
@@ -145,8 +152,11 @@ ActiveRecord::Schema.define(version: 2021_09_12_220145) do
   add_foreign_key "invoice_items", "currencies"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoice_items", "items"
+  add_foreign_key "invoices", "client_emails"
+  add_foreign_key "invoices", "client_locations"
   add_foreign_key "invoices", "clients"
   add_foreign_key "invoices", "currencies"
+  add_foreign_key "invoices", "user_locations"
   add_foreign_key "invoices", "users"
   add_foreign_key "items", "currencies"
   add_foreign_key "items", "users"

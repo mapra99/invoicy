@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/shared/currencies_model'
 
 RSpec.describe Item, type: :model do
   subject { create(:item) }
@@ -15,4 +16,6 @@ RSpec.describe Item, type: :model do
     it { should have_many(:invoices) }
     it { should belong_to(:currency).optional }
   end
+
+  include_examples 'currencies concern', :item
 end

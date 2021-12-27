@@ -21,10 +21,10 @@ export const InvoicesProvider: React.FC = ({children}) => {
   const [newInvoice, setNewInvoice] = useState<Invoice | null>(null);
   const [loadingNewInvoice, setLoadingNewInvoice] = useState<boolean>(false);
 
-  const saveInvoice = async (newInvoicePayload) => {
+  const saveInvoice = async (newInvoicePayload, status = "pending") => {
     setLoadingNewInvoice(true)
 
-    const response = await server.post(CREATE_INVOICE, newInvoicePayload)
+    const response = await server.post(CREATE_INVOICE, { ...newInvoicePayload, status })
     const data = await response.json()
 
     setNewInvoice(data)

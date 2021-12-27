@@ -11,6 +11,7 @@ import { PrimaryButton } from '../PrimaryButton'
 import { SecondaryButton } from '../SecondaryButton'
 import { TertiaryButton } from '../TertiaryButton'
 import { LoadingSpinner } from '../../icons/LoadingSpinner'
+import { ROUTES } from '../../constants';
 import {
   InvoiceFormWrapper,
   InvoiceFormSectionTitle,
@@ -22,6 +23,9 @@ import {
   InvoiceFormSection,
   InvoiceFormControlsWrapper,
 } from './InvoiceForm.styled'
+
+const { INVOICES_INDEX } = ROUTES.DASHBOARD
+
 
 export const InvoiceForm = () => {
   const history = useHistory();
@@ -47,6 +51,7 @@ export const InvoiceForm = () => {
     if (!valid) return
 
     await saveInvoice(newInvoicePayload);
+    history.push(INVOICES_INDEX)
   }
 
   if (loadingNewInvoice) return (
