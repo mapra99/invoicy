@@ -20,5 +20,22 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'react/function-component-definition': [2,
+      {
+        unnamedComponents: 'arrow-function',
+        namedComponents: 'arrow-function'
+      }
+    ],
+    "react/jsx-filename-extension": [1,
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': 'off',
+    'import/extensions': ['error', 'never', { scss: 'always', styled: 'always' }],
+    'no-var': 'error',
   },
 };
