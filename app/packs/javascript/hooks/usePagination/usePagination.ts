@@ -10,17 +10,23 @@ export const usePagination = <DataType>({url, limit = 10, initialOffset = 0}: Pa
   const [end, setEnd] = useState<boolean>(false);
   const {scrollY} = useScroll();
 
-  const fetchPage = async () => {
-    if (loading || end) return;
-
+  const requestData = async (url, limit, offset) => {
     setLoading(true)
 
     const requestUrl = `${url}?limit=${limit}&offset=${offset}`;
     const response = await server.get(requestUrl);
     const newChunk = await response.json();
-    const allData = [...data, ...newChunk];
 
     setLoading(false)
+
+    return newChunk;
+  }
+
+  const fetchPage = async () => {
+    if (loading || end) return;
+
+    const newChunk = await requestData(url, limit, offset);
+    const allData = [...data, ...newChunk];
 
     if (allData.length === data.length) {
       setEnd(true)
@@ -37,15 +43,24 @@ export const usePagination = <DataType>({url, limit = 10, initialOffset = 0}: Pa
     [limit, offset, data, loading, end]
   )
 
+  const resetPagination = async () => {
+    const firstPage = await requestData(url, limit, initialOffset);
+
+    if (firstPage.length === 0) {
+      setEnd(true)
+      return
+    }
+
+    setData(firstPage)
+    setOffset(initialOffset)
+
+    return firstPage;
+  }
+
   useEffect(() => {
     const windowBottom = document.body.clientHeight - window.innerHeight;
     if (scrollY > windowBottom - 200 ) fetchPageOnCallback()
   }, [scrollY])
-
-  const resetPagination = () => {
-    setOffset(initialOffset);
-    fetchPage();
-  }
 
   return {
     data,
