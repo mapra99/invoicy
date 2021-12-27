@@ -51,7 +51,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: In
         <InputGroup
           htmlFor="invoice-item-name"
           label="Item Name"
-          error={errors.name}
+          error={errors?.name}
         >
           <InputField
             id="invoice-item-name"
@@ -67,7 +67,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: In
         <InputGroup
           htmlFor="invoice-item-quantity"
           label="Qty."
-          error={errors.quantity}
+          error={errors?.quantity}
         >
           <InputField
             id="invoice-item-quantity"
@@ -83,7 +83,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: In
         <InputGroup
           label="Price"
           htmlFor="invoice-item-price"
-          error={errors.price}
+          error={errors?.price}
         >
           <InputField
             id="invoice-item-price"
@@ -98,7 +98,7 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: In
       <TotalPriceWrapper>
         <InputGroup
           label="Total"
-          error={errors.total_price}
+          error={errors?.total_price}
         >
           <TotalPriceText as="h4">
             { currentInvoiceItem.total_price }
