@@ -3,7 +3,8 @@
 export const ROUTES = {
   ROOT: "/",
   DASHBOARD: {
-    INVOICES_INDEX: "/dashboard/invoices"
+    INVOICES_INDEX: "/dashboard/invoices",
+    NEW_INVOICE: "/dashboard/invoices/new"
   },
   AUTH: {
     SIGN_IN: "/users/login",
@@ -15,7 +16,8 @@ export const ROUTES = {
   API: {
     CURRENT_USER: "/api/users/current",
     INVOICES: {
-      INDEX: "/api/invoices"
+      INDEX: "/api/invoices",
+      CREATE: "/api/invoices"
     }
   }
 }

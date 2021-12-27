@@ -12,7 +12,8 @@ const {
   WHITE,
   CULTURED,
   CARIBEAN_GREEN,
-  DARK_ORANGE
+  DARK_ORANGE,
+  RED_SALSA
 } = COLORS
 
 export default {
@@ -20,7 +21,8 @@ export default {
   text: {
     primary: RICH_BLACK,
     secondary: MEDIUM_SLATE_BLUE,
-    tertiary: GLAUCOUS
+    tertiary: GLAUCOUS,
+    danger: RED_SALSA
   },
   buttons: {
     secondary: {
@@ -57,6 +59,10 @@ export default {
       paid: CARIBEAN_GREEN,
       pending: DARK_ORANGE,
       draft: SPACE_CADET_GREY
+    },
+    newInvoice: {
+      bg: WHITE,
+      totalPrice: COOL_GREY
     }
   }
 }

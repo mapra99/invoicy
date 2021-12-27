@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'support/shared/paginated_model'
+require 'support/shared/currencies_model'
 
 RSpec.describe Invoice, type: :model do
   subject { create(:invoice) }
@@ -29,6 +30,9 @@ RSpec.describe Invoice, type: :model do
     it { should have_many(:invoice_items) }
     it { should have_many(:items) }
     it { should belong_to(:currency).optional }
+    it { should belong_to(:user_location).optional }
+    it { should belong_to(:client_location).optional }
+    it { should belong_to(:client_email).optional }
   end
 
   context 'hooks' do
@@ -88,4 +92,6 @@ RSpec.describe Invoice, type: :model do
       expect(finished_invoice.draft?).to eq false
     end
   end
+
+  include_examples 'currencies concern', :invoice
 end

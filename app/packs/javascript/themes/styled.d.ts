@@ -8,7 +8,8 @@ declare module 'styled-components' {
     text: {
       primary: string,
       secondary: string,
-      tertiary: string
+      tertiary: string,
+      danger: string
     },
     buttons: {
       secondary: {
@@ -45,6 +46,10 @@ declare module 'styled-components' {
         paid: string,
         pending: string,
         draft: string
+      },
+      newInvoice: {
+        bg: string,
+        totalPrice: string
       }
     }
   }

@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ModalContext } from '../../contexts/ModalContext'
 import { Navigation } from '../../components/Navigation';
-import { DashboardLayoutContainer } from './DashboardLayout.styled'
+import {
+  DashboardLayoutContainer,
+  DashboardLayoutMainContainer
+} from './DashboardLayout.styled'
 
-export const DashboardLayout = ({ children }) => (
-  <DashboardLayoutContainer>
-    <Navigation />
-    { children }
-  </DashboardLayoutContainer>
-)
+export const DashboardLayout = ({ children }) => {
+  const { modalActive } = useContext(ModalContext)
+
+  return (
+    <DashboardLayoutContainer className={modalActive ? "modal-active" : ""}>
+      <Navigation />
+      <DashboardLayoutMainContainer>
+        { children }
+      </DashboardLayoutMainContainer>
+    </DashboardLayoutContainer>
+  )
+}

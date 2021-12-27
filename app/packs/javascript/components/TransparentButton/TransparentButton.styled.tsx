@@ -7,7 +7,7 @@ const {
   BREAKPOINT_XL
 } = BREAKPOINTS
 
-export const StyledSwitchThemeButton = styled(Button)`
+export const TransparentButton = styled(Button)`
   padding: 0 24px;
   background: none;
   box-sizing: content-box;

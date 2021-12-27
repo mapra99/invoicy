@@ -12,11 +12,10 @@ export const MainContainer = styled.div`
 
   @media (min-width: ${BREAKPOINT_S}px) {
     padding: 56px 48px 0;
-    margin-top: 80px;
   }
 
   @media (min-width: ${BREAKPOINT_XL}px) {
-    margin-top: 0;
+    padding: 0 48px;
   }
 `
 
