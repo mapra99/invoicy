@@ -1,9 +1,9 @@
 import React from 'react';
 import { MainContainer } from '../../../components/MainContainer';
-import { Text } from '../../../components/Text';
+import { InvoiceDetailsBody } from '../../../components/InvoiceDetailsBody'
 
 export const InvoiceDetails = () => (
   <MainContainer>
-    <Text>TODO: Invoice details content</Text>
+    <InvoiceDetailsBody />
   </MainContainer>
 );

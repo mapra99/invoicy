@@ -24,6 +24,7 @@ describe InvoiceFinderService::FindUserInvoiceByUuid do
 
     it { expect(context.success?).to be false }
     it { expect(context.message).to eq('Invoice not found') }
+    it { expect(context.code).to eq(404) }
   end
 
   describe 'when missing params' do

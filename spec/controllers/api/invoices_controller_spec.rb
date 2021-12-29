@@ -48,7 +48,7 @@ RSpec.describe Api::InvoicesController, type: :controller do
 
       describe 'when failed context' do
         let(:failed_context) do
-          double('failed_context', success?: false, message: 'There was an error. Please try again')
+          double('failed_context', success?: false, message: 'There was an error. Please try again', code: nil).as_null_object
         end
 
         before :each do
@@ -128,7 +128,7 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
 
       describe 'when context succeeds' do
-        let(:context_response) { double('context_response', invoice: invoice, success?: true) }
+        let(:context_response) { double('context_response', invoice: invoice, code: nil, success?: true).as_null_object }
 
         it 'should respond with a 200 status' do
           expect(response.status).to eq 200
@@ -141,7 +141,7 @@ RSpec.describe Api::InvoicesController, type: :controller do
 
       describe 'when context fails' do
         let(:error_message) { 'Error message' }
-        let(:context_response) { double('context_response', message: error_message, success?: false) }
+        let(:context_response) { double('context_response', message: error_message, code: nil, success?: false).as_null_object }
 
         it 'should respond with a 500 status' do
           expect(response.status).to eq 500
@@ -183,7 +183,7 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
 
       describe 'when successful service' do
-        let(:context_response) { double('successful_context', invoice: target_invoice, success?: true) }
+        let(:context_response) { double('successful_context', invoice: target_invoice, code: nil, success?: true).as_null_object }
 
         it 'should respond with a 200 status' do
           expect(response.status).to eq(200)
@@ -205,7 +205,7 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
 
       describe 'when failed service' do
-        let(:context_response) { double('failed_context', message: 'Context Error', success?: false) }
+        let(:context_response) { double('failed_context', message: 'Context Error', code: nil, success?: false) }
 
         it 'responds with a 500 status' do
           expect(response.status).to eq(500)
@@ -213,6 +213,14 @@ RSpec.describe Api::InvoicesController, type: :controller do
 
         it 'contains an error message' do
           expect(response_body['error']).to eq('Context Error')
+        end
+
+        describe 'when service didnt find invoice' do
+          let(:context_response) { double('failed_context', message: 'Context Error', code: 404, success?: false) }
+
+          it 'responds with a 404 status' do
+            expect(response.status).to eq(404)
+          end
         end
       end
     end

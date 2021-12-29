@@ -14,7 +14,7 @@ module InvoiceFinderService
       uuid = context.uuid
 
       invoice = user.invoices.find_by(uuid: uuid)
-      context.fail!(message: 'Invoice not found') if invoice.blank?
+      context.fail!(message: 'Invoice not found', code: 404) if invoice.blank?
 
       context.invoice = invoice
     end
