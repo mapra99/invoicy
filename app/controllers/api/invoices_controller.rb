@@ -18,6 +18,13 @@ module Api
       handle_context_error_state(result)
     end
 
+    def show
+      result = InvoiceFinderService::FindUserInvoiceByUuid.call(user: current_user, uuid: params[:uuid])
+      @invoice = result.invoice if result.success?
+
+      handle_context_error_state(result)
+    end
+
     private
 
     def invoice_params
