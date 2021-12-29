@@ -157,4 +157,64 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
     end
   end
+
+  context 'GET /:uuid' do
+    let!(:user) { create(:user) }
+    let!(:invoices) { create_list(:invoice, 20, user: user) }
+    let(:target_invoice) { invoices.sample }
+    let(:uuid) { target_invoice.uuid }
+
+    describe 'when not authenticated' do
+      before :each do
+        get :show, format: :json, params: { uuid: uuid }
+      end
+
+      it 'should respond with a 401 status' do
+        expect(response.status).to eq(401)
+      end
+    end
+
+    describe 'when authenticated' do
+      before :each do
+        allow(InvoiceFinderService::FindUserInvoiceByUuid).to receive(:call).and_return(context_response)
+
+        sign_in user
+        get :show, format: :json, params: { uuid: uuid }
+      end
+
+      describe 'when successful service' do
+        let(:context_response) { double('successful_context', invoice: target_invoice, success?: true) }
+
+        it 'should respond with a 200 status' do
+          expect(response.status).to eq(200)
+        end
+  
+        example 'payload structure' do
+          expect(response_body).to be_a(Hash)
+  
+          expect(response_body).to have_key('id')
+          expect(response_body).to have_key('uuid')
+          expect(response_body).to have_key('dueDate')
+          expect(response_body).to have_key('client')
+          expect(response_body).to have_key('currency')
+          expect(response_body).to have_key('totalPrice')
+          expect(response_body).to have_key('createdAt')
+          expect(response_body).to have_key('updatedAt')
+          expect(response_body).to have_key('status')
+        end
+      end
+
+      describe 'when failed service' do
+        let(:context_response) { double('failed_context', message: 'Context Error', success?: false) }
+
+        it 'responds with a 500 status' do
+          expect(response.status).to eq(500)
+        end
+
+        it 'contains an error message' do
+          expect(response_body['error']).to eq('Context Error')
+        end
+      end
+    end
+  end
 end
