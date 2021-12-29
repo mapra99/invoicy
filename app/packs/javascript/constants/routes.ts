@@ -20,6 +20,7 @@ export const ROUTES = {
     INVOICES: {
       INDEX: '/api/invoices',
       CREATE: '/api/invoices',
+      SHOW: '/api/invoices/:uuid'
     },
   },
 };

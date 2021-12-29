@@ -7,6 +7,8 @@ import { BREAKPOINTS } from '../../constants';
 const { BREAKPOINT_S } = BREAKPOINTS;
 
 export const InvoiceLink = styled(Link)`
+  text-decoration: none;
+
   &:active {
     text-decoration: none;
   }
