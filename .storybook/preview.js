@@ -1,5 +1,7 @@
 import React from 'react'
+import { MemoryRouter } from "react-router";
 import { ThemeProvider } from '../app/packs/javascript/contexts/ThemeContext';
+import '../app/packs/styles/global/index.scss';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -16,5 +18,10 @@ export const decorators = [
     <ThemeProvider>
       <Story />
     </ThemeProvider>
+  ),
+  (Story) => (
+    <MemoryRouter initialEntries={['/']}>
+      { Story() }
+    </MemoryRouter>
   )
 ]

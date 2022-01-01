@@ -1,8 +1,7 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 
 import { SecondaryButton } from '.';
-import { PlusIcon } from '../../icons/PlusIcon';
 
 export default {
   title: 'Components/SecondaryButton',
@@ -10,7 +9,7 @@ export default {
 } as ComponentMeta<typeof SecondaryButton>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof SecondaryButton> = (args) => {
+const Template = (args) => {
   const { label, ...params } = args;
 
   return (
