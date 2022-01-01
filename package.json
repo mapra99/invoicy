@@ -62,10 +62,6 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "webpack-dev-server": "^4.0.0"
   },
-  "engines": {
-    "npm": "^8.1.2",
-    "node": "^16.13.1"
-  },
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
