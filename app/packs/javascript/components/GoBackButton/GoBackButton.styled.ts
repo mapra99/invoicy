@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { SecondaryButton } from '../SecondaryButton'
+import styled from 'styled-components';
+import { SecondaryButton } from '../SecondaryButton';
 
 export const StyledGoBackButton = styled(SecondaryButton)`
   background: none;
-  color: ${props => props.theme.text.primary};
+  color: ${(props) => props.theme.text.primary};
   padding: 0;
   height: auto;
   display: flex;
@@ -13,7 +13,7 @@ export const StyledGoBackButton = styled(SecondaryButton)`
     text-decoration: underline;
     background: none;
   }
-`
+`;
 
 export const GoBackButtonIconWrapper = styled.div`
   width: 9px;
@@ -21,5 +21,7 @@ export const GoBackButtonIconWrapper = styled.div`
 
   svg {
     transform: rotate(90deg);
+    width: 9px;
+    height: 9px;
   }
-`
+`;

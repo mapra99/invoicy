@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button } from '../Button';
-import { COLORS, BREAKPOINTS } from '../../constants'
+import { COLORS, BREAKPOINTS } from '../../constants';
 
 const { MEDIUM_SLATE_BLUE, MEDIUM_PURPLE, WHITE } = COLORS;
 const { BREAKPOINT_S } = BREAKPOINTS;
@@ -12,7 +12,7 @@ export const StyledPrimaryButton = styled(Button)`
   &:hover {
     background-color: ${MEDIUM_PURPLE};
   }
-`
+`;
 
 export const PrimaryButtonIconWrapper = styled.div`
   background-color: ${WHITE};
@@ -31,6 +31,7 @@ export const PrimaryButtonIconWrapper = styled.div`
   }
 
   svg {
+    vertical-align: middle;
     width: 10px;
     height: 10px;
     color: ${MEDIUM_SLATE_BLUE};
@@ -40,4 +41,4 @@ export const PrimaryButtonIconWrapper = styled.div`
       fill: ${MEDIUM_SLATE_BLUE};
     }
   }
-`
+`;
