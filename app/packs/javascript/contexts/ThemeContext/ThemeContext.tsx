@@ -8,7 +8,7 @@ import themes from '../../themes';
 export const ThemeContext = createContext<IThemeContext | null>(null);
 
 export const ThemeProvider: React.FC = ({children}) => {
-  const { currentTheme, switchTheme } = useTheme({ defaultTheme: "light" })
+  const { currentTheme, switchTheme } = useTheme({ defaultTheme: "dark" })
 
   const contextVal: IThemeContext = {
     currentTheme,
