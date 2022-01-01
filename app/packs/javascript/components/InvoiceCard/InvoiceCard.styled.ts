@@ -14,31 +14,6 @@ export const InvoiceLink = styled(Link)`
   }
 `;
 
-export const InvoiceCardWrapper = styled.div`
-  padding: 24px;
-  background: ${(props) => props.theme.layout.bgSecondary};
-  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0);
-  margin-bottom: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  transition: border 0.2s;
-
-  @media(min-width: ${BREAKPOINT_S}px) {
-    padding: 16px 24px;
-    flex-wrap: nowrap;
-    align-items: center;
-    gap: 20px;
-  }
-
-  &:hover {
-    cursor: pointer;
-    border: 1px solid ${(props) => props.theme.text.secondary};
-  }
-`;
-
 export const InvoiceUuid = styled(Title)`
   margin-bottom: 24px;
   width: 50%;
