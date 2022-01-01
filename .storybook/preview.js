@@ -1,6 +1,7 @@
 import React from 'react'
 import { MemoryRouter } from "react-router";
 import { ThemeProvider } from '../app/packs/javascript/contexts/ThemeContext';
+import { ThemeSwitch } from './ThemeSwitch';
 import '../app/packs/styles/global/index.scss';
 
 export const parameters = {
@@ -17,6 +18,7 @@ export const decorators = [
   (Story) => (
     <ThemeProvider>
       <Story />
+      <ThemeSwitch />
     </ThemeProvider>
   ),
   (Story) => (
