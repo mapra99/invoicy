@@ -1,10 +1,23 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Card } from '../Card';
 import { Title } from '../Title';
 import { Text } from '../Text';
 import { BREAKPOINTS } from '../../constants';
 
 const { BREAKPOINT_S } = BREAKPOINTS;
+
+export const InvoiceCardWrapper = styled(Card)`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @media(min-width: ${BREAKPOINT_S}px) {
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 20px;
+  }
+`;
 
 export const InvoiceLink = styled(Link)`
   text-decoration: none;

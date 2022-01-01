@@ -1,6 +1,7 @@
 import React from 'react';
 import { InvoiceCardProps } from './types';
 import {
+  InvoiceCardWrapper,
   InvoiceLink,
   InvoiceUuid,
   InvoiceClient,
@@ -9,7 +10,6 @@ import {
   InvoiceDueDatePriceWrapper,
   InvoiceCardChevronIconWrapper,
 } from './InvoiceCard.styled';
-import { Card } from '../Card';
 import { InvoiceStatus } from '../InvoiceStatus';
 import { ChevronIcon } from '../../icons/ChevronIcon';
 import { formatDate } from '../../utils/formatDate';
@@ -25,7 +25,7 @@ export const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
 
   return (
     <InvoiceLink to={replaceParams(SHOW_INVOICE, { uuid: invoice.uuid })}>
-      <Card>
+      <InvoiceCardWrapper hover shadow>
         <InvoiceUuid as="h4">
           {invoice.uuid}
         </InvoiceUuid>
@@ -63,7 +63,7 @@ export const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
             <ChevronIcon />
           </InvoiceCardChevronIconWrapper>
         ) }
-      </Card>
+      </InvoiceCardWrapper>
     </InvoiceLink>
   );
 };

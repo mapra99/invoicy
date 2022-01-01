@@ -23,10 +23,12 @@ export const Body1 = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Body1.args = {
   type: 'body1',
+  color: 'primary',
 };
 
 export const Body2 = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Body2.args = {
   type: 'body2',
+  color: 'primary',
 };
