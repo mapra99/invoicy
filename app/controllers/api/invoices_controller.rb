@@ -25,6 +25,13 @@ module Api
       handle_context_error_state(result)
     end
 
+    def destroy
+      result = InvoiceRemoverService::RemoveUserInvoice.call(user: current_user, uuid: params[:uuid])
+      head :no_content and return if result.success?
+
+      handle_context_error_state(result)
+    end
+
     private
 
     def invoice_params

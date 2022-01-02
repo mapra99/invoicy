@@ -1,5 +1,6 @@
 import React from 'react'
 import { MemoryRouter } from "react-router";
+import { ModalProvider } from '../app/packs/javascript/contexts/ModalContext';
 import { ThemeProvider } from '../app/packs/javascript/contexts/ThemeContext';
 import { ThemeSwitch } from './ThemeSwitch';
 import '../app/packs/styles/global/index.scss';
@@ -23,7 +24,12 @@ export const decorators = [
   ),
   (Story) => (
     <MemoryRouter initialEntries={['/']}>
-      { Story() }
+      <Story />
     </MemoryRouter>
+  ),
+  (Story) => (
+    <ModalProvider>
+      <Story />
+    </ModalProvider>
   )
 ]
