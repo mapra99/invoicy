@@ -21,7 +21,6 @@ export const InvoiceDetailsBody = () => {
 
   return (
     <InvoiceDetailsWrapper>
-      <GoBackButton />
       <StatusCardWrapper>
         <StatusCard invoice={invoice} />
       </StatusCardWrapper>

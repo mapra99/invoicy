@@ -3,8 +3,8 @@ import { StatusCardProps } from './types';
 import { Text } from '../Text';
 import { InvoiceStatus } from '../InvoiceStatus';
 import { SecondaryButton } from '../SecondaryButton';
-import { DangerButton } from '../DangerButton';
 import { PrimaryButton } from '../PrimaryButton';
+import { DeleteInvoiceButton } from '../DeleteInvoiceButton';
 import {
   StatusCardWrapper,
   CurrentStatusWrapper,
@@ -25,9 +25,7 @@ export const StatusCard = ({ invoice }: StatusCardProps) => (
         Edit
       </SecondaryButton>
 
-      <DangerButton>
-        Delete
-      </DangerButton>
+      <DeleteInvoiceButton uuid={invoice.uuid} />
 
       <PrimaryButton>
         Mark as Paid
