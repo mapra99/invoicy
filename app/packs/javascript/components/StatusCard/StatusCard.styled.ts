@@ -9,6 +9,10 @@ export const StatusCardWrapper = styled(Card)`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+
+  @media (min-width: ${BREAKPOINT_S}px) {
+    padding: 20px 32px;
+  }
 `;
 
 export const CurrentStatusWrapper = styled.div`

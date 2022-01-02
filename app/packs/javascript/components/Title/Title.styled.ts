@@ -28,10 +28,6 @@ const typeSpecifics = {
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: -0.8px;
-
-    @media (min-width: ${BREAKPOINT_S}px) {
-      font-size: 12px;
-    }
   `,
   h4: `
     font-size: 12px;

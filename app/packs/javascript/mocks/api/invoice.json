@@ -1,14 +1,14 @@
 {
   "id": 14,
-  "uuid": "austin_software_12",
-  "name": "Softwarea sdad",
-  "issueDate": "2021-12-27T02:50:13.753Z",
-  "dueDate": "2022-01-06T02:50:13.753Z",
+  "uuid": "XM9141",
+  "name": "Graphic Design",
+  "issueDate": "2021-08-21T05:50:13.753Z",
+  "dueDate": "2021-09-20T05:50:13.753Z",
   "totalPrice": 6500.0,
   "status": "pending",
   "client": {
       "id": 1,
-      "name": "Austin Software",
+      "name": "Alex",
       "email": "ap@austinsoftware.com",
       "location": {
           "streetAddress": "123 Willow Street",
