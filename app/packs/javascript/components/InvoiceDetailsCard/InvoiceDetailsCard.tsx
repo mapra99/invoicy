@@ -15,7 +15,8 @@ import {
   ClientDetailsWrapper,
   DetailsRow,
   DatesWrapper,
-  TargetEmailWrapper
+  TargetEmailWrapper,
+  InvoiceItemsWrapper
 } from './InvoiceDetailsCard.styled';
 
 export const InvoiceDetailsCard = ({ invoice }: InvoiceDetailsCardProps) => {
@@ -71,12 +72,14 @@ export const InvoiceDetailsCard = ({ invoice }: InvoiceDetailsCardProps) => {
           />
         </TargetEmailWrapper>
       </DetailsRow>
-
-      { mobile ? (
-        <InvoiceItemsList items={items} currency={currency} totalPrice={totalPrice} />
-      ) : (
-        <InvoiceItemsTable items={items} currency={currency} totalPrice={totalPrice} />
-      )}
+      
+      <InvoiceItemsWrapper>
+        { mobile ? (
+          <InvoiceItemsList items={items} currency={currency} totalPrice={totalPrice} />
+        ) : (
+          <InvoiceItemsTable items={items} currency={currency} totalPrice={totalPrice} />
+        )}
+      </InvoiceItemsWrapper>
     </InvoiceDetailsCardWrapper>
   );
 };

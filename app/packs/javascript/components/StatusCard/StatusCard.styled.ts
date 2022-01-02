@@ -33,12 +33,13 @@ export const ActionsWrapper = styled.div`
   gap: 8px;
 
   @media (max-width: ${BREAKPOINT_S}px) {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px 24px;
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
+    z-index: 2;
   }
 `;

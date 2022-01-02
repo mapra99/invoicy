@@ -5,7 +5,11 @@ import { EmptyFeedBanner } from '../EmptyFeedBanner';
 import { LoadingSpinner } from '../../icons/LoadingSpinner';
 import { GoBackButton } from '../GoBackButton';
 import { StatusCard } from '../StatusCard';
-import { InvoiceDetailsWrapper } from './InvoiceDetailsBody.styled';
+import { InvoiceDetailsCard } from '../InvoiceDetailsCard';
+import {
+  InvoiceDetailsWrapper,
+  StatusCardWrapper,
+} from './InvoiceDetailsBody.styled';
 
 export const InvoiceDetailsBody = () => {
   const { uuid } = useParams();
@@ -18,7 +22,10 @@ export const InvoiceDetailsBody = () => {
   return (
     <InvoiceDetailsWrapper>
       <GoBackButton />
-      <StatusCard invoice={invoice} />
+      <StatusCardWrapper>
+        <StatusCard invoice={invoice} />
+      </StatusCardWrapper>
+      <InvoiceDetailsCard invoice={invoice} />
     </InvoiceDetailsWrapper>
   );
 };

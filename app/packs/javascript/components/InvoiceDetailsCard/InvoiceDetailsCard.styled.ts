@@ -73,3 +73,12 @@ export const TargetEmailWrapper = styled.div`
     flex: 1 1;
   }
 `
+
+export const InvoiceItemsWrapper = styled.div`
+  margin-top: 10px;
+  width: 100%;
+
+  @media (min-width: ${BREAKPOINT_S}px) {
+    margin-top: 18px;
+  }
+`
