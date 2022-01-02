@@ -27,17 +27,11 @@ export const InvoiceLink = styled(Link)`
   }
 `;
 
-export const InvoiceUuid = styled(Title)`
+export const InvoiceUuidWrapper = styled.div`
   margin-bottom: 24px;
   width: 50%;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
-
-  &:before {
-    color: ${(props) => props.theme.layout.buttons};
-    content: "# ";
-  }
 
   @media(min-width: ${BREAKPOINT_S}px) {
     margin-bottom: 0;
