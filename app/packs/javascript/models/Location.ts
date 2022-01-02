@@ -1,5 +1,6 @@
 export interface Location {
   id?: string;
+  streetAddress?: string;
   postcode?: string;
   city?: string;
   state?: string;

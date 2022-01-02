@@ -14,12 +14,12 @@ const typeSpecifics = {
     font-size: 11px;
     line-height: 1.63;
     letter-spacing: -0.23px;
-  `
-}
+  `,
+};
 
 export const Text = styled.p<TextProps>`
   font-family: ${SPARTAN};
-  color: ${props => props.theme.text.primary};
+  color: ${(props) => props.theme.text[props.color || 'primary']};
   font-weight: 500;
-  ${props => typeSpecifics[props.type] || typeSpecifics.body1 }
-`
+  ${(props) => typeSpecifics[props.type] || typeSpecifics.body1}
+`;

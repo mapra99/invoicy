@@ -4,8 +4,8 @@ import { Title } from '../../../components/Title'
 import { NewInvoiceButton } from '../../../components/NewInvoiceButton'
 import { InvoicesFilter } from '../../../components/InvoicesFilter'
 import { InvoicesBody } from '../../../components/InvoicesBody'
+import { MainContainer } from '../../../components/MainContainer'
 import {
-  MainContainer,
   Heading,
   HeadingTitle,
   HeadingActions,

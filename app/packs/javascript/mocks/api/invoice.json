@@ -1,0 +1,59 @@
+{
+  "id": 14,
+  "uuid": "XM9141",
+  "name": "Graphic Design",
+  "issueDate": "2021-08-21T05:50:13.753Z",
+  "dueDate": "2021-09-20T05:50:13.753Z",
+  "totalPrice": 6500.0,
+  "status": "pending",
+  "client": {
+    "id": 1,
+    "name": "Alex",
+    "email": "ap@austinsoftware.com",
+    "location": {
+      "streetAddress": "123 Willow Street",
+      "city": "Austin",
+      "postcode": "1212",
+      "country": "United States"
+    }
+  },
+  "user": {
+    "location": {
+      "streetAddress": "Calle 155 # 9 - 45",
+      "city": "Bogota",
+      "postcode": "110131",
+      "country": "Colombia"
+    }
+  },
+  "currency": {
+    "abbreviation": "USD",
+    "symbol": "$",
+    "minSize": 0.01
+  },
+  "createdAt": "2021-12-27T02:51:18.748Z",
+  "updatedAt": "2021-12-27T02:51:18.748Z",
+  "items": [
+    {
+      "name": "Software Development Services",
+      "quantity": 1.0,
+      "fixedUnitPrice": 6000.0,
+      "totalPrice": 6000.0,
+      "currency": {
+        "abbreviation": "USD",
+        "symbol": "$",
+        "minSize": 0.01
+      }
+    },
+    {
+      "name": "Bonus - Contest",
+      "quantity": 1.0,
+      "fixedUnitPrice": 500.0,
+      "totalPrice": 500.0,
+      "currency": {
+        "abbreviation": "USD",
+        "symbol": "$",
+        "minSize": 0.01
+      }
+    }
+  ]
+}

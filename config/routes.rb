@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :react do
     namespace :dashboard do
-      resources :invoices, only: %i[index new]
+      resources :invoices, only: %i[index new show], param: :uuid
     end
   end
 
@@ -22,6 +22,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :invoices, only: %i[index create]
+    resources :invoices, only: %i[index create show], param: :uuid
   end
 end

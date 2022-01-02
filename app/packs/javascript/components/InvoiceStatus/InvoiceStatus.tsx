@@ -3,9 +3,9 @@ import { InvoiceStatusProps } from './types';
 import {
   StyledInvoiceStatus,
   InvoiceStatusText,
-  InvoiceStatusOverlay
-} from './InvoiceStatus.styled'
-import { capitalize } from '../../utils/capitalize'
+  InvoiceStatusOverlay,
+} from './InvoiceStatus.styled';
+import { capitalize } from '../../utils/capitalize';
 
 export const InvoiceStatus = ({ status }: InvoiceStatusProps) => (
   <StyledInvoiceStatus>
@@ -14,4 +14,4 @@ export const InvoiceStatus = ({ status }: InvoiceStatusProps) => (
       { capitalize(status) }
     </InvoiceStatusText>
   </StyledInvoiceStatus>
-)
+);

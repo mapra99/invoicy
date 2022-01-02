@@ -1,26 +1,33 @@
-import { IServer } from './types'
+import { IServer } from './types';
+import { RequestError } from '../../errors';
 
 const getCsrfToken = () => {
-  const metaElement: HTMLMetaElement = document.querySelector('meta[name="csrf-token"]')
-  return metaElement.content
-}
+  const metaElement: HTMLMetaElement = document.querySelector('meta[name="csrf-token"]');
+  return metaElement.content;
+};
 
-const buildRequest = (url: string, method: string, data: object = {}):Promise<Response> => {
+const buildRequest = async (url: string, method: string, data: object = {}):Promise<Response> => {
   const request: RequestInit = {
     method,
     headers: {
       'Content-Type': 'application/json',
-    }
-  }
+    },
+  };
 
   if (method !== 'GET') {
     request.headers['X-CSRF-Token'] = getCsrfToken();
 
-    request.body = JSON.stringify(data)
+    request.body = JSON.stringify(data);
   }
 
-  return fetch(url, request)
-}
+  const response = await fetch(url, request);
+  if (!response.ok) {
+    const message = await response.json();
+    throw new RequestError(response.status, message.error);
+  }
+
+  return response;
+};
 
 export const server: IServer = {
   getAuthenticityToken: () => getCsrfToken(),
@@ -28,4 +35,4 @@ export const server: IServer = {
   post: (url, data) => buildRequest(url, 'POST', data),
   put: (url, data) => buildRequest(url, 'PUT', data),
   delete: (url) => buildRequest(url, 'DELETE'),
-}
+};

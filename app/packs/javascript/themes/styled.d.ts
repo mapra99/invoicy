@@ -50,6 +50,11 @@ declare module 'styled-components' {
       newInvoice: {
         bg: string,
         totalPrice: string
+      },
+      itemsList: {
+        bgPrimary: string,
+        bgSecondary: string,
+        neutralText: string
       }
     }
   }
