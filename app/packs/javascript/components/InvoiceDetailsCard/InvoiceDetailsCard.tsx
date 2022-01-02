@@ -6,6 +6,7 @@ import { InvoiceUuid } from '../InvoiceUuid';
 import { Text } from '../Text';
 import { LocationDetails } from '../LocationDetails';
 import { InvoiceAttribute } from '../InvoiceAttribute';
+import { InvoiceItemsList } from '../InvoiceItemsList';
 import {
   InvoiceDetailsCardWrapper,
   InvoiceNameWrapper,
@@ -18,7 +19,7 @@ import {
 
 export const InvoiceDetailsCard = ({ invoice }: InvoiceDetailsCardProps) => {
   const {
-    uuid, name, user, client, issueDate, dueDate,
+    uuid, name, user, client, issueDate, dueDate, items, currency, totalPrice
   } = invoice;
   const { mobile } = useBreakpoint();
 
@@ -69,6 +70,8 @@ export const InvoiceDetailsCard = ({ invoice }: InvoiceDetailsCardProps) => {
           />
         </TargetEmailWrapper>
       </DetailsRow>
+
+      <InvoiceItemsList items={items} currency={currency} totalPrice={totalPrice} />
     </InvoiceDetailsCardWrapper>
   );
 };

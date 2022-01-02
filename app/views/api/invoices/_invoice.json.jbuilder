@@ -53,5 +53,10 @@ if invoice.items.present?
     json.quantity invoice_item.quantity
     json.fixedUnitPrice invoice_item.fixed_unit_price
     json.totalPrice invoice_item.total_price
+    json.currency do
+      json.abbreviation invoice_item.currency.abbreviation
+      json.symbol invoice_item.currency.symbol
+      json.minSize invoice_item.currency.min_size
+    end
   end
 end

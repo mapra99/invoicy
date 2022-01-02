@@ -1,7 +1,7 @@
 import { Client } from './Client';
 import { Currency } from './Currency';
 import { User } from './User';
-import { Item } from './Item';
+import { InvoiceItem } from './InvoiceItem';
 
 export interface Invoice {
   id?: string;
@@ -16,5 +16,5 @@ export interface Invoice {
   currency?: Currency;
   createdAt?: Date;
   updatedAt?: Date;
-  items?: Item[]
+  items?: InvoiceItem[]
 }

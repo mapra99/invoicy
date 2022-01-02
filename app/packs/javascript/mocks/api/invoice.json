@@ -7,43 +7,53 @@
   "totalPrice": 6500.0,
   "status": "pending",
   "client": {
-      "id": 1,
-      "name": "Alex",
-      "email": "ap@austinsoftware.com",
-      "location": {
-          "streetAddress": "123 Willow Street",
-          "city": "Austin",
-          "postcode": "1212",
-          "country": "United States"
-      }
+    "id": 1,
+    "name": "Alex",
+    "email": "ap@austinsoftware.com",
+    "location": {
+      "streetAddress": "123 Willow Street",
+      "city": "Austin",
+      "postcode": "1212",
+      "country": "United States"
+    }
   },
   "user": {
-      "location": {
-          "streetAddress": "Calle 155 # 9 - 45",
-          "city": "Bogota",
-          "postcode": "110131",
-          "country": "Colombia"
-      }
+    "location": {
+      "streetAddress": "Calle 155 # 9 - 45",
+      "city": "Bogota",
+      "postcode": "110131",
+      "country": "Colombia"
+    }
   },
   "currency": {
-      "abbreviation": "USD",
-      "symbol": "$",
-      "minSize": 0.01
+    "abbreviation": "USD",
+    "symbol": "$",
+    "minSize": 0.01
   },
   "createdAt": "2021-12-27T02:51:18.748Z",
   "updatedAt": "2021-12-27T02:51:18.748Z",
   "items": [
-      {
-          "name": "asdads",
-          "quantity": 1.0,
-          "fixedUnitPrice": 6000.0,
-          "totalPrice": 6000.0
-      },
-      {
-          "name": "bonus",
-          "quantity": 1.0,
-          "fixedUnitPrice": 500.0,
-          "totalPrice": 500.0
+    {
+      "name": "Software Development Services",
+      "quantity": 1.0,
+      "fixedUnitPrice": 6000.0,
+      "totalPrice": 6000.0,
+      "currency": {
+        "abbreviation": "USD",
+        "symbol": "$",
+        "minSize": 0.01
       }
+    },
+    {
+      "name": "Bonus - Contest",
+      "quantity": 1.0,
+      "fixedUnitPrice": 500.0,
+      "totalPrice": 500.0,
+      "currency": {
+        "abbreviation": "USD",
+        "symbol": "$",
+        "minSize": 0.01
+      }
+    }
   ]
 }
