@@ -35,10 +35,12 @@ export const InvoicesProvider: React.FC = ({children}) => {
   const contextVal: IInvoicesContext = {
     invoices,
     loading,
+    resetPagination,
 
     saveInvoice,
     newInvoice,
     loadingNewInvoice
+
   }
 
   return (

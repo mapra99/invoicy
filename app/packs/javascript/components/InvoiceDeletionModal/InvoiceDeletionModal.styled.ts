@@ -12,6 +12,10 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+
+  &.loading {
+    cursor: progress;
+  }
 `;
 
 export const ModalCard = styled(Card)`
