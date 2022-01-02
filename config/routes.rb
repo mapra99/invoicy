@@ -22,6 +22,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :invoices, only: %i[index create show], param: :uuid
+    resources :invoices, only: %i[index create show destroy], param: :uuid
   end
 end

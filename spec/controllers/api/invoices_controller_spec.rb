@@ -225,4 +225,58 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
     end
   end
+
+  context 'DELETE /:uuid' do
+    let!(:user) { create(:user) }
+    let!(:invoices) { create_list(:invoice, 20, user: user) }
+    let(:target_invoice) { invoices.sample }
+    let(:uuid) { target_invoice.uuid }
+
+    describe 'when not authenticated' do
+      before :each do
+        delete :destroy, format: :json, params: { uuid: uuid }
+      end
+
+      it 'should respond with a 401 status' do
+        expect(response.status).to eq(401)
+      end
+    end
+
+    describe 'when authenticated' do
+      before :each do
+        allow(InvoiceRemoverService::RemoveUserInvoice).to receive(:call).and_return(context_response)
+
+        sign_in user
+        delete :destroy, format: :json, params: { uuid: uuid }
+      end
+
+      describe 'when successful service' do
+        let(:context_response) { double('successful_context', code: nil, success?: true).as_null_object }
+
+        it 'should respond with a 204 status' do
+          expect(response.status).to eq(204)
+        end
+      end
+
+      describe 'when failed service' do
+        let(:context_response) { double('failed_context', message: 'Context Error', code: nil, success?: false) }
+
+        it 'responds with a 500 status' do
+          expect(response.status).to eq(500)
+        end
+
+        it 'contains an error message' do
+          expect(response_body['error']).to eq('Context Error')
+        end
+
+        describe 'when service didnt find invoice' do
+          let(:context_response) { double('failed_context', message: 'Context Error', code: 404, success?: false) }
+
+          it 'responds with a 404 status' do
+            expect(response.status).to eq(404)
+          end
+        end
+      end
+    end
+  end
 end
