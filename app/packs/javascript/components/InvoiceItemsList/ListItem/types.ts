@@ -1,4 +1,4 @@
-import { InvoiceItem } from '../../models/InvoiceItem';
+import { InvoiceItem } from '../../../models/InvoiceItem';
 
 export interface ListItemProps {
   item: InvoiceItem

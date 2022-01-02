@@ -7,6 +7,7 @@ import { Text } from '../Text';
 import { LocationDetails } from '../LocationDetails';
 import { InvoiceAttribute } from '../InvoiceAttribute';
 import { InvoiceItemsList } from '../InvoiceItemsList';
+import { InvoiceItemsTable } from '../InvoiceItemsTable';
 import {
   InvoiceDetailsCardWrapper,
   InvoiceNameWrapper,
@@ -71,7 +72,11 @@ export const InvoiceDetailsCard = ({ invoice }: InvoiceDetailsCardProps) => {
         </TargetEmailWrapper>
       </DetailsRow>
 
-      <InvoiceItemsList items={items} currency={currency} totalPrice={totalPrice} />
+      { mobile ? (
+        <InvoiceItemsList items={items} currency={currency} totalPrice={totalPrice} />
+      ) : (
+        <InvoiceItemsTable items={items} currency={currency} totalPrice={totalPrice} />
+      )}
     </InvoiceDetailsCardWrapper>
   );
 };
