@@ -13,28 +13,29 @@ const {
   CARIBEAN_GREEN,
   DARK_ORANGE,
   COOL_GREY,
-  RED_SALSA
-} = COLORS
+  RED_SALSA,
+  RICH_BLACK,
+} = COLORS;
 
 export default {
-  name: "dark",
+  name: 'dark',
   text: {
     primary: WHITE,
     secondary: MEDIUM_SLATE_BLUE,
     tertiary: LAVENDER_WEB,
-    danger: RED_SALSA
+    danger: RED_SALSA,
   },
   buttons: {
     secondary: {
       bg: SPACE_CADET_BLUE,
       bgHover: WHITE,
-      text: LAVENDER_WEB
+      text: LAVENDER_WEB,
     },
     tertiary: {
       bg: SPACE_CADET_GREY,
       bgHover: SPACE_CADET,
-      text: LAVENDER_WEB
-    }
+      text: LAVENDER_WEB,
+    },
   },
   forms: {
     label: LAVENDER_WEB,
@@ -45,24 +46,29 @@ export default {
       text: WHITE,
       textSecondary: MEDIUM_PURPLE,
       placeholder: GLAUCOUS,
-      icons: GLAUCOUS
-    }
+      icons: GLAUCOUS,
+    },
   },
   layout: {
     bg: XIKETIC,
     bgSecondary: SPACE_CADET,
     navbar: SPACE_CADET_GREY,
-    buttons: GLAUCOUS
+    buttons: GLAUCOUS,
   },
   invoices: {
     status: {
       paid: CARIBEAN_GREEN,
       pending: DARK_ORANGE,
-      draft: LAVENDER_WEB
+      draft: LAVENDER_WEB,
     },
     newInvoice: {
       bg: XIKETIC,
-      totalPrice: COOL_GREY
-    }
-  }
-}
+      totalPrice: COOL_GREY,
+    },
+    itemsList: {
+      bgPrimary: SPACE_CADET_BLUE,
+      bgSecondary: RICH_BLACK,
+      neutralText: WHITE,
+    },
+  },
+};

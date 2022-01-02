@@ -1,16 +1,20 @@
-import { Client } from './Client'
-import { Currency } from './Currency'
-import { User } from './User'
+import { Client } from './Client';
+import { Currency } from './Currency';
+import { User } from './User';
+import { InvoiceItem } from './InvoiceItem';
 
 export interface Invoice {
   id?: string;
   uuid?: string;
-  totalPrice?: number;
+  name?: string;
+  issueDate?: Date;
   dueDate?: Date;
+  totalPrice?: number;
+  status?: 'draft' | 'pending' | 'paid';
+  client?: Client;
+  user?: User;
+  currency?: Currency;
   createdAt?: Date;
   updatedAt?: Date;
-  client?: Client;
-  currency?: Currency;
-  status?: 'draft' | 'pending' | 'paid';
-  user?: User;
+  items?: InvoiceItem[]
 }

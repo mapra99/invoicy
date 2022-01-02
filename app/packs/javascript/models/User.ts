@@ -4,6 +4,7 @@ export interface User {
   name?: string;
   email?: string;
   locations?: Location[];
+  location?: Location;
   createdAt?: Date;
   updatedAt?: Date;
 }

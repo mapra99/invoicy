@@ -3,7 +3,7 @@ import { TitleProps } from './types';
 import { FONTS, BREAKPOINTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
-const { BREAKPOINT_S, BREAKPOINT_XL } = BREAKPOINTS;
+const { BREAKPOINT_S } = BREAKPOINTS;
 
 const typeSpecifics = {
   h1: `
@@ -33,12 +33,12 @@ const typeSpecifics = {
     font-size: 12px;
     line-height: 1.25;
     letter-spacing: -0.25px;
-  `
-}
+  `,
+};
 
 export const Title = styled.h1<TitleProps>`
   font-family: ${SPARTAN};
-  color: ${props => props.theme.text.primary};
+  color: ${(props) => props.theme.text[props.color || 'primary']};
   font-weight: 700;
-  ${props => typeSpecifics[props.as] || typeSpecifics.h1 }
-`
+  ${(props) => typeSpecifics[props.as] || typeSpecifics.h1}
+`;

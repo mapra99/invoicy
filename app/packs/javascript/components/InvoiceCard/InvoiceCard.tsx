@@ -3,7 +3,7 @@ import { InvoiceCardProps } from './types';
 import {
   InvoiceCardWrapper,
   InvoiceLink,
-  InvoiceUuid,
+  InvoiceUuidWrapper,
   InvoiceClient,
   InvoiceDueDate,
   InvoicePrice,
@@ -11,6 +11,7 @@ import {
   InvoiceCardChevronIconWrapper,
 } from './InvoiceCard.styled';
 import { InvoiceStatus } from '../InvoiceStatus';
+import { InvoiceUuid } from '../InvoiceUuid';
 import { ChevronIcon } from '../../icons/ChevronIcon';
 import { formatDate } from '../../utils/formatDate';
 import { formatCurrency } from '../../utils/formatCurrency';
@@ -25,10 +26,12 @@ export const InvoiceCard = ({ invoice }: InvoiceCardProps) => {
 
   return (
     <InvoiceLink to={replaceParams(SHOW_INVOICE, { uuid: invoice.uuid })}>
-      <InvoiceCardWrapper>
-        <InvoiceUuid as="h4">
-          {invoice.uuid}
-        </InvoiceUuid>
+      <InvoiceCardWrapper hover shadow>
+        <InvoiceUuidWrapper>
+          <InvoiceUuid as="h4">
+            {invoice.uuid}
+          </InvoiceUuid>
+        </InvoiceUuidWrapper>
 
         { !mobile && (
           <InvoiceDueDate className="desktop">

@@ -36,7 +36,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'import/prefer-default-export': 'off',
     'import/no-unresolved': 'off',
-    'import/extensions': ['error', 'never', { scss: 'always', styled: 'always' }],
+    'import/extensions': ['error', 'never', { scss: 'always', styled: 'always', json: 'always' }],
     'no-var': 'error',
   },
 };
