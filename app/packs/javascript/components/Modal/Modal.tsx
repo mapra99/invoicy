@@ -5,13 +5,15 @@ import {
 } from './Modal.styled';
 
 export const Modal = ({ children }) => {
-  const { setModalActive } = useContext(ModalContext);
+  const { modalActive, setModalActive } = useContext(ModalContext);
 
   useEffect(() => {
     setModalActive(true);
 
     return () => setModalActive(false);
   }, []);
+
+  if (!modalActive) return null;
 
   return (
     <ModalOverlay>
