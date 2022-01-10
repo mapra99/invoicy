@@ -21,14 +21,14 @@ export const InvoiceItemsTable = ({ items, totalPrice, currency }: InvoiceItemsT
         <TableHeading>
           <Text color="tertiary">Item Name</Text>
         </TableHeading>
-        <TableHeading align="center">
-          <Text color="tertiary">QTY.</Text>
+        <TableHeading>
+          <Text color="tertiary" align="center">QTY.</Text>
         </TableHeading>
-        <TableHeading align="right">
-          <Text color="tertiary">Price</Text>
+        <TableHeading>
+          <Text color="tertiary" align="right">Price</Text>
         </TableHeading>
-        <TableHeading align="right">
-          <Text color="tertiary">Total</Text>
+        <TableHeading>
+          <Text color="tertiary" align="right">Total</Text>
         </TableHeading>
       </TableRow>
 
