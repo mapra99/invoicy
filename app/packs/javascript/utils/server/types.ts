@@ -4,4 +4,5 @@ export interface IServer {
   post: (url: string, data: object) => Promise<Response>,
   put: (url: string, data?: object) => Promise<Response>,
   delete: (url: string) => Promise<Response>,
+  patch: (url: string, data?: object) => Promise<Response>,
 }

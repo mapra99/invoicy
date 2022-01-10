@@ -35,4 +35,5 @@ export const server: IServer = {
   post: (url, data) => buildRequest(url, 'POST', data),
   put: (url, data) => buildRequest(url, 'PUT', data),
   delete: (url) => buildRequest(url, 'DELETE'),
+  patch: (url, data) => buildRequest(url, 'PATCH', data),
 };
