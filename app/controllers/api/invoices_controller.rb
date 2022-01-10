@@ -5,7 +5,11 @@ module Api
     before_action :invoice_params, only: [:create]
 
     def index
-      result = InvoicesFeedService::BuildInvoicesFeed.call(user: current_user, **pagination_params)
+      result = InvoicesFeedService::BuildInvoicesFeed.call(
+        user: current_user,
+        filters: filter_params,
+        **pagination_params
+      )
       @invoices = result.invoices if result.success?
 
       handle_context_error_state(result)
@@ -56,6 +60,12 @@ module Api
         client: [:name, :email, { location: %i[street_address city postcode country] }],
         items_list: %i[name quantity price total_price]
       )
+    end
+
+    def filter_params
+      {
+        status: params[:status]&.split(',')
+      }
     end
   end
 end
