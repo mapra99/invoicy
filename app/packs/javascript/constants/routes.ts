@@ -21,7 +21,8 @@ export const ROUTES = {
       INDEX: '/api/invoices',
       CREATE: '/api/invoices',
       SHOW: '/api/invoices/:uuid',
-      DESTROY: '/api/invoices/:uuid'
+      DESTROY: '/api/invoices/:uuid',
+      UPDATE_STATUS: '/api/invoices/:uuid/update_status'
     },
   },
 };

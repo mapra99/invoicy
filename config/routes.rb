@@ -22,6 +22,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :invoices, only: %i[index create show destroy], param: :uuid
+    resources :invoices, only: %i[index create show destroy], param: :uuid do
+      member do
+        patch 'status', :update_status
+      end
+    end
   end
 end
