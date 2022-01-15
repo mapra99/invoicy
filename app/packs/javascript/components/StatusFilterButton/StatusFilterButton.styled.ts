@@ -31,7 +31,12 @@ export const StyledStatusFilterButton = styled(SecondaryButton)`
 export const FilterDropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 192px;
-  gap: 20px;
   align-items: center;
+  position: relative;
+`;
+
+export const FilterDropdownOptionsWrapper = styled.div`
+  position: absolute;
+  max-width: 192px;
+  top: 40px;
 `;
