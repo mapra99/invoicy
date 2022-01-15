@@ -10,7 +10,7 @@ export const useCheckbox = (
     const { checked } = event.target;
 
     setIsChecked(checked);
-    onChange(checked);
+    if(onChange) onChange(checked);
   };
 
   return {
