@@ -38,4 +38,5 @@ export const FilterDropdownOptionsWrapper = styled.div`
   position: absolute;
   max-width: 192px;
   top: 40px;
+  z-index: 3;
 `;

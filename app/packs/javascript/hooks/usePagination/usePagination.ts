@@ -46,8 +46,6 @@ export const usePagination = <DataType>({
     }
     setData(allData);
     setOffset(offset + limit);
-
-    return allData;
   };
 
   const fetchPageOnCallback = useCallback(
@@ -60,11 +58,10 @@ export const usePagination = <DataType>({
 
     if (firstPage.length === 0) {
       setEnd(true);
-      return;
     }
 
     setData(firstPage);
-    setOffset(initialOffset);
+    setOffset(initialOffset + firstPage.length);
 
     return firstPage;
   };
