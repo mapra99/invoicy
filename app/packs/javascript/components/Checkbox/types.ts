@@ -3,5 +3,5 @@ export interface CheckboxProps {
   name: string;
   label: string;
   checked?: boolean;
-  onChange?: () => void;
+  onChange?: (checked: boolean) => void;
 }

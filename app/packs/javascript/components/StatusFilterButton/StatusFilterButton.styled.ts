@@ -31,7 +31,6 @@ export const StyledStatusFilterButton = styled(SecondaryButton)`
 export const FilterDropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   position: relative;
 `;
 

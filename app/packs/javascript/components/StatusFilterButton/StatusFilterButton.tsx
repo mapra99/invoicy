@@ -1,4 +1,5 @@
 import React from 'react';
+import { useStatusFilter } from '../../hooks/useStatusFilter';
 import { useDropdownButton } from '../../hooks/useDropdownButton';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import { StatusFilterDropdown } from '../StatusFilterDropdown';
@@ -12,6 +13,7 @@ import {
 export const StatusFilterButton = () => {
   const { expanded, handleClick } = useDropdownButton();
   const { mobile } = useBreakpoint();
+  const { statusesDetails, handleChange } = useStatusFilter();
 
   return (
     <FilterDropdownWrapper>
@@ -22,7 +24,10 @@ export const StatusFilterButton = () => {
 
       {expanded && (
         <FilterDropdownOptionsWrapper>
-          <StatusFilterDropdown />
+          <StatusFilterDropdown
+            statuses={statusesDetails}
+            onChange={handleChange}
+          />
         </FilterDropdownOptionsWrapper>
       )}
     </FilterDropdownWrapper>

@@ -2,6 +2,7 @@ import React from 'react'
 import { MemoryRouter } from "react-router";
 import { ModalProvider } from '../app/packs/javascript/contexts/ModalContext';
 import { ThemeProvider } from '../app/packs/javascript/contexts/ThemeContext';
+import { InvoicesProvider } from '../app/packs/javascript/contexts/InvoicesContext';
 import { ThemeSwitch } from './ThemeSwitch';
 import '../app/packs/styles/global/index.scss';
 
@@ -31,5 +32,10 @@ export const decorators = [
     <ModalProvider>
       <Story />
     </ModalProvider>
+  ),
+  (Story) => (
+    <InvoicesProvider>
+      <Story />
+    </InvoicesProvider>
   )
 ]
