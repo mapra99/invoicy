@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useStatusFilter } from '../../hooks/useStatusFilter';
 import { useDropdownButton } from '../../hooks/useDropdownButton';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
@@ -11,12 +11,13 @@ import {
 } from './StatusFilterButton.styled';
 
 export const StatusFilterButton = () => {
-  const { expanded, handleClick } = useDropdownButton();
+  const dropdownEl = useRef(null);
+  const { expanded, handleClick } = useDropdownButton(dropdownEl);
   const { mobile } = useBreakpoint();
   const { statusesDetails, handleChange } = useStatusFilter();
 
   return (
-    <FilterDropdownWrapper>
+    <FilterDropdownWrapper ref={dropdownEl}>
       <StyledStatusFilterButton className={expanded ? 'expanded' : ''} onClick={handleClick}>
         { mobile ? 'Filter' : 'Filter by status' }
         <ChevronIcon />

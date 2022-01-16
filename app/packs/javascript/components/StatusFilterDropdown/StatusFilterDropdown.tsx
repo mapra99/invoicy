@@ -20,6 +20,7 @@ export const StatusFilterDropdown = ({ statuses, onChange }: StatusFilterDropdow
     <StatusFilterDropdownCard>
       { statuses.map((status, index) => (
         <Checkbox
+          key={status.value}
           name="status"
           value={status.value}
           label={status.label}
