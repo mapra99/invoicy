@@ -18,7 +18,8 @@ export const InvoicesProvider: React.FC = ({ children }) => {
     data: invoices,
     loading,
     resetPagination,
-  } = usePagination<Invoice>({ url: INVOICES_INDEX, limit: 10 });
+    setUrl,
+  } = usePagination<Invoice>({ initialUrl: INVOICES_INDEX, limit: 10 });
   const [newInvoice, setNewInvoice] = useState<Invoice | null>(null);
   const [loadingNewInvoice, setLoadingNewInvoice] = useState<boolean>(false);
 
@@ -34,7 +35,8 @@ export const InvoicesProvider: React.FC = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log(filterStatuses)
+    const filterUrl = `${INVOICES_INDEX}?status=${filterStatuses.join(',')}`;
+    setUrl(filterUrl);
   }, [filterStatuses]);
 
   const contextVal: IInvoicesContext = {
@@ -47,7 +49,7 @@ export const InvoicesProvider: React.FC = ({ children }) => {
     loadingNewInvoice,
 
     filterStatuses,
-    setFilterStatuses
+    setFilterStatuses,
   };
 
   return (
