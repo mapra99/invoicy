@@ -1,9 +1,9 @@
-import styled from 'styled-components'
-import { FONTS } from '../../constants'
+import styled, { DefaultTheme } from 'styled-components';
+import { FONTS } from '../../constants';
 
 const { SPARTAN } = FONTS;
 
-const datePickerStyles = theme => `
+const datePickerStyles = (theme: DefaultTheme) => `
   .react-date-picker {
     display: inline-flex;
     position: relative;
@@ -115,9 +115,9 @@ const datePickerStyles = theme => `
   .react-date-picker__calendar .react-calendar {
     border-width: thin;
   }
-`
+`;
 
-const calendarStyles = theme => `
+const calendarStyles = (theme) => `
   .react-calendar {
     width: 240px;
     max-width: 100%;
@@ -234,9 +234,9 @@ const calendarStyles = theme => `
       color: ${theme.forms.input.textSecondary};
     }
   }
-`
+`;
 
-export const DatePickerWrapper = styled.div `
-  ${props => datePickerStyles(props.theme)}
-  ${props => calendarStyles(props.theme)}
-`
+export const DatePickerWrapper = styled.div`
+  ${(props) => datePickerStyles(props.theme)}
+  ${(props) => calendarStyles(props.theme)}
+`;

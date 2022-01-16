@@ -26,9 +26,12 @@ export const InvoiceCountText = styled(Text)`
 export const HeadingActions = styled.div`
   display: flex;
   justify-content: space-between;
-  min-width: 180px;
+  align-items: center;
+  gap: 18px;
 
   @media (min-width: ${BREAKPOINT_S}px) {
     max-width: 340px;
+    gap: 40px;
+    min-width: 180px;
   }
 `;

@@ -36,6 +36,10 @@ export default {
       bgHover: SPACE_CADET,
       text: LAVENDER_WEB,
     },
+    checkbox: {
+      primary: MEDIUM_SLATE_BLUE,
+      secondary: LAVENDER_WEB,
+    },
   },
   forms: {
     label: LAVENDER_WEB,

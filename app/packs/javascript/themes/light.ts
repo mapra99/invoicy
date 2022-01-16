@@ -35,6 +35,10 @@ export default {
       bgHover: RICH_BLACK,
       text: COOL_GREY,
     },
+    checkbox: {
+      primary: MEDIUM_SLATE_BLUE,
+      secondary: LAVENDER_WEB,
+    }
   },
   forms: {
     label: GLAUCOUS,

@@ -1,5 +1,5 @@
 export interface PaginationParams {
-  url: string;
+  initialUrl: string;
   limit?: number;
   initialOffset?: number;
 }

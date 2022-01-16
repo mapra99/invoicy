@@ -21,6 +21,10 @@ declare module 'styled-components' {
         bg: string,
         bgHover: string,
         text: string
+      },
+      checkbox: {
+        primary: string,
+        secondary: string,
       }
     },
     forms: {
