@@ -3,6 +3,7 @@ module InvoicesFeedService
     include Interactor::Organizer
 
     organize FetchUserInvoices,
+             FilterInvoicesByStatus,
              PaginateInvoices
   end
 end

@@ -38,5 +38,6 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/extensions': ['error', 'never', { scss: 'always', styled: 'always', json: 'always' }],
     'no-var': 'error',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
 };
