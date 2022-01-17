@@ -31,5 +31,9 @@ Rails.application.routes.draw do
         patch 'status', :update_status
       end
     end
+
+    namespace :public do
+      resources :invoices, only: %i[show], param: :external_id
+    end
   end
 end
