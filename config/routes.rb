@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     namespace :dashboard do
       resources :invoices, only: %i[index new show], param: :uuid
     end
+
+    scope module: :public do
+      resources :invoices, only: %i[show], param: :external_id
+    end
   end
 
   namespace :api, defaults: { format: 'json' } do
@@ -26,6 +30,10 @@ Rails.application.routes.draw do
       member do
         patch 'status', :update_status
       end
+    end
+
+    namespace :public do
+      resources :invoices, only: %i[show], param: :external_id
     end
   end
 end
