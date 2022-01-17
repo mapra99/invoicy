@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_032719) do
+ActiveRecord::Schema.define(version: 2022_01_17_012418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,10 +81,12 @@ ActiveRecord::Schema.define(version: 2021_12_20_032719) do
     t.bigint "user_location_id"
     t.bigint "client_location_id"
     t.bigint "client_email_id"
+    t.string "external_id"
     t.index ["client_email_id"], name: "index_invoices_on_client_email_id"
     t.index ["client_id"], name: "index_invoices_on_client_id"
     t.index ["client_location_id"], name: "index_invoices_on_client_location_id"
     t.index ["currency_id"], name: "index_invoices_on_currency_id"
+    t.index ["external_id"], name: "index_invoices_on_external_id", unique: true
     t.index ["user_id"], name: "index_invoices_on_user_id"
     t.index ["user_location_id"], name: "index_invoices_on_user_location_id"
     t.index ["uuid", "client_id"], name: "index_invoices_on_uuid_and_client_id"

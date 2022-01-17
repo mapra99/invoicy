@@ -14,5 +14,4 @@ SimpleCov.start 'rails' do
   add_filter 'app/mailer' # deferring until we need ActionMailer
 
   add_group 'Services', 'app/services'
-  add_group 'Scripts', 'app/scripts'
 end

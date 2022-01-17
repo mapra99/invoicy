@@ -14,10 +14,12 @@ class Invoice < ApplicationRecord
   enum status: { draft: 0, pending: 1, paid: 2 }
 
   validates :status, presence: true, inclusion: { in: statuses.keys }
-  validates :uuid, uniqueness: { scope: %i[user_id client_id] }, unless: :draft?
+  validates :uuid, uniqueness: { scope: %i[user_id] }, unless: :draft?
   validates_presence_of :name, :issue_date, :due_date, :total_price, :status, :uuid, unless: :draft?
+  validates :external_id, uniqueness: true, presence: true
 
   before_validation :set_uuid
+  before_validation :set_external_id, on: :create
 
   scope :sort_by_issue_date, -> { order(issue_date: :desc) }
   scope :sort_by_due_date, -> { order(due_date: :desc) }
@@ -32,13 +34,26 @@ class Invoice < ApplicationRecord
     return if uuid.present?
     return if client.blank?
 
-    counter = user.invoices.where(client: client).size + 1
+    counter = Invoice.where(client: client, user: user).count + 1
 
+    uuid = ''
     loop do
-      self.uuid = "#{client.slug}_#{counter}"
-      break if valid?
+      uuid = "#{client.slug}_#{counter}"
+      break unless Invoice.exists?(uuid: uuid, user: user)
 
       counter += 1
     end
+
+    self.uuid = uuid
+  end
+
+  def set_external_id
+    token = ''
+    loop do
+      token = SecureRandom.hex
+      break unless Invoice.exists?(external_id: token)
+    end
+
+    self.external_id = token
   end
 end
