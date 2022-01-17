@@ -14,7 +14,7 @@ RSpec.describe Invoice, type: :model do
       it { should validate_presence_of(:due_date) }
       it { should validate_presence_of(:total_price) }
       it { should validate_presence_of(:status) }
-      it { should validate_uniqueness_of(:uuid).scoped_to(:user_id, :client_id) }
+      it { should validate_uniqueness_of(:uuid).scoped_to(:user_id) }
     end
 
     context 'for a draft invoice' do
@@ -36,11 +36,11 @@ RSpec.describe Invoice, type: :model do
   end
 
   context 'hooks' do
-    describe '#set_uuid' do
-      let(:user) { create(:user) }
-      let(:client) { create(:client, slug: 'client_slug') }
-      let(:invoice) { create(:invoice, user: user, client: client) }
+    let(:user) { create(:user) }
+    let(:client) { create(:client, slug: 'client_slug') }
+    let(:invoice) { create(:invoice, user: user, client: client) }
 
+    describe '#set_uuid' do
       it 'assigns a uuid based on the client slug and an incremental counter' do
         expect(invoice.uuid).to eq('client_slug_1')
       end
@@ -69,6 +69,12 @@ RSpec.describe Invoice, type: :model do
         invoice4 = create(:invoice, user: user, client: client)
 
         expect(invoice4.uuid).to eq('client_slug_5')
+      end
+    end
+
+    describe '#set_external_id' do
+      it 'assigns a randomly generated external_id' do
+        expect(invoice.external_id).not_to be_nil
       end
     end
   end
