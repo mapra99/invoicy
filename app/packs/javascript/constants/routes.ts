@@ -3,17 +3,20 @@
 
 export const ROUTES = {
   ROOT: '/',
-  DASHBOARD: {
-    INVOICES_INDEX: '/dashboard/invoices',
-    NEW_INVOICE: '/dashboard/invoices/new',
-    SHOW_INVOICE: '/dashboard/invoices/:uuid',
-  },
   AUTH: {
     SIGN_IN: '/users/login',
     SIGN_UP: '/users/signup',
     CREATE_USERS: '/users',
     SIGN_OUT: '/users/sign_out',
     AFTER_SIGN_OUT: '/',
+  },
+  DASHBOARD: {
+    INVOICES_INDEX: '/dashboard/invoices',
+    NEW_INVOICE: '/dashboard/invoices/new',
+    SHOW_INVOICE: '/dashboard/invoices/:uuid',
+  },
+  PUBLIC: {
+    SHOW_INVOICE: '/invoices/:external_id',
   },
   API: {
     CURRENT_USER: '/api/users/current',

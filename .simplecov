@@ -12,6 +12,7 @@ SimpleCov.start 'rails' do
   add_filter 'app/channels' # deferring until we need ActionCable
   add_filter 'app/jobs' # deferring until we need ApplicationJob
   add_filter 'app/mailer' # deferring until we need ActionMailer
+  add_filter 'app/scripts'
 
   add_group 'Services', 'app/services'
 end
