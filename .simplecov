@@ -10,9 +10,9 @@ SimpleCov.start 'rails' do
   maximum_coverage_drop 5
 
   add_filter 'app/channels' # deferring until we need ActionCable
-  add_filter 'app/jobs' # deferring until we need ApplicationJob
   add_filter 'app/mailer' # deferring until we need ActionMailer
   add_filter 'app/scripts'
 
   add_group 'Services', 'app/services'
+  add_group 'Jobs', 'app/sidekiq'
 end

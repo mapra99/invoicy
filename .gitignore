@@ -39,3 +39,6 @@ yarn-debug.log*
 coverage/
 
 .env**
+
+# redis files
+dump.rdb
