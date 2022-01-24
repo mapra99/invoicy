@@ -13,5 +13,15 @@
     "plan": "rediscloud"
   }, {
     "plan": "heroku-postgresql"
-  }]
+  }],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rspec  --require rails_helper"
+      },
+      "env": {
+        "COVERAGE": true
+      }
+    }
+  }
 }
