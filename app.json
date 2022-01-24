@@ -1,0 +1,17 @@
+{
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "free"
+    },
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  },
+  "addons": [{
+    "plan": "rediscloud"
+  }, {
+    "plan": "heroku-postgresql"
+  }]
+}
