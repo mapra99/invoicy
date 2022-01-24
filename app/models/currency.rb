@@ -11,11 +11,15 @@ class Currency < ApplicationRecord
   scope :default_currency, -> { find_by(abbreviation: DEFAULT_CURRENCY_ABBREVIATION) }
 
   def formatted(value)
-    floor_rounding = value % min_size
-    ceil_rounding = min_size - floor_rounding
+    if min_size >= 0
+      rounded_value = value.round
+    else
+      floor_rounding = value % min_size
+      ceil_rounding = min_size - floor_rounding
 
-    should_ceil = ceil_rounding < floor_rounding
-    rounded_value = should_ceil ? value + ceil_rounding : value - floor_rounding
+      should_ceil = ceil_rounding < floor_rounding
+      rounded_value = should_ceil ? value + ceil_rounding : value - floor_rounding
+    end
 
     "#{symbol} #{rounded_value}"
   end

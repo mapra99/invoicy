@@ -6,7 +6,7 @@ RSpec.describe EmailSenderJob, type: :job do
     allow(EmailsService::SendEmail).to receive(:call!)
 
     Sidekiq::Testing.inline! do
-      described_class.perform_async
+      described_class.perform_async({})
     end
   end
 
