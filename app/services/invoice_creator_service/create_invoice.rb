@@ -7,6 +7,7 @@ module InvoiceCreatorService
     organize CreateUserLocation,
              CreateUserClient,
              CreateInvoiceItems,
-             SaveInvoice
+             SaveInvoice,
+             SendInvoiceEmail
   end
 end

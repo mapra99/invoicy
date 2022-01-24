@@ -9,4 +9,14 @@ class Currency < ApplicationRecord
   validates :name, presence: true
 
   scope :default_currency, -> { find_by(abbreviation: DEFAULT_CURRENCY_ABBREVIATION) }
+
+  def formatted(value)
+    floor_rounding = value % min_size
+    ceil_rounding = min_size - floor_rounding
+
+    should_ceil = ceil_rounding < floor_rounding
+    rounded_value = should_ceil ? value + ceil_rounding : value - floor_rounding
+
+    "#{symbol} #{rounded_value}"
+  end
 end

@@ -3,7 +3,7 @@
 class EmailSenderJob
   include Sidekiq::Job
 
-  def perform(**params)
+  def perform(params)
     EmailsService::SendEmail.call!(**params)
   end
 end
