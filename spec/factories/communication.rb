@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :communication do
-    topic { Communication.topics.keys.sample }
+    topic { Communication::TOPICS.sample }
   end
 end

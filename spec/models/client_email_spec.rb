@@ -10,5 +10,6 @@ RSpec.describe ClientEmail, type: :model do
 
   describe "associations" do
     it { should belong_to(:client) }
+    it { should have_many(:email_communications) }
   end
 end

@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :clients, through: :user_clients
   has_many :invoices, dependent: :destroy
   has_many :items, dependent: :destroy
+  has_many :email_communications, as: :target
 
   validates :name, presence: true
 end

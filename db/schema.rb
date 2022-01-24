@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_044945) do
+ActiveRecord::Schema.define(version: 2022_01_24_054211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,7 +67,10 @@ ActiveRecord::Schema.define(version: 2022_01_24_044945) do
     t.bigint "communication_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "target_type"
+    t.bigint "target_id"
     t.index ["communication_id"], name: "index_email_communications_on_communication_id"
+    t.index ["target_type", "target_id"], name: "index_email_communications_on_target"
   end
 
   create_table "invoice_items", force: :cascade do |t|

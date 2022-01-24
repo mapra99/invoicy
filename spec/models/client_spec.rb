@@ -16,6 +16,7 @@ RSpec.describe Client, type: :model do
     it { should have_many(:user_clients) }
     it { should have_many(:users) }
     it { should have_many(:invoices) }
+    it { should have_many(:email_communications) }
   end
 
   context 'hooks' do

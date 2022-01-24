@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :email_communication do
     association :communication
 
-    sender { EmailCommunication.senders.keys.sample }
+    sender { EmailCommunication::SENDERS.sample }
     recipient { Faker::Internet.email }
     subject { Faker::Lorem.sentence }
     template_id { SecureRandom.hex }

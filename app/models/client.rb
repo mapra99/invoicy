@@ -5,6 +5,7 @@ class Client < ApplicationRecord
   has_many :user_clients, dependent: :destroy
   has_many :users, through: :user_clients
   has_many :invoices, dependent: :nullify
+  has_many :email_communications, through: :emails
 
   validates :name, presence: true, uniqueness: true
   validates :slug, presence: true, uniqueness: true

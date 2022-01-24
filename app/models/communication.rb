@@ -5,7 +5,7 @@ class Communication < ApplicationRecord
 
   validates :topic, presence: true
 
-  enum topic: %i[
+  TOPICS = %w[
     invoice_biller_notification
-  ]
+  ].freeze
 end
