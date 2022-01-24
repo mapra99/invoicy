@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_012418) do
+ActiveRecord::Schema.define(version: 2022_01_24_054211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 2022_01_17_012418) do
     t.index ["slug"], name: "index_clients_on_slug", unique: true
   end
 
+  create_table "communications", force: :cascade do |t|
+    t.string "topic", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "currencies", force: :cascade do |t|
     t.string "name"
     t.string "abbreviation", null: false
@@ -50,6 +56,21 @@ ActiveRecord::Schema.define(version: 2022_01_17_012418) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["abbreviation"], name: "index_currencies_on_abbreviation", unique: true
+  end
+
+  create_table "email_communications", force: :cascade do |t|
+    t.string "sender", null: false
+    t.string "recipient", null: false
+    t.string "subject", null: false
+    t.string "template_id", null: false
+    t.json "template_data", null: false
+    t.bigint "communication_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "target_type"
+    t.bigint "target_id"
+    t.index ["communication_id"], name: "index_email_communications_on_communication_id"
+    t.index ["target_type", "target_id"], name: "index_email_communications_on_target"
   end
 
   create_table "invoice_items", force: :cascade do |t|
@@ -151,6 +172,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_012418) do
   add_foreign_key "client_emails", "clients"
   add_foreign_key "client_locations", "clients"
   add_foreign_key "client_locations", "locations"
+  add_foreign_key "email_communications", "communications"
   add_foreign_key "invoice_items", "currencies"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoice_items", "items"
