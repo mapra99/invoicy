@@ -13,7 +13,7 @@ import {
 
 export const InvoiceDetailsBody = () => {
   const { uuid } = useParams();
-  const { invoice, loading, notFound } = useInvoiceDetails(uuid);
+  const { invoice, loading, notFound } = useInvoiceDetails({ uuid, isPublic: false });
 
   if (loading) return (<LoadingSpinner />);
   if (notFound) return (<EmptyFeedBanner />);
