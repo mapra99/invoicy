@@ -24,7 +24,7 @@ module InvoiceCreatorService
         template_id: NEW_INVOICE_CLIENT_NOTIFICATION,
         template_data: build_template_data.to_json,
         sender: EmailCommunication::TRANSACTIONS_SENDER_EMAIL,
-        recipient: context.client_email,
+        recipient: context.client_email.email,
         subject: "You have received a new invoice from #{context.user.name}",
         topic: Communication::INVOICE_BILLER_NOTIFICATION_TOPIC,
         target_id: context.client_email.id,
