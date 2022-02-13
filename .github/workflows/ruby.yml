@@ -56,3 +56,4 @@ jobs:
           SKIP_SOME_SPECS: true
           REDISCLOUD_URL: redis://localhost:6379
           SENDGRID_API_KEY: 123
+          BASE_URL: http://localhost:3000

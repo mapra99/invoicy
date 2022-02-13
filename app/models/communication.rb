@@ -5,7 +5,7 @@ class Communication < ApplicationRecord
 
   validates :topic, presence: true
 
-  INVOICE_BILLER_NOTIFICATION_TOPIC = "invoice_biller_notification"
+  INVOICE_BILLER_NOTIFICATION_TOPIC = 'invoice_biller_notification'
   TOPICS = [
     INVOICE_BILLER_NOTIFICATION_TOPIC
   ]
