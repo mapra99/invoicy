@@ -6,7 +6,8 @@ class EmailCommunication < ApplicationRecord
 
   validates_presence_of :sender, :recipient, :subject, :template_id, :template_data
 
-  SENDERS = %w[
-    transactions@invoicious.com
-  ].freeze
+  TRANSACTIONS_SENDER_EMAIL = 'transactions@invoicious.com'
+  SENDERS = [
+    TRANSACTIONS_SENDER_EMAIL
+  ]
 end

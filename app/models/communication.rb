@@ -5,7 +5,8 @@ class Communication < ApplicationRecord
 
   validates :topic, presence: true
 
-  TOPICS = %w[
-    invoice_biller_notification
-  ].freeze
+  INVOICE_BILLER_NOTIFICATION_TOPIC = 'invoice_biller_notification'
+  TOPICS = [
+    INVOICE_BILLER_NOTIFICATION_TOPIC
+  ]
 end

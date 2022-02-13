@@ -45,6 +45,7 @@ describe InvoiceCreatorService::CreateInvoice do
     expect(InvoiceCreatorService::CreateUserClient).to receive(:call!)
     expect(InvoiceCreatorService::CreateInvoiceItems).to receive(:call!)
     expect(InvoiceCreatorService::SaveInvoice).to receive(:call!)
+    expect(InvoiceCreatorService::SendInvoiceEmail).to receive(:call!)
 
     subject.call(user: user, payload: payload)
   end
