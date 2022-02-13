@@ -16,7 +16,7 @@ export const ROUTES = {
     SHOW_INVOICE: '/dashboard/invoices/:uuid',
   },
   PUBLIC: {
-    SHOW_INVOICE: '/invoices/:external_id',
+    SHOW_INVOICE: '/invoices/:externalId',
   },
   API: {
     CURRENT_USER: '/api/users/current',
@@ -25,7 +25,12 @@ export const ROUTES = {
       CREATE: '/api/invoices',
       SHOW: '/api/invoices/:uuid',
       DESTROY: '/api/invoices/:uuid',
-      UPDATE_STATUS: '/api/invoices/:uuid/update_status'
+      UPDATE_STATUS: '/api/invoices/:uuid/update_status',
+    },
+    PUBLIC: {
+      INVOICES: {
+        SHOW: '/api/public/invoices/:externalId',
+      },
     },
   },
 };

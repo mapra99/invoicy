@@ -8,6 +8,7 @@ import {
 import { GlobalProvider } from '../javascript/contexts/GlobalContext';
 import { AuthLayout } from '../javascript/layouts/AuthLayout';
 import { ROUTES } from '../javascript/constants';
+import { PublicInvoiceDetails } from '../javascript/pages/public/PublicInvoiceDetails'
 import '../styles/global';
 
 const { SHOW_INVOICE } = ROUTES.PUBLIC;
@@ -15,7 +16,7 @@ const { SHOW_INVOICE } = ROUTES.PUBLIC;
 const PublicRoutes = () => (
   <Switch>
     <Route exact path={SHOW_INVOICE}>
-      <h1>SHOW INVOICE</h1>
+      <PublicInvoiceDetails />
     </Route>
   </Switch>
 );
@@ -23,9 +24,7 @@ const PublicRoutes = () => (
 const App = () => (
   <GlobalProvider>
     <BrowserRouter>
-      <AuthLayout>
-        <PublicRoutes />
-      </AuthLayout>
+      <PublicRoutes />
     </BrowserRouter>
   </GlobalProvider>
 );

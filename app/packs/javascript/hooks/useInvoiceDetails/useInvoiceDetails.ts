@@ -3,17 +3,24 @@ import { replaceParams } from '../../utils/url';
 import { server } from '../../utils/server';
 import { Invoice } from '../../models/Invoice';
 import { ROUTES } from '../../constants';
-import { RequestError } from '../../errors'
+import { RequestError } from '../../errors';
+import { UseInvoiceDetailsParams } from './types';
 
-const { SHOW: SHOW_INVOICE } = ROUTES.API.INVOICES;
+const PRIVATE_INVOICE_URL = ROUTES.API.INVOICES.SHOW;
+const PUBLIC_INVOICE_URL = ROUTES.API.PUBLIC.INVOICES.SHOW;
 
-export const useInvoiceDetails = (uuid: string) => {
+export const useInvoiceDetails = ({ uuid, externalId, isPublic }: UseInvoiceDetailsParams) => {
   const [invoice, setInvoice] = useState<Invoice | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [notFound, setNotFound] = useState<boolean>(false);
 
   const fetchInvoice = async () => {
-    const url = replaceParams(SHOW_INVOICE, { uuid });
+    let url = '';
+    if (isPublic) {
+      url = replaceParams(PUBLIC_INVOICE_URL, { externalId });
+    } else {
+      url = replaceParams(PRIVATE_INVOICE_URL, { uuid });
+    }
 
     try {
       setLoading(true);
@@ -39,6 +46,6 @@ export const useInvoiceDetails = (uuid: string) => {
     loading,
     invoice,
     fetchInvoice,
-    notFound
+    notFound,
   };
 };
