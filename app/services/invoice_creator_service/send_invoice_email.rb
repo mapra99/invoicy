@@ -15,6 +15,8 @@ module InvoiceCreatorService
     end
 
     def call
+      return unless $rollout.active?(:invoice_emails)
+
       invoice = context.invoice
       return if invoice.draft?
 
