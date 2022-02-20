@@ -349,4 +349,104 @@ RSpec.describe Api::InvoicesController, type: :controller do
       end
     end
   end
+
+  context 'PUT /:uuid' do
+    let!(:user) { create(:user) }
+    let!(:invoices) { create_list(:invoice, 20, user: user, status: 'pending') }
+    let(:target_invoice) { invoices.sample }
+    let(:uuid) { target_invoice.uuid }
+    let(:new_status) { 'paid' }
+
+    let(:payload) do
+      {
+        uuid: target_invoice.uuid,
+        issue_date: Date.today.strftime('%Y-%m-%d'),
+        payment_terms: 30,
+        project_description: Faker::Lorem.sentence,
+        status: :pending,
+        user_location: {
+          street_address: Faker::Address.street_name,
+          city: Faker::Address.city,
+          postcode: Faker::Address.postcode,
+          country: Faker::Address.country
+        },
+        client: {
+          name: Faker::Name.name,
+          email: Faker::Internet.email,
+          location: {
+            street_address: Faker::Address.street_name,
+            city: Faker::Address.city,
+            postcode: Faker::Address.postcode,
+            country: Faker::Address.country
+          }
+        },
+        items_list: [{
+          name: Faker::Lorem.sentence,
+          quantity: (1..10).to_a.sample,
+          price: Faker::Commerce.price,
+          total_price: Faker::Commerce.price
+        }, {
+          name: Faker::Lorem.sentence,
+          quantity: (1..10).to_a.sample,
+          price: Faker::Commerce.price,
+          total_price: Faker::Commerce.price
+        }]
+      }
+    end
+
+    describe 'when not authenticated' do
+      before :each do
+        put :update, format: :json, params: payload
+      end
+
+      it 'should respond with a 401 status' do
+        expect(response.status).to eq(401)
+      end
+    end
+
+    describe 'when authenticated' do
+      before :each do
+        allow(InvoiceUpdaterService::UpdateInvoice).to receive(:call).and_return(context_response)
+
+        sign_in user
+        put :update, format: :json, params: payload
+      end
+
+      describe 'when successful service' do
+        let(:context_response) { double('successful_context', code: nil, success?: true, invoice: target_invoice).as_null_object }
+
+        it 'should respond with a 200 status' do
+          expect(response.status).to eq(200)
+        end
+      end
+
+      describe 'when failed service' do
+        let(:context_response) { double('failed_context', message: 'Context Error', code: nil, success?: false) }
+
+        it 'responds with a 500 status' do
+          expect(response.status).to eq(500)
+        end
+
+        it 'contains an error message' do
+          expect(response_body['error']).to eq('Context Error')
+        end
+
+        describe 'when service didnt find invoice' do
+          let(:context_response) { double('failed_context', message: 'Context Error', code: 404, success?: false) }
+
+          it 'responds with a 404 status' do
+            expect(response.status).to eq(404)
+          end
+        end
+
+        describe 'when status is not valid' do
+          let(:context_response) { double('failed_context', message: 'Context Error', code: 400, success?: false) }
+
+          it 'responds with a 400 status' do
+            expect(response.status).to eq(400)
+          end
+        end
+      end
+    end
+  end
 end
