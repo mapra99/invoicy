@@ -1,5 +1,6 @@
 import React from 'react';
 import { useBreakpoint } from '../../../hooks/useBreakpoint';
+import { useModal } from '../../../hooks/useModal';
 import { GoBackButton } from '../../../components/GoBackButton';
 import { Title } from '../../../components/Title';
 import { InvoiceForm } from '../../../components/InvoiceForm';
@@ -24,11 +25,12 @@ const NewInvoiceContent = () => (
 
 export const NewInvoice = () => {
   const { mobile } = useBreakpoint();
+  const { open } = useModal(true);
 
   if (mobile) return <NewInvoiceContent />;
 
   return (
-    <Modal>
+    <Modal open={open}>
       <NewInvoiceContent />
     </Modal>
   );

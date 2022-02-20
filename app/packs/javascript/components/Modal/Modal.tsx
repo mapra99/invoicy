@@ -3,9 +3,10 @@ import { ModalContext } from '../../contexts/ModalContext';
 import {
   ModalOverlay,
 } from './Modal.styled';
+import { ModalProps } from './types';
 
-export const Modal = ({ children }) => {
-  const { modalActive, setModalActive } = useContext(ModalContext);
+export const Modal = ({ children, open }: ModalProps) => {
+  const { setModalActive } = useContext(ModalContext);
 
   useEffect(() => {
     setModalActive(true);
@@ -13,7 +14,7 @@ export const Modal = ({ children }) => {
     return () => setModalActive(false);
   }, []);
 
-  if (!modalActive) return null;
+  if (!open) return null;
 
   return (
     <ModalOverlay>

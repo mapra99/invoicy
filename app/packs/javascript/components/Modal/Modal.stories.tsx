@@ -20,4 +20,6 @@ const Template: ComponentStory<typeof Modal> = (args) => (
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Default.args = {};
+Default.args = {
+  open: true,
+};

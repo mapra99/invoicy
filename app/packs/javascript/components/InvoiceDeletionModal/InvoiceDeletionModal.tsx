@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { InvoiceDeletionModalProps } from './types';
-import { ModalContext } from '../../contexts/ModalContext';
 import { ROUTES } from '../../constants';
 import { useInvoiceDeletion } from '../../hooks/useInvoiceDeletion';
 import { Modal } from '../Modal';
@@ -18,8 +17,7 @@ import {
 
 const { INVOICES_INDEX } = ROUTES.DASHBOARD;
 
-export const InvoiceDeletionModal = ({ uuid }: InvoiceDeletionModalProps) => {
-  const { setModalActive } = useContext(ModalContext);
+export const InvoiceDeletionModal = ({ uuid, open, onClose }: InvoiceDeletionModalProps) => {
   const {
     loading, error, invoiceDeleted, deleteInvoice,
   } = useInvoiceDeletion(uuid);
@@ -27,7 +25,7 @@ export const InvoiceDeletionModal = ({ uuid }: InvoiceDeletionModalProps) => {
   if (invoiceDeleted) return <Redirect to={INVOICES_INDEX} />;
 
   return (
-    <Modal>
+    <Modal open={open}>
       <ModalWrapper className={loading ? 'loading' : ''}>
         <ModalCard>
           <ModalTitle as="h2">
@@ -41,7 +39,7 @@ export const InvoiceDeletionModal = ({ uuid }: InvoiceDeletionModalProps) => {
           </ModalText>
 
           <ActionsWrapper>
-            <SecondaryButton onClick={() => setModalActive(false)} disabled={loading}>
+            <SecondaryButton onClick={onClose} disabled={loading}>
               Cancel
             </SecondaryButton>
             <DangerButton onClick={deleteInvoice} disabled={loading}>
