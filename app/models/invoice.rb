@@ -16,8 +16,8 @@ class Invoice < ApplicationRecord
   validates :status, presence: true, inclusion: { in: statuses.keys }
   validates :uuid, uniqueness: { scope: %i[user_id] }, unless: :draft?
   validates_presence_of :name, :issue_date, :due_date, :total_price, :status, :uuid, unless: :draft?
-  validates :external_id, uniqueness: true, presence: true
 
+  validates :external_id, uniqueness: true, presence: true
   before_validation :set_uuid
   before_validation :set_external_id, on: :create
 
