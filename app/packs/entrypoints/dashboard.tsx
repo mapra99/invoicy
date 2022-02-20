@@ -12,6 +12,7 @@ import { DashboardLayout } from '../javascript/layouts/DashboardLayout';
 import { InvoicesIndex } from '../javascript/pages/dashboard/InvoicesIndex';
 import { InvoiceDetails } from '../javascript/pages/dashboard/InvoiceDetails';
 import { NewInvoice } from '../javascript/pages/dashboard/NewInvoice';
+import { EditInvoice } from '../javascript/pages/dashboard/EditInvoice';
 import { ROUTES } from '../javascript/constants';
 import { useBreakpoint } from '../javascript/hooks/useBreakpoint';
 import '../styles/global';
@@ -38,12 +39,20 @@ const DashboardRoutes = () => {
         <Route exact path={DASHBOARD.SHOW_INVOICE}>
           <InvoiceDetails />
         </Route>
+        <Route exact path={DASHBOARD.EDIT_INVOICE}>
+          <EditInvoice />
+        </Route>
       </Switch>
 
       { background && (
-        <Route exact path={DASHBOARD.NEW_INVOICE}>
-          <NewInvoice />
-        </Route>
+        <>
+          <Route exact path={DASHBOARD.NEW_INVOICE}>
+            <NewInvoice />
+          </Route>
+          <Route exact path={DASHBOARD.EDIT_INVOICE}>
+            <EditInvoice />
+          </Route>
+        </>
       )}
     </>
   );

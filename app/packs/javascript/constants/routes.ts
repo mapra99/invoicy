@@ -14,6 +14,7 @@ export const ROUTES = {
     INVOICES_INDEX: '/dashboard/invoices',
     NEW_INVOICE: '/dashboard/invoices/new',
     SHOW_INVOICE: '/dashboard/invoices/:uuid',
+    EDIT_INVOICE: '/dashboard/invoices/:uuid/edit',
   },
   PUBLIC: {
     SHOW_INVOICE: '/invoices/:externalId',

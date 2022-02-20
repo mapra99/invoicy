@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusCardProps } from './types';
 import { Text } from '../Text';
 import { InvoiceStatus } from '../InvoiceStatus';
-import { SecondaryButton } from '../SecondaryButton';
+import { EditInvoiceButton } from '../EditInvoiceButton';
 import { InvoiceMarkAsPaidButton } from '../InvoiceMarkAsPaidButton';
 import { DeleteInvoiceButton } from '../DeleteInvoiceButton';
 import {
@@ -21,9 +21,7 @@ export const StatusCard = ({ invoice }: StatusCardProps) => (
     </CurrentStatusWrapper>
 
     <ActionsWrapper>
-      <SecondaryButton>
-        Edit
-      </SecondaryButton>
+      <EditInvoiceButton invoice={invoice} />
 
       <DeleteInvoiceButton uuid={invoice.uuid} />
 

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   scope module: :react do
     namespace :dashboard do
-      resources :invoices, only: %i[index new show], param: :uuid
+      resources :invoices, only: %i[index new show edit], param: :uuid
     end
 
     scope module: :public do
