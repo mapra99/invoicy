@@ -36,6 +36,13 @@ module Api
       handle_context_error_state(result)
     end
 
+    def update
+      result = InvoiceUpdaterService::UpdateInvoice.call(user: current_user, payload: invoice_params)
+      @invoice = result.invoice if result.success?
+
+      handle_context_error_state(result)
+    end
+
     def update_status
       result = InvoiceUpdaterService::UpdateUserInvoiceStatus.call(
         user: current_user,
@@ -52,6 +59,7 @@ module Api
 
     def invoice_params
       params.permit(
+        :uuid,
         :issue_date,
         :payment_terms,
         :project_description,
