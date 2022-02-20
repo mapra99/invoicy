@@ -10,4 +10,8 @@ class React::Dashboard::InvoicesController < React::Dashboard::BaseController
   def show
     render_dashboard_app
   end
+
+  def edit
+    render_dashboard_app
+  end
 end

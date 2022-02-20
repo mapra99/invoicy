@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
-import { ModalContext } from '../../contexts/ModalContext';
+import React from 'react';
+import { useModal } from '../../hooks/useModal';
 import { DeleteInvoiceButtonProps } from './types';
 import { DangerButton } from '../DangerButton';
 import { InvoiceDeletionModal } from '../InvoiceDeletionModal';
 
 export const DeleteInvoiceButton = ({ uuid }: DeleteInvoiceButtonProps) => {
-  const { modalActive, setModalActive } = useContext(ModalContext);
+  const { open, toggleModal } = useModal();
 
   return (
     <>
-      <DangerButton onClick={() => setModalActive(true)}>
+      <DangerButton onClick={toggleModal}>
         Delete
       </DangerButton>
-      { modalActive && <InvoiceDeletionModal uuid={uuid} /> }
+      <InvoiceDeletionModal uuid={uuid} open={open} onClose={toggleModal} />
     </>
   );
 };
