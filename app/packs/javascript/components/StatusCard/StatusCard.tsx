@@ -21,9 +21,11 @@ export const StatusCard = ({ invoice }: StatusCardProps) => (
     </CurrentStatusWrapper>
 
     <ActionsWrapper>
-      <SecondaryButton>
-        Edit
-      </SecondaryButton>
+      { invoice.status === 'draft' && (
+        <SecondaryButton>
+          Edit
+        </SecondaryButton>
+      )}
 
       <DeleteInvoiceButton uuid={invoice.uuid} />
 
