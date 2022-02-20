@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import invoice from '../../mocks/api/invoice.json';
+import draftInvoice from '../../mocks/api/draftInvoice.json';
 
 import { EditInvoiceButton } from '.';
 
@@ -17,5 +17,5 @@ const Template: ComponentStory<typeof EditInvoiceButton> = (args) => (
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Default.args = {
-  invoice,
+  invoice: draftInvoice,
 };
