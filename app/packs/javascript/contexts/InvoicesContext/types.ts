@@ -1,7 +1,5 @@
-import { Invoice } from '../../models/Invoice'
-import { NewInvoicePayload } from '../../hooks/useNewInvoice'
-
-export type Status = 'draft' | 'pending' | 'paid'
+import { Invoice, Status } from '../../models/Invoice';
+import { NewInvoicePayload } from '../../hooks/useInvoiceForm';
 
 export interface IInvoicesContext {
   invoices: Invoice[];
@@ -14,4 +12,6 @@ export interface IInvoicesContext {
 
   filterStatuses: Status[];
   setFilterStatuses: (statuses: Status[]) => void;
+
+  updateInvoice: (invoice: Invoice, invoicePayload: NewInvoicePayload, status: Status) => void;
 }

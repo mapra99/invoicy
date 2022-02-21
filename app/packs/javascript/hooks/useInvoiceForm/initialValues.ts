@@ -3,58 +3,49 @@ import {
   NewInvoiceItemPayload,
   UserLocationPayload,
   ClientPayload,
-  PaymentTermsOption
-} from './types'
+  PaymentTermsOption,
+} from './types';
 
 export const today = new Date();
 
 export const itemPayload: NewInvoiceItemPayload = {
-  name: "",
+  name: '',
   quantity: 0,
   price: 0,
-  total_price: 0
-}
+  total_price: 0,
+};
 
 export const userLocationPayload: UserLocationPayload = {
-  street_address: "",
-  city: "",
-  postcode: "",
-  country: ""
-}
+  street_address: '',
+  city: '',
+  postcode: '',
+  country: '',
+};
 
 export const clientPayload: ClientPayload = {
-  name: "",
-  email: "",
+  name: '',
+  email: '',
   location: {
-    street_address: "",
-    city: "",
-    postcode: "",
-    country: ""
-  }
-}
-
-export const basePayload: NewInvoicePayload = {
-  user_location: userLocationPayload,
-  client: clientPayload,
-  issue_date: today,
-  payment_terms: 0,
-  project_description: "",
-  items_list: [itemPayload]
-}
+    street_address: '',
+    city: '',
+    postcode: '',
+    country: '',
+  },
+};
 
 export const paymentTermsOptions: PaymentTermsOption[] = [
-  { value: 0, label: "Inmediate" },
-  { value: 10, label: "Next 10 Days" },
-  { value: 30, label: "Next 30 Days" },
-  { value: 60, label: "Next 60 Days" }
-]
+  { value: 0, label: 'Inmediate' },
+  { value: 10, label: 'Next 10 Days' },
+  { value: 30, label: 'Next 30 Days' },
+  { value: 60, label: 'Next 60 Days' },
+];
 
 export const baseInvoiceItemError = {
   name: null,
   price: null,
   quantity: null,
-  total_price: null
-}
+  total_price: null,
+};
 
 export const baseErrors = {
   project_description: null,
@@ -74,7 +65,7 @@ export const baseErrors = {
       country: null,
       postcode: null,
       street_address: null,
-    }
+    },
   },
-  items_list: [baseInvoiceItemError]
-}
+  items_list: [baseInvoiceItemError],
+};

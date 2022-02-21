@@ -1,17 +1,19 @@
-import React, { useContext } from 'react'
-import { InvoicesContext } from '../../contexts/InvoicesContext'
-import { useHistory } from 'react-router-dom'
-import { useNewInvoice } from '../../hooks/useNewInvoice'
-import { InputGroup } from '../InputGroup'
-import { InputField } from '../InputField'
-import { DatePickerField } from '../DatePickerField'
-import { SelectField } from '../SelectField'
-import { InvoiceItemInput } from '../InvoiceItemInput'
-import { PrimaryButton } from '../PrimaryButton'
-import { SecondaryButton } from '../SecondaryButton'
-import { TertiaryButton } from '../TertiaryButton'
-import { LoadingSpinner } from '../../icons/LoadingSpinner'
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { InvoicesContext } from '../../contexts/InvoicesContext';
+import { useInvoiceForm } from '../../hooks/useInvoiceForm';
+import { InvoiceFormProps } from './types';
+import { InputGroup } from '../InputGroup';
+import { InputField } from '../InputField';
+import { DatePickerField } from '../DatePickerField';
+import { SelectField } from '../SelectField';
+import { InvoiceItemInput } from '../InvoiceItemInput';
+import { PrimaryButton } from '../PrimaryButton';
+import { SecondaryButton } from '../SecondaryButton';
+import { TertiaryButton } from '../TertiaryButton';
+import { LoadingSpinner } from '../../icons/LoadingSpinner';
 import { ROUTES } from '../../constants';
+import { Status } from '../../models/Invoice';
 import {
   InvoiceFormWrapper,
   InvoiceFormSectionTitle,
@@ -22,12 +24,11 @@ import {
   PaymentTermsWrapper,
   InvoiceFormSection,
   InvoiceFormControlsWrapper,
-} from './InvoiceForm.styled'
+} from './InvoiceForm.styled';
 
-const { INVOICES_INDEX } = ROUTES.DASHBOARD
+const { INVOICES_INDEX } = ROUTES.DASHBOARD;
 
-
-export const InvoiceForm = () => {
+export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
   const history = useHistory();
   const {
     newInvoicePayload,
@@ -40,23 +41,33 @@ export const InvoiceForm = () => {
     onInvoiceItemChange,
     onInvoiceItemRemove,
     addNewInvoiceItem,
-    runValidations
-  } = useNewInvoice();
+    runValidations,
+  } = useInvoiceForm(invoice);
 
-  const { saveInvoice, loadingNewInvoice } = useContext(InvoicesContext);
+  const { saveInvoice, updateInvoice, loadingNewInvoice } = useContext(InvoicesContext);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, status: Status = 'pending') => {
     event.preventDefault();
-    const valid = await runValidations();
-    if (!valid) return
 
-    await saveInvoice(newInvoicePayload);
-    history.push(INVOICES_INDEX)
+    if (status !== 'draft') {
+      const valid = await runValidations();
+      if (!valid) return;
+    }
+
+    if (invoice) {
+      await updateInvoice(invoice, newInvoicePayload, status);
+    } else {
+      await saveInvoice(newInvoicePayload);
+    }
+
+    history.push(INVOICES_INDEX);
+  };
+
+  if (loadingNewInvoice) {
+    return (
+      <LoadingSpinner />
+    );
   }
-
-  if (loadingNewInvoice) return (
-    <LoadingSpinner />
-  )
 
   return (
     <InvoiceFormWrapper onSubmit={handleSubmit}>
@@ -126,7 +137,6 @@ export const InvoiceForm = () => {
           </InputGroup>
         </CountryWrapper>
       </InvoiceFormSection>
-
 
       <InvoiceFormSection>
         <InvoiceFormSectionTitle as="h4">
@@ -222,7 +232,6 @@ export const InvoiceForm = () => {
         </CountryWrapper>
       </InvoiceFormSection>
 
-
       <InvoiceFormSection>
         <InvoiceDateWrapper>
           <InputGroup
@@ -232,7 +241,7 @@ export const InvoiceForm = () => {
           >
             <DatePickerField
               value={newInvoicePayload.issue_date}
-              onChange={(value) => onInvoiceDetailsChange({target: {name: "issue_date", value }})}
+              onChange={(value) => onInvoiceDetailsChange({ target: { name: 'issue_date', value } })}
             />
           </InputGroup>
         </InvoiceDateWrapper>
@@ -246,7 +255,7 @@ export const InvoiceForm = () => {
             <SelectField
               options={paymentTermsOptions}
               value={newInvoicePayload.payment_terms}
-              onChange={(value) => onInvoiceDetailsChange({target: {name: "payment_terms", value}})}
+              onChange={(value) => onInvoiceDetailsChange({ target: { name: 'payment_terms', value } })}
             />
           </InputGroup>
         </PaymentTermsWrapper>
@@ -273,9 +282,9 @@ export const InvoiceForm = () => {
         {
           newInvoicePayload.items_list.map((invoiceItem, index) => (
             <InvoiceItemInput
-              key={index}
+              key={invoiceItem.name}
               invoiceItem={invoiceItem}
-              onChange={(invoiceItem) => onInvoiceItemChange(invoiceItem, index)}
+              onChange={(newInvoiceItem) => onInvoiceItemChange(newInvoiceItem, index)}
               errors={errors.items_list[index]}
               onRemove={() => onInvoiceItemRemove(index)}
             />
@@ -297,13 +306,16 @@ export const InvoiceForm = () => {
         >
           Discard
         </SecondaryButton>
-        <TertiaryButton>
+        <TertiaryButton
+          type="button"
+          onClick={(event) => handleSubmit(event, 'draft')}
+        >
           Save as Draft
         </TertiaryButton>
-        <PrimaryButton type = "submit">
+        <PrimaryButton type="submit">
           Save & Send
         </PrimaryButton>
       </InvoiceFormControlsWrapper>
     </InvoiceFormWrapper>
-  )
-}
+  );
+};

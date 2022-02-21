@@ -26,6 +26,7 @@ export const ROUTES = {
       CREATE: '/api/invoices',
       SHOW: '/api/invoices/:uuid',
       DESTROY: '/api/invoices/:uuid',
+      UPDATE: '/api/invoices/:uuid',
       UPDATE_STATUS: '/api/invoices/:uuid/update_status',
     },
     PUBLIC: {
