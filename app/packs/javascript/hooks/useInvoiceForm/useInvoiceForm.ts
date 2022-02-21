@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ValidationError } from 'yup';
+import { Invoice } from '../../models/Invoice';
 import {
   NewInvoicePayload,
   NewInvoiceItemPayload,
@@ -9,21 +10,44 @@ import {
 
 import {
   itemPayload,
-  userLocationPayload,
-  clientPayload,
-  basePayload,
   paymentTermsOptions,
   baseErrors,
   baseInvoiceItemError,
 } from './initialValues';
 
+import {
+  buildItemsListPayload,
+  buildClientPayload,
+  buildUserLocationPayload,
+  buildInvoicePayload,
+} from './helper';
+
 import { newInvoiceSchema } from './validationSchema';
 
-export const useInvoiceForm = () => {
-  const [newInvoicePayload, setNewInvoicePayload] = useState<NewInvoicePayload>(basePayload);
-  const [userLocation, setUserLocation] = useState<UserLocationPayload>(userLocationPayload);
-  const [client, setClient] = useState<ClientPayload>(clientPayload);
-  const [invoiceItems, setInvoiceItems] = useState<NewInvoiceItemPayload[]>([itemPayload]);
+export const useInvoiceForm = (invoice?: Invoice) => {
+  const [
+    userLocation,
+    setUserLocation,
+  ] = useState<UserLocationPayload>(buildUserLocationPayload(invoice));
+  const [
+    client,
+    setClient,
+  ] = useState<ClientPayload>(buildClientPayload(invoice));
+  const [
+    invoiceItems,
+    setInvoiceItems,
+  ] = useState<NewInvoiceItemPayload[]>(buildItemsListPayload(invoice));
+
+  const [
+    newInvoicePayload,
+    setNewInvoicePayload,
+  ] = useState<NewInvoicePayload>(buildInvoicePayload(
+    userLocation,
+    client,
+    invoiceItems,
+    invoice,
+  ));
+
   const [errors, setErrors] = useState(baseErrors);
 
   useEffect(() => {
@@ -110,10 +134,11 @@ export const useInvoiceForm = () => {
     const errorsDup = { ...baseErrors };
     errorObjects.forEach((error) => {
       const { path, errors: messages } = error;
+
+      // eslint-disable-next-line no-eval
       eval(`errorsDup.${path} = "${messages}"`);
     });
 
-    console.log({ baseErrors, errorsDup, newInvoicePayload });
     setErrors(errorsDup);
   };
 

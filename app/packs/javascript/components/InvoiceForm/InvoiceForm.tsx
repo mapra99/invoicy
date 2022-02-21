@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { InvoicesContext } from '../../contexts/InvoicesContext';
 import { useInvoiceForm } from '../../hooks/useInvoiceForm';
+import { InvoiceFormProps } from './types';
 import { InputGroup } from '../InputGroup';
 import { InputField } from '../InputField';
 import { DatePickerField } from '../DatePickerField';
@@ -26,7 +27,7 @@ import {
 
 const { INVOICES_INDEX } = ROUTES.DASHBOARD;
 
-export const InvoiceForm = () => {
+export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
   const history = useHistory();
   const {
     newInvoicePayload,
@@ -40,14 +41,17 @@ export const InvoiceForm = () => {
     onInvoiceItemRemove,
     addNewInvoiceItem,
     runValidations,
-  } = useInvoiceForm();
+  } = useInvoiceForm(invoice);
 
   const { saveInvoice, loadingNewInvoice } = useContext(InvoicesContext);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, skipValidation = false) => {
     event.preventDefault();
-    const valid = await runValidations();
-    if (!valid) return;
+
+    if (!skipValidation) {
+      const valid = await runValidations();
+      if (!valid) return;
+    }
 
     await saveInvoice(newInvoicePayload);
     history.push(INVOICES_INDEX);
@@ -272,9 +276,9 @@ export const InvoiceForm = () => {
         {
           newInvoicePayload.items_list.map((invoiceItem, index) => (
             <InvoiceItemInput
-              key={index}
+              key={invoiceItem.name}
               invoiceItem={invoiceItem}
-              onChange={(invoiceItem) => onInvoiceItemChange(invoiceItem, index)}
+              onChange={(newInvoiceItem) => onInvoiceItemChange(newInvoiceItem, index)}
               errors={errors.items_list[index]}
               onRemove={() => onInvoiceItemRemove(index)}
             />
@@ -296,7 +300,10 @@ export const InvoiceForm = () => {
         >
           Discard
         </SecondaryButton>
-        <TertiaryButton>
+        <TertiaryButton
+          type="submit"
+          onClick={(event) => handleSubmit(event, true)}
+        >
           Save as Draft
         </TertiaryButton>
         <PrimaryButton type="submit">

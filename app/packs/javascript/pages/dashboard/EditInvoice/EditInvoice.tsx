@@ -25,7 +25,7 @@ const EditInvoiceContent = ({ invoice }: EditInvoiceProps) => (
       </Title>
     </EditInvoiceHeading>
 
-    <InvoiceForm />
+    <InvoiceForm invoice={invoice} />
   </EditInvoiceContainer>
 );
 

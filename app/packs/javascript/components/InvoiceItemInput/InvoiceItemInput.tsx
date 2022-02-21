@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { InputGroup } from '../InputGroup'
-import { InputField } from '../InputField'
+import React, { useEffect, useState } from 'react';
+import { InputGroup } from '../InputGroup';
+import { InputField } from '../InputField';
 import {
   ItemNameWrapper,
   QuantityWrapper,
@@ -9,41 +9,43 @@ import {
   TotalPriceText,
   DeleteButtonWrapper,
   DeleteButton,
-  InvoiceItemInputWrapper
-} from './InvoiceItemInput.styled'
-import { TrashIcon } from '../../icons/TrashIcon'
+  InvoiceItemInputWrapper,
+} from './InvoiceItemInput.styled';
+import { TrashIcon } from '../../icons/TrashIcon';
 import {
   InvoiceItemInputProps,
-  InvoiceItemFields
-} from './types'
-import { round } from '../../utils/round'
+  InvoiceItemFields,
+} from './types';
+import { round } from '../../utils/round';
 
-export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: InvoiceItemInputProps) => {
-  const [currentInvoiceItem, setCurrentInvoiceItem] = useState<InvoiceItemFields>(invoiceItem)
-  
+export const InvoiceItemInput = ({
+  invoiceItem, onChange, onRemove, errors,
+}: InvoiceItemInputProps) => {
+  const [currentInvoiceItem, setCurrentInvoiceItem] = useState<InvoiceItemFields>(invoiceItem);
+
   const updateInvoiceItem = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
     setCurrentInvoiceItem({
       ...currentInvoiceItem,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   useEffect(() => {
-    const { price, quantity } = currentInvoiceItem
+    const { price, quantity } = currentInvoiceItem;
 
-    const totalPrice = round(price * quantity, 2)
+    const totalPrice = round(price * quantity, 2);
     const updatedCurrentInvoiceItem = {
       ...currentInvoiceItem,
-      total_price: round(price * quantity, 2)
-    }
+      total_price: round(price * quantity, 2),
+    };
 
-    if (onChange) onChange(updatedCurrentInvoiceItem)
-    if (totalPrice === currentInvoiceItem.total_price) return
+    if (onChange) onChange(updatedCurrentInvoiceItem);
+    if (totalPrice === currentInvoiceItem.total_price) return;
 
-    setCurrentInvoiceItem(updatedCurrentInvoiceItem)
-  }, [currentInvoiceItem])
+    setCurrentInvoiceItem(updatedCurrentInvoiceItem);
+  }, [currentInvoiceItem]);
 
   return (
     <InvoiceItemInputWrapper>
@@ -115,5 +117,5 @@ export const InvoiceItemInput = ({ invoiceItem, onChange, onRemove, errors }: In
         </DeleteButton>
       </DeleteButtonWrapper>
     </InvoiceItemInputWrapper>
-  )
-}
+  );
+};
