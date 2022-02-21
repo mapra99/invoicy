@@ -55,7 +55,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     if (invoice) {
       await updateInvoice(invoice, newInvoicePayload, status);
     } else {
-      await saveInvoice(newInvoicePayload);
+      await saveInvoice(newInvoicePayload, status);
     }
 
     history.push(INVOICES_INDEX);

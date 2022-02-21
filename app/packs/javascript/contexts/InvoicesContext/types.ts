@@ -6,7 +6,7 @@ export interface IInvoicesContext {
   loading: boolean;
   resetPagination: () => void;
 
-  saveInvoice: (newInvoicePayload: NewInvoicePayload) => void;
+  saveInvoice: (newInvoicePayload: NewInvoicePayload, status: Status) => void;
   newInvoice: Invoice;
   loadingNewInvoice: boolean;
 
