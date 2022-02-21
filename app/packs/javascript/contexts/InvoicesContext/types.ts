@@ -1,5 +1,5 @@
 import { Invoice } from '../../models/Invoice'
-import { NewInvoicePayload } from '../../hooks/useNewInvoice'
+import { NewInvoicePayload } from '../../hooks/useInvoiceForm'
 
 export type Status = 'draft' | 'pending' | 'paid'
 
