@@ -49,10 +49,8 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
   const handleSubmit = async (event, status: Status = 'pending') => {
     event.preventDefault();
 
-    if (status !== 'draft') {
-      const valid = await runValidations();
-      if (!valid) return;
-    }
+    const valid = await runValidations();
+    if (!valid) return;
 
     if (invoice) {
       await updateInvoice(invoice, newInvoicePayload, status);
