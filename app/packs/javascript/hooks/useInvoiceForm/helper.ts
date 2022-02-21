@@ -61,7 +61,7 @@ export const buildInvoicePayload = (
   invoiceItems: NewInvoiceItemPayload[],
   invoice?: Invoice,
 ) => {
-  if (invoice) {
+  if (!invoice) {
     return {
       user_location: userLocation,
       client,

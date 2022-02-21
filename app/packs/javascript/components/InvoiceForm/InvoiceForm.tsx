@@ -13,6 +13,7 @@ import { SecondaryButton } from '../SecondaryButton';
 import { TertiaryButton } from '../TertiaryButton';
 import { LoadingSpinner } from '../../icons/LoadingSpinner';
 import { ROUTES } from '../../constants';
+import { Status } from '../../models/Invoice';
 import {
   InvoiceFormWrapper,
   InvoiceFormSectionTitle,
@@ -43,17 +44,22 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     runValidations,
   } = useInvoiceForm(invoice);
 
-  const { saveInvoice, loadingNewInvoice } = useContext(InvoicesContext);
+  const { saveInvoice, updateInvoice, loadingNewInvoice } = useContext(InvoicesContext);
 
-  const handleSubmit = async (event, skipValidation = false) => {
+  const handleSubmit = async (event, status: Status = 'pending') => {
     event.preventDefault();
 
-    if (!skipValidation) {
+    if (status !== 'draft') {
       const valid = await runValidations();
       if (!valid) return;
     }
 
-    await saveInvoice(newInvoicePayload);
+    if (invoice) {
+      await updateInvoice(invoice, newInvoicePayload, status);
+    } else {
+      await saveInvoice(newInvoicePayload);
+    }
+
     history.push(INVOICES_INDEX);
   };
 
@@ -301,8 +307,8 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
           Discard
         </SecondaryButton>
         <TertiaryButton
-          type="submit"
-          onClick={(event) => handleSubmit(event, true)}
+          type="button"
+          onClick={(event) => handleSubmit(event, 'draft')}
         >
           Save as Draft
         </TertiaryButton>

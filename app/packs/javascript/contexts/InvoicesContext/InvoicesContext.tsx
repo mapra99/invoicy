@@ -1,13 +1,15 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { IInvoicesContext, Status } from './types';
-import { Invoice } from '../../models/Invoice';
+import { IInvoicesContext } from './types';
+import { Invoice, Status } from '../../models/Invoice';
 import { ROUTES } from '../../constants';
 import { usePagination } from '../../hooks/usePagination';
 import { server } from '../../utils/server';
+import { replaceParams } from '../../utils/url';
 
 const {
   INDEX: INVOICES_INDEX,
   CREATE: CREATE_INVOICE,
+  UPDATE: UPDATE_INVOICE,
 } = ROUTES.API.INVOICES;
 
 export const InvoicesContext = createContext<IInvoicesContext | null>(null);
@@ -34,6 +36,18 @@ export const InvoicesProvider: React.FC = ({ children }) => {
     resetPagination();
   };
 
+  const updateInvoice = async (invoice, invoicePayload, status = 'pending') => {
+    setLoadingNewInvoice(true);
+
+    const url = replaceParams(UPDATE_INVOICE, { uuid: invoice.uuid });
+    const response = await server.put(url, { ...invoicePayload, status });
+    const data = await response.json();
+
+    setLoadingNewInvoice(false);
+    resetPagination();
+    return data;
+  };
+
   useEffect(() => {
     const filterUrl = `${INVOICES_INDEX}?status=${filterStatuses.join(',')}`;
     setUrl(filterUrl);
@@ -50,6 +64,8 @@ export const InvoicesProvider: React.FC = ({ children }) => {
 
     filterStatuses,
     setFilterStatuses,
+
+    updateInvoice,
   };
 
   return (

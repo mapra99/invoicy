@@ -3,6 +3,7 @@ import { Currency } from './Currency';
 import { User } from './User';
 import { InvoiceItem } from './InvoiceItem';
 
+export type Status = 'draft' | 'pending' | 'paid'
 export interface Invoice {
   id?: string;
   uuid?: string;
@@ -10,7 +11,7 @@ export interface Invoice {
   issueDate?: Date;
   dueDate?: Date;
   totalPrice?: number;
-  status?: 'draft' | 'pending' | 'paid';
+  status?: Status;
   client?: Client;
   user?: User;
   currency?: Currency;
