@@ -51,6 +51,7 @@ describe InvoiceUpdaterService::UpdateInvoice do
     expect(InvoiceCreatorService::CreateUserClient).to receive(:call!)
     expect(InvoiceCreatorService::CreateInvoiceItems).to receive(:call!)
     expect(InvoiceUpdaterService::SaveInvoice).to receive(:call!)
+    expect(InvoiceCreatorService::SendInvoiceEmail).to receive(:call!)
 
     described_class.call(user: user_param, payload: payload_param)
   end

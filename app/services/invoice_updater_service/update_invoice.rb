@@ -15,6 +15,7 @@ module InvoiceUpdaterService
              InvoiceCreatorService::CreateUserLocation,
              InvoiceCreatorService::CreateUserClient,
              InvoiceCreatorService::CreateInvoiceItems,
-             SaveInvoice
+             SaveInvoice,
+             InvoiceCreatorService::SendInvoiceEmail
   end
 end
