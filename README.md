@@ -1,6 +1,6 @@
 # Template App
 
-- Ruby: v3.0.1 (need to use rbenv)
+- Ruby: v3.0.4 (need to use rbenv)
 - Rails: v6.1.4
 - Webpacker: v6.0.0.rc.5 beta
   - CSS and Sass
