@@ -42,7 +42,7 @@ module EmailsService
     def resolve_recipient
       return if Rails.env.production?
 
-      context.recipient = ENV.fetch('EMAILS_RECIPIENT', 'test@example.com')
+      context.recipient = ENV.fetch('TEST_EMAILS_RECIPIENT', 'test@example.com')
     end
 
     def resolve_template_data

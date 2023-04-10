@@ -45,7 +45,7 @@ jobs:
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
-          REDISCLOUD_URL: redis://localhost:6379
+          REDIS_URL: redis://localhost:6379
 
       - name: Run RSpec
         run: COVERAGE=true bundle exec rspec  --require rails_helper
@@ -54,6 +54,6 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           SKIP_SOME_SPECS: true
-          REDISCLOUD_URL: redis://localhost:6379
+          REDIS_URL: redis://localhost:6379
           SENDGRID_API_KEY: 123
-          BASE_URL: http://localhost:3000
+          BASE_HOST: localhost:3000

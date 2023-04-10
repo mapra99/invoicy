@@ -38,7 +38,7 @@ module InvoiceCreatorService
       {
         client_name: context.client.name,
         user_name: context.user.name,
-        invoice_url: invoice_url(external_id: context.invoice.external_id, host: ENV.fetch('BASE_URL')),
+        invoice_url: invoice_url(external_id: context.invoice.external_id, host: ENV.fetch('BASE_HOST')),
         invoice_name: context.invoice.name,
         invoice_total_price: context.invoice.currency.formatted(context.invoice.total_price)
       }
