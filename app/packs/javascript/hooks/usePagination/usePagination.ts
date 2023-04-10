@@ -3,7 +3,7 @@ import { useScroll } from '../useScroll';
 import { server } from '../../utils/server';
 import { PaginationParams } from './types';
 
-const BASE_URL = process.env.BASE_URL || window.location.origin;
+const BASE_URL = window.location.origin;
 
 export const usePagination = <DataType>({
   initialUrl,
