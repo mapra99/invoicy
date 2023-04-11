@@ -1,5 +1,5 @@
-# gets the docker image of ruby 3.0.4 and lets us build on top of that
-FROM ruby:3.0.4-alpine
+# gets the docker image of ruby 3.1.2 and lets us build on top of that
+FROM ruby:3.1.2-alpine
 
 # install rails dependencies
 RUN apk add --update --no-cache build-base libpq-dev
@@ -24,8 +24,24 @@ RUN bundle config set --local without 'development test'
 RUN bundle config set --local with 'production'
 RUN bundle install --no-cache
 
+# Install node and js dependencies
+RUN apk add --update --no-cache nodejs=16.20.0-r0 npm
+
+# Install yarn
+RUN npm install -g yarn
+
+# Copy the package.json and lockfile
+COPY package.json /app/package.json
+COPY yarn.lock /app/yarn.lock
+
+# Install node dependencies
+RUN yarn install --prod
+
 # Copy the whole app
 COPY . /app
+
+# Compile frontend assets
+RUN bin/rails assets:precompile
 
 EXPOSE 3000
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
