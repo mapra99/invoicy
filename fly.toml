@@ -1,0 +1,48 @@
+# fly.toml file generated for invoicy on 2023-04-11T19:57:03-05:00
+
+app = "invoicy"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  [build.args]
+    BUILD_COMMAND = "bin/rails fly:build"
+    SERVER_COMMAND = "bin/rails fly:server"
+
+[deploy]
+  release_command = "bin/rails fly:release"
+
+[env]
+  PORT = "8080"
+
+[experimental]
+  auto_rollback = true
+
+[processes]
+  web = "bin/rails fly:server"
+  worker = "bin/rails fly:sidekiq"
+
+[[services]]
+  http_checks = []
+  internal_port = 8080
+  processes = ["web"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/"
