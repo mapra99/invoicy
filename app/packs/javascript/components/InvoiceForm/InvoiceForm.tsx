@@ -280,7 +280,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
         {
           newInvoicePayload.items_list.map((invoiceItem, index) => (
             <InvoiceItemInput
-              key={invoiceItem.name}
+              key={index} // eslint-disable-line react/no-array-index-key
               invoiceItem={invoiceItem}
               onChange={(newInvoiceItem) => onInvoiceItemChange(newInvoiceItem, index)}
               errors={errors.items_list[index]}

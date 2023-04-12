@@ -1,88 +1,71 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ValidationError } from 'yup';
 import { Invoice } from '../../models/Invoice';
 import {
   NewInvoicePayload,
   NewInvoiceItemPayload,
-  UserLocationPayload,
-  ClientPayload,
 } from './types';
-
 import {
   itemPayload,
   paymentTermsOptions,
   baseErrors,
   baseInvoiceItemError,
 } from './initialValues';
-
-import {
-  buildItemsListPayload,
-  buildClientPayload,
-  buildUserLocationPayload,
-  buildInvoicePayload,
-} from './helper';
-
+import { buildInvoicePayload } from './helper';
 import { newInvoiceSchema } from './validationSchema';
 
 export const useInvoiceForm = (invoice?: Invoice) => {
   const [
-    userLocation,
-    setUserLocation,
-  ] = useState<UserLocationPayload>(buildUserLocationPayload(invoice));
-  const [
-    client,
-    setClient,
-  ] = useState<ClientPayload>(buildClientPayload(invoice));
-  const [
-    invoiceItems,
-    setInvoiceItems,
-  ] = useState<NewInvoiceItemPayload[]>(buildItemsListPayload(invoice));
-
-  const [
     newInvoicePayload,
     setNewInvoicePayload,
-  ] = useState<NewInvoicePayload>(buildInvoicePayload(
-    userLocation,
-    client,
-    invoiceItems,
-    invoice,
-  ));
+  ] = useState<NewInvoicePayload>(buildInvoicePayload(invoice));
 
   const [errors, setErrors] = useState(baseErrors);
 
-  useEffect(() => {
-    setNewInvoicePayload({
-      ...newInvoicePayload,
-      client,
-      user_location: userLocation,
-      items_list: invoiceItems,
-    });
-  }, [userLocation, client, invoiceItems]);
-
   const onUserLocationChange = (event) => {
     const { name, value } = event.target;
-    setUserLocation({
-      ...userLocation,
+
+    const newUserLocation = {
+      ...newInvoicePayload.user_location,
       [name]: value,
+    };
+
+    setNewInvoicePayload({
+      ...newInvoicePayload,
+      user_location: newUserLocation,
     });
   };
 
   const onClientDetailsChange = (event) => {
     const { name, value } = event.target;
-    setClient({
+    const { client } = newInvoicePayload;
+
+    const newClient = {
       ...client,
       [name]: value,
+    };
+
+    setNewInvoicePayload({
+      ...newInvoicePayload,
+      client: newClient,
     });
   };
 
   const onClientLocationChange = (event) => {
     const { name, value } = event.target;
-    setClient({
+    const { client } = newInvoicePayload;
+
+    const newClient = {
       ...client,
       location: {
         ...client.location,
         [name]: value,
       },
+    };
+
+    setNewInvoicePayload({
+      ...newInvoicePayload,
+      client: newClient,
     });
   };
 
@@ -95,17 +78,23 @@ export const useInvoiceForm = (invoice?: Invoice) => {
   };
 
   const onInvoiceItemChange = (invoiceItem: NewInvoiceItemPayload, index: number) => {
-    const updatedInvoiceItems = [...invoiceItems];
+    const updatedInvoiceItems = [...newInvoicePayload.items_list];
     updatedInvoiceItems[index] = invoiceItem;
 
-    setInvoiceItems(updatedInvoiceItems);
+    setNewInvoicePayload({
+      ...newInvoicePayload,
+      items_list: updatedInvoiceItems,
+    });
   };
 
   const onInvoiceItemRemove = (index: number) => {
-    const updatedInvoiceItems = [...invoiceItems];
+    const updatedInvoiceItems = [...newInvoicePayload.items_list];
     updatedInvoiceItems.splice(index, 1);
 
-    setInvoiceItems(updatedInvoiceItems);
+    setNewInvoicePayload({
+      ...newInvoicePayload,
+      items_list: updatedInvoiceItems,
+    });
 
     const updatedInvoiceItemsErrors = [...errors.items_list];
     updatedInvoiceItemsErrors.splice(index, 1);
@@ -116,10 +105,15 @@ export const useInvoiceForm = (invoice?: Invoice) => {
   };
 
   const addNewInvoiceItem = () => {
-    setInvoiceItems([
-      ...invoiceItems,
+    const updatedInvoiceItems = [
+      ...newInvoicePayload.items_list,
       itemPayload,
-    ]);
+    ];
+
+    setNewInvoicePayload({
+      ...newInvoicePayload,
+      items_list: updatedInvoiceItems,
+    });
 
     setErrors({
       ...errors,

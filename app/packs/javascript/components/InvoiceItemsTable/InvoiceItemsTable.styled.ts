@@ -29,6 +29,12 @@ export const TableData = styled.td`
 export const TableRow = styled.tr`
 `;
 
+export const TableHead = styled.thead`
+`;
+
+export const TableBody = styled.tbody`
+`;
+
 export const TotalPriceWrapper = styled.div`
   display: flex;
   justify-content: space-between;

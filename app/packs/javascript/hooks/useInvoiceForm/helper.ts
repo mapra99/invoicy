@@ -1,10 +1,5 @@
 import { Invoice } from '../../models/Invoice';
 import {
-  NewInvoiceItemPayload,
-  UserLocationPayload,
-  ClientPayload,
-} from './types';
-import {
   itemPayload,
   userLocationPayload,
   clientPayload,
@@ -56,11 +51,12 @@ export const buildUserLocationPayload = (invoice?: Invoice) => {
 };
 
 export const buildInvoicePayload = (
-  userLocation: UserLocationPayload,
-  client: ClientPayload,
-  invoiceItems: NewInvoiceItemPayload[],
   invoice?: Invoice,
 ) => {
+  const userLocation = buildUserLocationPayload(invoice);
+  const client = buildClientPayload(invoice);
+  const invoiceItems = buildItemsListPayload(invoice);
+
   if (!invoice) {
     return {
       user_location: userLocation,
