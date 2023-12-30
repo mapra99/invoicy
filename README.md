@@ -23,7 +23,7 @@ Invoicy is a platform for freelancers to easily build invoices and send them to 
 
 ## Live Demo
 
-[Live Demo Link](https://invoicy.fly.dev/)
+[Live Demo Link](https://demo.invoicy.lat/)
 [See here our components library](https://invoicy-storybook.vercel.app/?path=/story/components-button--default)
 
 
@@ -52,7 +52,7 @@ To get a local copy up and running follow these simple example steps.
   ```
 3. Create a .env file based on the existing .env.sample file_
   ```bash
-    cp .env.example .env
+    cp .env.sample .env
   ```
 4. Follow the instructions on the .env file regarding the vendors variables that need  to be configure
 5. Set up the database
